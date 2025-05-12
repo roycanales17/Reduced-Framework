@@ -204,11 +204,23 @@ export function load(stream)
 	stream.wire('wire:loader', function (element, directive, expression) {
 		stream.ajax(({status}) => {
 
-			if (directive.includes('classList.add'))
-				element.classList[!status ? 'add' : 'remove'](expression);
+			if (directive.includes('classList.add')) {
+				if (!status) {
+					element.classList.add(expression);
+				} else {
+					if (!directive.includes('retain'))
+						element.classList.remove(expression);
+				}
+			}
 
-			if (directive.includes('classList.remove'))
-				element.classList[!status ? 'remove' : 'add'](expression);
+			if (directive.includes('classList.remove')) {
+				if (!status) {
+					element.classList.remove(expression);
+				} else {
+					if (!directive.includes('retain'))
+						element.classList.add(expression);
+				}
+			}
 
 			if (directive.includes('style')) {
 				if (!status) {
@@ -219,20 +231,27 @@ export function load(stream)
 						}
 					});
 				} else {
-					expression.split(';').forEach(style => {
-						const [property] = style.split(':');
-						if (property) {
-							element.style.removeProperty(property.trim());
-						}
-					});
+					if (!directive.includes('retain')) {
+						expression.split(';').forEach(style => {
+							const [property] = style.split(':');
+							if (property) {
+								element.style.removeProperty(property.trim());
+							}
+						});
+					}
 				}
 			}
 
-			if (directive.includes('attr'))
-				!status
-					? element.setAttribute(expression, true)
-					: element.removeAttribute(expression);
+			if (directive.includes('attr')) {
+				if (!status) {
+					element.setAttribute(expression, true)
+				} else {
+					if (!directive.includes('retain')) {
+						element.removeAttribute(expression);
+					}
+				}
+			}
 		});
-	}, ['classList.add', 'classList.remove', 'attr', 'style']);
+	}, ['classList.add', 'classList.remove', 'attr', 'style', 'retain']);
 }
 
