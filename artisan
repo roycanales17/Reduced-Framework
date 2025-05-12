@@ -1,4 +1,15 @@
 #!/usr/bin/env php
 <?php
 	require __DIR__ . '/vendor/autoload.php';
-	launch_cli_session($argv);
+
+	use App\Utilities\Application;
+	use App\Console\Terminal as Console;
+
+	Application::run(function ($conf) use($argv) {
+		launch_cli_session($argv);
+	}, configPath: 'app/Config.php', envPath: '.env')->failed(function (Exception|Error $exception) {
+		Console::error($exception->getMessage(), false);
+		Console::info("[TRACE]", Console::YELLOW);
+		Console::info(" - Path: {$exception->getFile()}");
+		Console::info(" - Line: {$exception->getLine()}");
+	});
