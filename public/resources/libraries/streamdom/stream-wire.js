@@ -26,7 +26,7 @@ class stream {
 				.map(val => '.' + val));
 
 			combinations.forEach(mods => {
-				const suffix = mods.length ? '.' + mods.join('.') : '';
+				const suffix = mods.length ? mods.join('') : '';
 				const fullDirective = directive + suffix;
 				const selector = this.escape(fullDirective);
 
