@@ -21,8 +21,9 @@ class stream {
 		if (externals.length) {
 			this.wire(directive, callback);
 
-			const matchedExternals = externals.filter(val => this.component.outerHTML.includes(val));
-			const combinations = this.getCombinationsOnly(matchedExternals);
+			const combinations = this.getCombinationsOnly(externals
+				.filter(val => this.component.outerHTML.toLowerCase().includes(val.toLowerCase()))
+				.map(val => '.' + val));
 
 			combinations.forEach(mods => {
 				const suffix = mods.length ? '.' + mods.join('.') : '';
