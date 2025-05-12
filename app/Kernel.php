@@ -5,8 +5,12 @@
 	use App\Utilities\Cache;
 	use App\Utilities\Logger;
 	use App\Utilities\Mail;
+	use App\Utilities\Stream;
 
 	Application::run(function ($conf) {
+
+		// Configure stream
+		Stream::configure($conf['stream'] ?? '');
 
 		// Configure cache
 		if ($cache = $conf['cache']['driver'] ?? '') {
