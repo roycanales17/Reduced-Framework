@@ -6,26 +6,40 @@ export function load(stream)
 
 	stream.wire('wire:click', function(element, expression, directive, identifier) {
 		element.addEventListener('click', (e) => {
+			let overwrite = 0;
 			if (directive.includes('.prevent'))
 				e.preventDefault();
+
+			if (directive.includes('.refresh'))
+				overwrite = 1;
+
+			if (directive.includes('.rebind'))
+				overwrite = 2;
 
 			stream.findTheID(element, 'wire:target', function(target) {
 				if (target)
 					identifier = target;
 
-				stream.submit({'_method': expression}, identifier);
+				stream.submit({'_method': expression}, identifier, overwrite);
 			});
 		});
-	}, ['prevent']);
+	}, ['prevent', 'refresh', 'rebind']);
 
 	stream.wire('wire:submit', function(element, expression, directive) {
 		element.addEventListener("submit", (e) => {
-			if (directive.includes('.prevent')) {
+			let overwrite = 0;
+			if (directive.includes('.prevent'))
 				e.preventDefault();
-			}
-			stream.submit({'_method': expression});
+
+			if (directive.includes('.refresh'))
+				overwrite = 1;
+
+			if (directive.includes('.rebind'))
+				overwrite = 2;
+
+			stream.submit({'_method': expression}, false, overwrite);
 		});
-	}, ['prevent']);
+	}, ['prevent', 'refresh', 'rebind']);
 
 	stream.wire('wire:keydown.keypress', function (element, expression, directive, identifier) {
 		let debounceTimer = null;
@@ -37,9 +51,16 @@ export function load(stream)
 			let activeEl = document.activeElement;
 			let value = e.target.value;
 			let action = expression;
+			let overwrite = 0;
 
 			if (action.includes("event.target.value"))
 				action = action.replace("event.target.value", `'${value}'`);
+
+			if (directive.includes('.refresh'))
+				overwrite = 1;
+
+			if (directive.includes('.rebind'))
+				overwrite = 2;
 
 			const delays = {
 				'100ms': 100,
@@ -57,7 +78,7 @@ export function load(stream)
 					if (target)
 						identifier = target;
 
-					stream.submit({ '_method': action }, identifier);
+					stream.submit({ '_method': action }, identifier, overwrite);
 					stream.ajax((res) => {
 						const hasTarget = element.getAttribute('wire:target');
 						if (directive.includes('.clear')) element.value = '';
@@ -84,7 +105,7 @@ export function load(stream)
 				perform()
 			}
 		});
-	}, ['100ms', '300ms', '500ms', '1000ms', '1300ms', '1500ms', '2000ms', 'clear']);
+	}, ['100ms', '300ms', '500ms', '1000ms', '1300ms', '1500ms', '2000ms', 'clear', 'refresh', 'rebind']);
 
 	stream.wire('wire:keydown.enter', function (element, expression, directive, identifier) {
 		element.addEventListener('keydown', (e) => {
@@ -92,10 +113,17 @@ export function load(stream)
 			let activeEl = document.activeElement;
 			let pressedKey = e.key.toLowerCase();
 			let action = expression;
+			let overwrite = 0;
 
 			if (pressedKey === 'enter') {
 				if (directive.includes('.prevent'))
 					e.preventDefault();
+
+				if (directive.includes('.refresh'))
+					overwrite = 1;
+
+				if (directive.includes('.rebind'))
+					overwrite = 2;
 
 				if (action.includes("event.target.value"))
 					action = action.replace("event.target.value", `'${element.value}'`);
@@ -104,7 +132,7 @@ export function load(stream)
 					if (target)
 						identifier = target;
 
-					stream.submit({'_method': action}, identifier);
+					stream.submit({'_method': action}, identifier, overwrite);
 					stream.ajax(({ status }) => {
 						if (status && directive.includes('.clear'))
 							element.value = '';
@@ -123,83 +151,111 @@ export function load(stream)
 				});
 			}
 		});
-	}, ['clear', 'prevent']);
+	}, ['clear', 'prevent', 'refresh', 'rebind']);
 
 	stream.wire('wire:keydown.escape', function (element, expression, directive) {
 		element.addEventListener('keydown', (e) => {
 			let pressedKey = e.key.toLowerCase();
 			let action = expression;
+			let overwrite = 0;
 
 			if (pressedKey === 'escape') {
 				if (directive.includes('.prevent'))
 					e.preventDefault();
 
+				if (directive.includes('.refresh'))
+					overwrite = 1;
+
+				if (directive.includes('.rebind'))
+					overwrite = 2;
+
 				if (action.includes("event.target.value"))
 					action = action.replace("event.target.value", `'${element.value}'`);
 
-				stream.submit({'_method': action});
+				stream.submit({'_method': action}, false, overwrite);
 				stream.ajax(({ status }) => {
 					if (status && directive.includes('.clear'))
 						element.value = '';
 				});
 			}
 		});
-	}, ['clear', 'prevent']);
+	}, ['clear', 'prevent', 'refresh', 'rebind']);
 
 	stream.wire('wire:keydown.backspace', function (element, expression, directive) {
 		element.addEventListener('keydown', (e) => {
 			let pressedKey = e.key.toLowerCase();
 			let action = expression;
+			let overwrite = 0;
 
 			if (pressedKey === 'backspace') {
 				if (directive.includes('.prevent'))
 					e.preventDefault();
 
+				if (directive.includes('.refresh'))
+					overwrite = 1;
+
+				if (directive.includes('.rebind'))
+					overwrite = 2;
+
 				if (action.includes("event.target.value"))
 					action = action.replace("event.target.value", `'${element.value}'`);
 
-				stream.submit({'_method': action});
+				stream.submit({'_method': action}, false, overwrite);
 			}
 		});
-	}, ['prevent']);
+	}, ['prevent', 'refresh', 'rebind']);
 
 	stream.wire('wire:keydown.tab', function (element, expression, directive) {
 		element.addEventListener('keydown', (e) => {
 			let pressedKey = e.key.toLowerCase();
 			let action = expression;
+			let overwrite = 0;
 
 			if (pressedKey === 'tab') {
 				if (directive.includes('.prevent'))
 					e.preventDefault();
 
+				if (directive.includes('.refresh'))
+					overwrite = 1;
+
+				if (directive.includes('.rebind'))
+					overwrite = 2;
+
 				if (action.includes("event.target.value"))
 					action = action.replace("event.target.value", `'${element.value}'`);
 
-				stream.submit({'_method': action});
+				stream.submit({'_method': action}, false, overwrite);
 				stream.ajax(({ status }) => {
 					if (status && directive.includes('.clear'))
 						element.value = '';
 				});
 			}
 		});
-	}, ['clear','prevent']);
+	}, ['clear','prevent', 'refresh', 'rebind']);
 
 	stream.wire('wire:keydown.delete', function (element, expression, directive) {
 		element.addEventListener('keydown', (e) => {
 			let pressedKey = e.key.toLowerCase();
 			let action = expression;
+			let overwrite = 0;
 
 			if (pressedKey === 'delete') {
 				if (directive.includes('.prevent'))
 					e.preventDefault();
 
+				if (directive.includes('.refresh'))
+					overwrite = 1;
+
+				if (directive.includes('.rebind'))
+					overwrite = 2;
+
 				if (action.includes("event.target.value"))
 					action = action.replace("event.target.value", `'${element.value}'`);
 
-				stream.submit({'_method': action});
+				stream.submit({'_method': action}, false, overwrite);
 			}
 		});
-	}, ['prevent']);
+	}, ['prevent', 'refresh', 'rebind']);
 
 	stream.wire('wire:loader', function (element, directive, expression) {
 		stream.ajax(({status}) => {
@@ -254,4 +310,3 @@ export function load(stream)
 		});
 	}, ['classList.add', 'classList.remove', 'attr', 'style', 'retain']);
 }
-

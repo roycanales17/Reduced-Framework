@@ -53,7 +53,7 @@ class stream {
 		}
 	}
 
-	submit(payload, target) {
+	submit(payload, target, overwrite = 0) {
 
 		const previousIdentifier = this.identifier;
 
@@ -113,59 +113,67 @@ class stream {
 			},
 			body: form
 		})
-		.then(response => {
-			if (!response.ok) {
-				console.error(
-					`%c❌ HTTP ERROR! %cStatus: ${response.status} 🚫`,
-					'color: red; font-weight: bold;',
-					'color: orange;'
-				);
-				if (response.status === 500) {
-					response.text().then(errorHtml => {
-						this.component.innerHTML += errorHtml;
-					});
+			.then(response => {
+				if (!response.ok) {
+					console.error(
+						`%c❌ HTTP ERROR! %cStatus: ${response.status} 🚫`,
+						'color: red; font-weight: bold;',
+						'color: orange;'
+					);
+					if (response.status === 500) {
+						response.text().then(errorHtml => {
+							this.component.innerHTML += errorHtml;
+						});
+					}
+					return null;
 				}
-				return null;
-			}
 
-			return response.text();
-		})
-		.then(html => {
-			if (html) {
-				morphdom(this.component, html, {
-					getNodeKey: node => {
-						if (node.nodeType !== 1) return null;
-						return node.id || node.getAttribute("data-component");
-					},
-					onBeforeElUpdated: (fromEl, toEl) => {
-						if (fromEl.isEqualNode(toEl))
-							return false;
+				return response.text();
+			})
+			.then(html => {
+				if (html) {
+					const performMorph = () => {
+						morphdom(this.component, html, {
+							getNodeKey: node => (node.nodeType === 1 ? node.getAttribute("data-component") || node.id : null),
+							onBeforeElUpdated: (fromEl, toEl) => !fromEl.isEqualNode(toEl),
+							onBeforeNodeDiscarded: () => true
+						});
+					};
 
-						return true;
-					},
-					onBeforeNodeDiscarded: node => true
-				});
+					switch (overwrite) {
+						case 1: // full replace
+							this.hardSwap(this.component, html);
+							break;
 
-				response = html;
-			} else {
-				console.warn("Updated component not found in response.");
-			}
-		})
-		.catch(error => {
-			console.error("Error submitting request:", error);
-		})
-		.finally(() => {
-			let timeEnded = performance.now();
-			let totalMs = timeEnded - timeStarted;
+						case 2: // rerun js only
+							performMorph();
+							this.executeScriptsIn(this.component);
+							break;
 
-			if (target)
-				this.trigger({'status': true, 'response': response, 'duration': totalMs}, previousIdentifier);
+						default:
+							performMorph();
+							break;
+					}
+					response = html;
+				} else {
+					console.warn("Updated component not found in response.");
+				}
+			})
+			.catch(error => {
+				console.error("Error submitting request:", error);
+			})
+			.finally(() => {
+				let timeEnded = performance.now();
+				let totalMs = timeEnded - timeStarted;
 
-			this.trigger({'status': true, 'response': response, 'duration': totalMs});
-			this.recompile(compiledComponents, response);
+				if (target)
+					this.trigger({'status': true, 'response': response, 'duration': totalMs}, previousIdentifier);
 
-			this.component.setAttribute('data-payloads', JSON.stringify(payloads))
-		});
+				this.trigger({'status': true, 'response': response, 'duration': totalMs});
+				this.recompile(compiledComponents, response);
+
+				this.component.setAttribute('data-payloads', JSON.stringify(payloads))
+			});
 	}
 
 	payload(directive, name) {
@@ -230,6 +238,16 @@ class stream {
 			if (isExist)
 				this.executeScriptsIn(isExist);
 		});
+	}
+
+	hardSwap(oldEl, html) {
+		const tpl = document.createElement('template');
+		tpl.innerHTML = html.trim();
+		const newEl = tpl.content.firstElementChild;
+
+		oldEl.replaceWith(newEl);
+		this.executeScriptsIn(newEl);
+		return newEl;
 	}
 
 	executeScriptsIn(container) {
