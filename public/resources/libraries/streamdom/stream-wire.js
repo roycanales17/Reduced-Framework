@@ -254,6 +254,9 @@ class stream {
 		const scripts = container.querySelectorAll('script');
 
 		scripts.forEach(script => {
+			const parentFragment = script.closest(this.container);
+			if (parentFragment && parentFragment !== container) return;
+
 			const newScript = document.createElement('script');
 
 			if (script.src) {
