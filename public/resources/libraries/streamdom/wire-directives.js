@@ -95,7 +95,7 @@ export function load(stream)
 							if (newEl)
 								newEl.focus();
 						}
-					});
+					}, identifier);
 				});
 			};
 
@@ -147,7 +147,7 @@ export function load(stream)
 							if (activeEl === element)
 								element.focus();
 						}
-					});
+					}, identifier);
 				});
 			}
 		});
@@ -260,7 +260,7 @@ export function load(stream)
 	stream.wire('wire:loader', function (element, directive, expression) {
 		stream.ajax(({status}) => {
 
-			if (directive.includes('classList.add')) {
+			if (directive.includes('.classList.add')) {
 				if (!status) {
 					element.classList.add(expression);
 				} else {
@@ -269,16 +269,16 @@ export function load(stream)
 				}
 			}
 
-			if (directive.includes('classList.remove')) {
+			if (directive.includes('.classList.remove')) {
 				if (!status) {
 					element.classList.remove(expression);
 				} else {
-					if (!directive.includes('retain'))
+					if (!directive.includes('.retain'))
 						element.classList.add(expression);
 				}
 			}
 
-			if (directive.includes('style')) {
+			if (directive.includes('.style')) {
 				if (!status) {
 					expression.split(';').forEach(style => {
 						const [property, value] = style.split(':');
@@ -287,7 +287,7 @@ export function load(stream)
 						}
 					});
 				} else {
-					if (!directive.includes('retain')) {
+					if (!directive.includes('.retain')) {
 						expression.split(';').forEach(style => {
 							const [property] = style.split(':');
 							if (property) {
@@ -298,11 +298,11 @@ export function load(stream)
 				}
 			}
 
-			if (directive.includes('attr')) {
+			if (directive.includes('.attr')) {
 				if (!status) {
 					element.setAttribute(expression, true)
 				} else {
-					if (!directive.includes('retain')) {
+					if (!directive.includes('.retain')) {
 						element.removeAttribute(expression);
 					}
 				}

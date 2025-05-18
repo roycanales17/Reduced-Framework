@@ -54,7 +54,6 @@ class stream {
 	}
 
 	submit(payload, target, overwrite = 0) {
-
 		const previousIdentifier = this.identifier;
 
 		// Update target component and identifier if provided
@@ -77,6 +76,7 @@ class stream {
 		if (target) {
 			this.trigger({ status: false, response, duration: 0 }, previousIdentifier);
 		}
+
 		this.trigger({ status: false, response, duration: 0 });
 
 		// Capture compiled fragments
@@ -103,6 +103,9 @@ class stream {
 		form.append('_properties', properties);
 		form.append('_models', JSON.stringify(models));
 		form.append('_compiled', JSON.stringify(compiled));
+
+		// Clear console
+		console.clear();
 
 		// Submit via fetch
 		fetch(`/api/stream-wire/${this.identifier}`, {
@@ -171,8 +174,14 @@ class stream {
 
 				this.trigger({'status': true, 'response': response, 'duration': totalMs});
 				this.recompile(compiledComponents, response);
+				this.component.setAttribute('data-payloads', JSON.stringify(payloads));
 
-				this.component.setAttribute('data-payloads', JSON.stringify(payloads))
+				if (target) {
+					setTimeout(() => {
+						this.component = document.querySelector('[data-component="'+ previousIdentifier +'"]');
+						this.identifier = previousIdentifier;
+					}, 0);
+				}
 			});
 	}
 
@@ -334,7 +343,10 @@ class stream {
 		if (identifier)
 			target = identifier;
 
-		window.addEventListener(`wire-loader-${this.stringToIntId(target)}`, (event) => callback(event.detail))
+		window.addEventListener(
+			`wire-loader-${this.stringToIntId(target)}`,
+			(event) => callback(event.detail)
+		);
 	}
 
 	trigger(data, identifier = '') {
