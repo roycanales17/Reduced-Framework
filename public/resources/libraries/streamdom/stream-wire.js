@@ -150,7 +150,7 @@ class stream {
 
 						case 2: // rerun js only
 							performMorph();
-							this.executeScriptsIn(this.component);
+							this.executeScriptsIn(this.component, false);
 							break;
 
 						default:
@@ -259,13 +259,18 @@ class stream {
 		return newEl;
 	}
 
-	executeScriptsIn(container) {
+	executeScriptsIn(container, includeFragment = true) {
 		const scripts = container.querySelectorAll('script');
 
 		scripts.forEach(script => {
+			// Skip script if it's outside the target container
 			const parentFragment = script.closest(this.container);
 			if (parentFragment && parentFragment !== container) return;
 
+			// Skip script if it's a "__this.container__" and we shouldn't include fragments
+			if (!includeFragment && script.id === `__${this.container}__`) return;
+
+			// Clone the script
 			const newScript = document.createElement('script');
 
 			if (script.src) {
@@ -274,10 +279,12 @@ class stream {
 				newScript.textContent = script.textContent;
 			}
 
+			// Copy all attributes from the original script
 			Array.from(script.attributes).forEach(attr => {
 				newScript.setAttribute(attr.name, attr.value);
 			});
 
+			// Replace the old script with the new one (which executes it)
 			script.parentNode.replaceChild(newScript, script);
 		});
 	}
