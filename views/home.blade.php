@@ -31,7 +31,7 @@
 
 		public function render(): string
 		{
-			$subscribe = compile(Subscribe::class);
+			$subscribe = stream(Subscribe::class);
 			$hidden = empty(trim($this->message)) ? 'display-none' : '';
 
 			return <<<HTML
@@ -60,7 +60,7 @@
 							if ($this->logs) {
 								echo '<li class="border-t border-gray-500 p-0"></li>';
 								foreach ($this->logs as $index => $message) {
-									echo compile(Log::class, ['index' => $index, 'message' => $message]);
+									echo stream(Log::class, ['index' => $index, 'message' => $message]);
 								}
 							}
 						})} 
