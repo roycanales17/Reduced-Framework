@@ -350,6 +350,6 @@ class stream {
 	}
 }
 
-export function init(identifier) {
-	stream.init(identifier)
+export default function init(id) {
+	return stream.init(id);
 }

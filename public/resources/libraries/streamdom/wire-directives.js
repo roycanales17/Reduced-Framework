@@ -310,3 +310,4 @@ export function load(stream)
 		});
 	}, ['classList.add', 'classList.remove', 'attr', 'style', 'retain']);
 }
+

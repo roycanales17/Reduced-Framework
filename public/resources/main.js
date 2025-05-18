@@ -55,6 +55,13 @@ function initialize(resources, callback) {
 	});
 }
 
+function stream(identifier) {
+	return import('../resources/libraries/streamdom/stream-wire.js')
+		.then(module => {
+			return module.default(identifier);
+		});
+}
+
 initialize('/resources/utilities.js', function() {
 	console.log('🚀 Application has started! Ready to build something amazing!');
 });
