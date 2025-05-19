@@ -77,6 +77,7 @@ class stream {
 			this.trigger({ status: false, response, duration: 0 }, previousIdentifier);
 		}
 
+		this.trigger({ status: false, response, duration: 0 }, target, 'wire-processing');
 		this.trigger({ status: false, response, duration: 0 });
 
 		// Capture compiled fragments
@@ -108,81 +109,91 @@ class stream {
 		console.clear();
 
 		// Submit via fetch
-		fetch(`/api/stream-wire/${this.identifier}`, {
-			method: "POST",
-			headers: {
-				"X-STREAM-WIRE": true,
-				"X-CSRF-TOKEN": this.token
-			},
-			body: form
-		})
-			.then(response => {
-				if (!response.ok) {
-					console.error(
-						`%c❌ HTTP ERROR! %cStatus: ${response.status} 🚫`,
-						'color: red; font-weight: bold;',
-						'color: orange;'
-					);
-					if (response.status === 500) {
-						response.text().then(errorHtml => {
-							this.component.innerHTML += errorHtml;
-						});
+		return new Promise((resolve, reject) => {
+			let response = null;
+
+			fetch(`/api/stream-wire/${this.identifier}`, {
+				method: "POST",
+				headers: {
+					"X-STREAM-WIRE": true,
+					"X-CSRF-TOKEN": this.token
+				},
+				body: form
+			})
+				.then(res => {
+					if (!res.ok) {
+						console.error(
+							`%c❌ HTTP ERROR! %cStatus: ${res.status} 🚫`,
+							'color: red; font-weight: bold;',
+							'color: orange;'
+						);
+						if (res.status === 500) {
+							res.text().then(errorHtml => {
+								this.component.innerHTML += errorHtml;
+							});
+						}
+						resolve(null);
+						return null;
 					}
-					return null;
-				}
+					return res.text();
+				})
+				.then(html => {
+					if (html) {
+						const performMorph = () => {
+							morphdom(this.component, html, {
+								getNodeKey: node => (node.nodeType === 1 ? node.getAttribute("data-component") || node.id : null),
+								onBeforeElUpdated: (fromEl, toEl) => !fromEl.isEqualNode(toEl),
+								onBeforeNodeDiscarded: () => true
+							});
+						};
 
-				return response.text();
-			})
-			.then(html => {
-				if (html) {
-					const performMorph = () => {
-						morphdom(this.component, html, {
-							getNodeKey: node => (node.nodeType === 1 ? node.getAttribute("data-component") || node.id : null),
-							onBeforeElUpdated: (fromEl, toEl) => !fromEl.isEqualNode(toEl),
-							onBeforeNodeDiscarded: () => true
-						});
-					};
+						switch (overwrite) {
+							case 1: // full replace
+								this.hardSwap(this.component, html);
+								break;
 
-					switch (overwrite) {
-						case 1: // full replace
-							this.hardSwap(this.component, html);
-							break;
+							case 2: // rerun js only
+								performMorph();
+								this.executeScriptsIn(this.component, false);
+								break;
 
-						case 2: // rerun js only
-							performMorph();
-							this.executeScriptsIn(this.component, false);
-							break;
+							default:
+								performMorph();
+								break;
+						}
 
-						default:
-							performMorph();
-							break;
+						response = html;
+					} else {
+						console.warn("Updated component not found in response.");
 					}
-					response = html;
-				} else {
-					console.warn("Updated component not found in response.");
-				}
-			})
-			.catch(error => {
-				console.error("Error submitting request:", error);
-			})
-			.finally(() => {
-				let timeEnded = performance.now();
-				let totalMs = timeEnded - timeStarted;
+				})
+				.catch(error => {
+					console.error("Error submitting request:", error);
+					reject(error);
+				})
+				.finally(() => {
+					let timeEnded = performance.now();
+					let totalMs = timeEnded - timeStarted;
 
-				if (target)
-					this.trigger({'status': true, 'response': response, 'duration': totalMs}, previousIdentifier);
+					if (target)
+						this.trigger({ status: true, response: response, duration: totalMs }, previousIdentifier);
 
-				this.trigger({'status': true, 'response': response, 'duration': totalMs});
-				this.recompile(compiledComponents, response);
-				this.component.setAttribute('data-payloads', JSON.stringify(payloads));
+					this.trigger({ status: true, response: response, duration: totalMs });
+					this.trigger({ status: true, response: response, duration: totalMs }, target, 'wire-processing');
 
-				if (target) {
-					setTimeout(() => {
-						this.component = document.querySelector('[data-component="'+ previousIdentifier +'"]');
-						this.identifier = previousIdentifier;
-					}, 0);
-				}
-			});
+					this.recompile(compiledComponents, response);
+					this.component.setAttribute('data-payloads', JSON.stringify(payloads));
+
+					if (target) {
+						setTimeout(() => {
+							this.component = document.querySelector('[data-component="' + previousIdentifier + '"]');
+							this.identifier = previousIdentifier;
+						}, 0);
+					}
+
+					resolve({ status: true, response: response, duration: totalMs });
+				});
+		});
 	}
 
 	payload(directive, name) {
@@ -356,17 +367,22 @@ class stream {
 		);
 	}
 
-	trigger(data, identifier = '') {
+	trigger(data, identifier = '', customKey = 'wire-loader') {
 		let target = this.identifier;
 		if (identifier)
 			target = identifier;
 
-		window.dispatchEvent(new CustomEvent(`wire-loader-${this.stringToIntId(target)}`, {detail: data}))
+		let key = `${customKey}-${this.stringToIntId(target)}`;
+		window.dispatchEvent(new CustomEvent(key, {detail: data}))
 	}
 
 	static init(component) {
 		load(new stream(component));
 	}
+}
+
+export function construct(id) {
+	return new stream(id);
 }
 
 export default function init(id) {
