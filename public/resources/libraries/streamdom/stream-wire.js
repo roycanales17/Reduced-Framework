@@ -16,6 +16,9 @@ class stream {
 	}
 
 	wire(directive, callback, externals = []) {
+		if (!this.component)
+			return;
+
 		const baseSelector = this.escape(directive);
 
 		if (externals.length) {
@@ -54,6 +57,9 @@ class stream {
 	}
 
 	submit(payload, target, overwrite = 0) {
+		if (!this.component)
+			return;
+
 		const previousIdentifier = this.identifier;
 
 		// Update target component and identifier if provided
@@ -111,6 +117,17 @@ class stream {
 		// Submit via fetch
 		return new Promise((resolve, reject) => {
 			let response = null;
+			let aborted = false;
+			let timeStarted = performance.now();
+
+			// Abort previous request if still running
+			if (this.currentController) {
+				this.currentController.abort();
+			}
+
+			// Create and store new controller
+			const controller = new AbortController();
+			this.currentController = controller;
 
 			fetch(`/api/stream-wire/${this.identifier}`, {
 				method: "POST",
@@ -118,7 +135,8 @@ class stream {
 					"X-STREAM-WIRE": true,
 					"X-CSRF-TOKEN": this.token
 				},
-				body: form
+				body: form,
+				signal: controller.signal
 			})
 				.then(res => {
 					if (!res.ok) {
@@ -148,15 +166,13 @@ class stream {
 						};
 
 						switch (overwrite) {
-							case 1: // full replace
+							case 1:
 								this.hardSwap(this.component, html);
 								break;
-
-							case 2: // rerun js only
+							case 2:
 								performMorph();
 								this.executeScriptsIn(this.component, false);
 								break;
-
 							default:
 								performMorph();
 								break;
@@ -168,12 +184,18 @@ class stream {
 					}
 				})
 				.catch(error => {
-					console.error("Error submitting request:", error);
-					reject(error);
+					if (error.name === 'AbortError') {
+						aborted = true;
+						resolve({ status: true, response: null, duration: 0 });
+					} else {
+						console.error("Error submitting request:", error);
+						reject(error);
+					}
 				})
 				.finally(() => {
-					let timeEnded = performance.now();
-					let totalMs = timeEnded - timeStarted;
+					let totalMs = performance.now() - timeStarted;
+
+					if (aborted) return;
 
 					if (target)
 						this.trigger({ status: true, response: response, duration: totalMs }, previousIdentifier);
@@ -196,8 +218,11 @@ class stream {
 		});
 	}
 
+	// Adds a payload name under a directive key in the component's [data-payloads] attribute.
 	payload(directive, name) {
 		const el = this.component;
+		if (!el) return;
+
 		const currentPayloads = JSON.parse(el.getAttribute('data-payloads') || '{}');
 
 		if (currentPayloads[directive] === undefined)
@@ -207,6 +232,8 @@ class stream {
 		el.setAttribute('data-payloads', JSON.stringify(currentPayloads));
 	}
 
+	// Finds an element with the specified attribute and retrieves its data-component ID,
+	// then invokes a callback with the found identifier (or false if not found).
 	findTheID(element, search, callback) {
 		if (element.hasAttribute(search)) {
 			const targetID = element.getAttribute(search);
@@ -222,6 +249,8 @@ class stream {
 		callback(false);
 	}
 
+	// Escapes special characters (: and .) in a string for use in CSS selectors.
+	// Optionally wraps the result in brackets unless skipBracket is true.
 	escape(str, skipBracket = false) {
 		const escaped = str
 			.replace(/:/g, '\\:')
@@ -233,6 +262,8 @@ class stream {
 		return `[${escaped}]`;
 	}
 
+	// Executes a given function with parameters mapped from an object.
+	// The parameter names are extracted from the function definition.
 	perform(params, action) {
 		const paramNames = this.getParamNames(action);
 		const args = paramNames.map(name => params[name]);
@@ -240,6 +271,7 @@ class stream {
 		action(...args);
 	}
 
+	// Compares two sets of [data-component] elements and executes scripts in those that have changed.
 	recompile(compiled, updated) {
 		const parser = new DOMParser();
 		const doc = parser.parseFromString(updated, 'text/html');
@@ -260,6 +292,8 @@ class stream {
 		});
 	}
 
+	// Replaces an old DOM element with a new one parsed from an HTML string,
+	// and executes any scripts found inside the new element.
 	hardSwap(oldEl, html) {
 		const tpl = document.createElement('template');
 		tpl.innerHTML = html.trim();
@@ -270,6 +304,8 @@ class stream {
 		return newEl;
 	}
 
+	// Executes <script> tags found inside a container element.
+	// Respects container scoping and allows skipping fragments by ID.
 	executeScriptsIn(container, includeFragment = true) {
 		const scripts = container.querySelectorAll('script');
 
@@ -278,7 +314,7 @@ class stream {
 			const parentFragment = script.closest(this.container);
 			if (parentFragment && parentFragment !== container) return;
 
-			// Skip script if it's a "__this.container__" and we shouldn't include fragments
+			// Skip script if it's a fragment and includeFragment is false
 			if (!includeFragment && script.id === `__${this.container}__`) return;
 
 			// Clone the script
@@ -295,11 +331,13 @@ class stream {
 				newScript.setAttribute(attr.name, attr.value);
 			});
 
-			// Replace the old script with the new one (which executes it)
+			// Replace the old script with the new one to trigger execution
 			script.parentNode.replaceChild(newScript, script);
 		});
 	}
 
+	// Retrieves all elements with the [data-component] attribute under the given root.
+	// If the root itself has [data-component], it is included at the start of the result.
 	getAllDataComponentElements(root) {
 		const elements = Array.from(root.querySelectorAll('[data-component]'));
 		if (root.hasAttribute('data-component')) {
@@ -308,9 +346,12 @@ class stream {
 		return elements;
 	}
 
-
+	// Finds all elements matching the selector within the component,
+	// excluding those that are nested inside a specific container tag.
 	getScopedElements(selector) {
 		const root = this.component;
+		if (!root) return [];
+
 		const excludeTag = this.container;
 		const elements = root.querySelectorAll(selector);
 
@@ -326,12 +367,14 @@ class stream {
 		});
 	}
 
+	// Extracts parameter names from a function as an array of strings.
 	getParamNames(func) {
-		const fnStr = func.toString().replace(/\/\/.*$|\/\*[\s\S]*?\*\//gm, '');
+		const fnStr = func.toString().replace(/\/\/.*$|\/\*[\s\S]*?\*\//gm, ''); 	// Remove comments
 		const result = fnStr.slice(fnStr.indexOf('(') + 1, fnStr.indexOf(')')).match(/([^\s,]+)/g);
 		return result === null ? [] : result;
 	}
 
+	// Generates all non-empty combinations of elements from an array.
 	getCombinationsOnly(array) {
 		const results = [];
 
@@ -346,16 +389,17 @@ class stream {
 		return results;
 	}
 
+	// Converts a string into a positive integer hash code (used for event identifiers).
 	stringToIntId(str) {
 		let hash = 0;
 		for (let i = 0; i < str.length; i++) {
 			hash = (hash << 5) - hash + str.charCodeAt(i);
-			hash |= 0;
+			hash |= 0; // Convert to 32bit integer
 		}
-
 		return Math.abs(hash);
 	}
 
+	// Subscribes a callback to a custom event using a hashed identifier.
 	ajax(callback, identifier = '') {
 		let target = this.identifier;
 		if (identifier)
@@ -367,15 +411,17 @@ class stream {
 		);
 	}
 
+	// Dispatches a custom event with data using a hashed identifier.
 	trigger(data, identifier = '', customKey = 'wire-loader') {
 		let target = this.identifier;
 		if (identifier)
 			target = identifier;
 
 		let key = `${customKey}-${this.stringToIntId(target)}`;
-		window.dispatchEvent(new CustomEvent(key, {detail: data}))
+		window.dispatchEvent(new CustomEvent(key, { detail: data }));
 	}
 
+	// Initializes the stream component by calling a global load function with a new stream instance.
 	static init(component) {
 		load(new stream(component));
 	}
