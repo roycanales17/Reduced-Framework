@@ -56,24 +56,32 @@ class stream {
 		}
 	}
 
-	submit(payload, target, overwrite = 0) {
+	submit(payload, target, overwrite = 0, skipRequest = false) {
 		if (!this.component)
 			return;
 
+		const models = {};
+		const compiled = {};
+		const ex_loads = {};
+		const form = new FormData();
 		const previousIdentifier = this.identifier;
 
 		// Update target component and identifier if provided
 		if (target) {
+
+			// Fetch external payloads for target request
+			for (const [directive, names] of Object.entries(JSON.parse(this.component.getAttribute('data-exopayloads') || '{}'))) {
+				names.forEach(name => {
+					const model = this.component.querySelector(`[${CSS.escape(directive)}='${name}']`);
+					models[name] = model.value;
+				});
+			}
+
 			this.component = document.querySelector('[data-component="'+ target +'"]');
 			this.identifier = target;
 		}
 
 		let response = null;
-		const models = {};
-		const compiled = {};
-		const form = new FormData();
-		const timeStarted = performance.now();
-
 		let compiledComponents = this.getAllDataComponentElements(this.component);
 		let properties = this.component.getAttribute('data-properties');
 		let payloads = JSON.parse(this.component.getAttribute('data-payloads') || '{}');
@@ -108,16 +116,14 @@ class stream {
 		// Append meta info to FormData
 		form.append('_component', this.identifier);
 		form.append('_properties', properties);
-		form.append('_models', JSON.stringify(models));
+		form.append('_models', JSON.stringify({...models, ...ex_loads}));
 		form.append('_compiled', JSON.stringify(compiled));
-
-		// Clear console
-		console.clear();
 
 		// Submit via fetch
 		return new Promise((resolve, reject) => {
 			let response = null;
 			let aborted = false;
+			let isJson = false;
 			let timeStarted = performance.now();
 
 			// Abort previous request if still running
@@ -129,58 +135,131 @@ class stream {
 			const controller = new AbortController();
 			this.currentController = controller;
 
+			// Final request handler
+			const rebuild = () => {
+				let totalMs = performance.now() - timeStarted;
+
+				if (aborted) return;
+
+				if (target)
+					this.trigger({ status: true, response: response, duration: totalMs }, previousIdentifier);
+
+				this.trigger({ status: true, response: response, duration: totalMs });
+				this.trigger({ status: true, response: response, duration: totalMs }, target, 'wire-processing');
+
+				this.recompile(compiledComponents, response);
+				this.component.setAttribute('data-payloads', JSON.stringify(payloads));
+
+				if (target) {
+					setTimeout(() => {
+						this.component = document.querySelector('[data-component="' + previousIdentifier + '"]');
+						this.identifier = previousIdentifier;
+					}, 0);
+				}
+
+				resolve({ status: true, response: response, duration: totalMs });
+			};
+
+			if (skipRequest) {
+				rebuild();
+				return;
+			}
+
 			fetch(`/api/stream-wire/${this.identifier}`, {
 				method: "POST",
 				headers: {
 					"X-STREAM-WIRE": true,
-					"X-CSRF-TOKEN": this.token
+					"X-CSRF-TOKEN": this.token,
+					"HTTP_X_REQUESTED_WITH": 'xmlhttprequest'
 				},
 				body: form,
 				signal: controller.signal
 			})
 				.then(res => {
+					const contentType = res.headers.get("Content-Type") || "";
+
 					if (!res.ok) {
 						console.error(
 							`%c❌ HTTP ERROR! %cStatus: ${res.status} 🚫`,
 							'color: red; font-weight: bold;',
 							'color: orange;'
 						);
-						if (res.status === 500) {
-							res.text().then(errorHtml => {
+
+						if (res.status === 500 && contentType.includes("text/html")) {
+							return res.text().then(errorHtml => {
 								this.component.innerHTML += errorHtml;
+								resolve(null);
+								return null;
 							});
 						}
+
 						resolve(null);
 						return null;
 					}
-					return res.text();
-				})
-				.then(html => {
-					if (html) {
-						const performMorph = () => {
-							morphdom(this.component, html, {
-								getNodeKey: node => (node.nodeType === 1 ? node.getAttribute("data-component") || node.id : null),
-								onBeforeElUpdated: (fromEl, toEl) => !fromEl.isEqualNode(toEl),
-								onBeforeNodeDiscarded: () => true
-							});
-						};
 
-						switch (overwrite) {
-							case 1:
-								this.hardSwap(this.component, html);
-								break;
-							case 2:
-								performMorph();
-								this.executeScriptsIn(this.component, false);
-								break;
-							default:
-								performMorph();
-								break;
-						}
-
-						response = html;
+					if (contentType.includes("application/json")) {
+						isJson = true;
+						return res.json();
+					} else if (contentType.includes("text/html")) {
+						return res.text();
 					} else {
-						console.warn("Updated component not found in response.");
+						console.warn("⚠️ Unknown content type:", contentType);
+						resolve(null);
+						return null;
+					}
+				})
+				.then(data => {
+					const performMorph = (oldElement, newElement) => {
+						morphdom(oldElement, newElement, {
+							getNodeKey: node => (node.nodeType === 1 ? node.getAttribute("data-component") || node.id : null),
+							onBeforeElUpdated: (fromEl, toEl) => !fromEl.isEqualNode(toEl),
+							onBeforeNodeDiscarded: () => true
+						});
+					};
+
+					if (isJson) {
+						if (data.redirect !== undefined) {
+							window.location.href = data.redirect;
+						} else {
+							let newContent = data.content;
+							let extender = data.extender || {};
+
+							if (!newContent) {
+								console.warn("Updated component not found in response.");
+							}
+
+							switch (overwrite) {
+								case 1:
+									this.hardSwap(this.component, newContent);
+									break;
+								case 2:
+									performMorph(this.component, newContent);
+									this.executeScriptsIn(this.component, false);
+									break;
+								case 3:
+									performMorph(this.component, newContent);
+									this.executeScriptsIn(this.component);
+									break;
+								default:
+									performMorph(this.component, newContent);
+									break;
+							}
+
+							response = newContent;
+							if (Array.isArray(extender)) {
+								(async () => {
+									for (const item of extender) {
+										const target = item.target;
+										const action = item.method;
+										const target_identifier = document.querySelector(`[data-id="${target}"]`);
+										const target_component = target_identifier.getAttribute('data-component');
+
+										const instance = await StreamListener(target_component);
+										await instance.submit({'_method': action }, false, 3);
+									}
+								})();
+							}
+						}
 					}
 				})
 				.catch(error => {
@@ -192,44 +271,26 @@ class stream {
 						reject(error);
 					}
 				})
-				.finally(() => {
-					let totalMs = performance.now() - timeStarted;
-
-					if (aborted) return;
-
-					if (target)
-						this.trigger({ status: true, response: response, duration: totalMs }, previousIdentifier);
-
-					this.trigger({ status: true, response: response, duration: totalMs });
-					this.trigger({ status: true, response: response, duration: totalMs }, target, 'wire-processing');
-
-					this.recompile(compiledComponents, response);
-					this.component.setAttribute('data-payloads', JSON.stringify(payloads));
-
-					if (target) {
-						setTimeout(() => {
-							this.component = document.querySelector('[data-component="' + previousIdentifier + '"]');
-							this.identifier = previousIdentifier;
-						}, 0);
-					}
-
-					resolve({ status: true, response: response, duration: totalMs });
-				});
+				.finally(() => rebuild());
 		});
 	}
 
 	// Adds a payload name under a directive key in the component's [data-payloads] attribute.
-	payload(directive, name) {
+	payload(directive, name, external = false) {
 		const el = this.component;
 		if (!el) return;
 
-		const currentPayloads = JSON.parse(el.getAttribute('data-payloads') || '{}');
+		let modelKey = 'data-payloads';
+		if (external)
+			modelKey = 'data-exopayloads';
+
+		const currentPayloads = JSON.parse(el.getAttribute(modelKey) || '{}');
 
 		if (currentPayloads[directive] === undefined)
 			currentPayloads[directive] = [];
 
 		currentPayloads[directive].push(name);
-		el.setAttribute('data-payloads', JSON.stringify(currentPayloads));
+		el.setAttribute(modelKey, JSON.stringify(currentPayloads));
 	}
 
 	// Finds an element with the specified attribute and retrieves its data-component ID,

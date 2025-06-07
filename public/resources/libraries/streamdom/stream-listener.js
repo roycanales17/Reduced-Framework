@@ -27,8 +27,8 @@ class StreamListener {
 		}
 	}
 
-	submit(payload, target) {
-		return this.stream.submit(payload, target)
+	submit(payload, target, overwrite = 0) {
+		return this.stream.submit(payload, target, overwrite)
 	}
 
 	static init(id) {
@@ -36,6 +36,7 @@ class StreamListener {
 	}
 }
 
+// Export a function that takes an ID and returns an instance
 export default function init(id) {
 	return StreamListener.init(id);
 }

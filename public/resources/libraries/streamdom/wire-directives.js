@@ -4,6 +4,10 @@ export function load(stream)
 		stream.payload(directive, expression);
 	});
 
+	stream.wire('wire:x-model', function(directive, expression) {
+		stream.payload(directive, expression, true);
+	});
+
 	stream.wire('wire:click', function(element, expression, directive, identifier) {
 		element.addEventListener('click', (e) => {
 			let overwrite = 0;
@@ -16,6 +20,9 @@ export function load(stream)
 			if (directive.includes('.rebind'))
 				overwrite = 2;
 
+			if (directive.includes('.inactive') && element.classList.contains('active'))
+				return;
+
 			stream.findTheID(element, 'wire:target', function(target) {
 				if (target)
 					identifier = target;
@@ -23,7 +30,7 @@ export function load(stream)
 				stream.submit({'_method': expression}, identifier, overwrite);
 			});
 		});
-	}, ['prevent', 'refresh', 'rebind']);
+	}, ['prevent', 'refresh', 'rebind', 'inactive']);
 
 	stream.wire('wire:submit', function(element, expression, directive) {
 		element.addEventListener("submit", (e) => {
@@ -258,7 +265,7 @@ export function load(stream)
 	}, ['prevent', 'refresh', 'rebind']);
 
 	stream.wire('wire:loader', function (element, directive, expression) {
-		stream.ajax(({status}) => {
+		stream.ajax(({ status }) => {
 
 			if (directive.includes('.classList.add')) {
 				if (!status) {

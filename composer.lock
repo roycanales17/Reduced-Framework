@@ -134,16 +134,16 @@
         },
         {
             "name": "roy404/blades",
-            "version": "v1.1.5",
+            "version": "v1.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Blades-Compiler.git",
-                "reference": "bea00decdef032ac7e4e20510ab4f78f60d94c36"
+                "reference": "816c1fbbc79cce65cc1a52bc442da1e3bf2f1c4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Blades-Compiler/zipball/bea00decdef032ac7e4e20510ab4f78f60d94c36",
-                "reference": "bea00decdef032ac7e4e20510ab4f78f60d94c36",
+                "url": "https://api.github.com/repos/roycanales17/Blades-Compiler/zipball/816c1fbbc79cce65cc1a52bc442da1e3bf2f1c4d",
+                "reference": "816c1fbbc79cce65cc1a52bc442da1e3bf2f1c4d",
                 "shasum": ""
             },
             "require": {
@@ -152,7 +152,10 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "App\\Content\\": "src/"
+                    "App\\View\\Compilers\\": "src/",
+                    "App\\View\\Compilers\\Scheme\\": "src/scheme",
+                    "App\\View\\Compilers\\Builder\\": "src/builder",
+                    "App\\View\\Compilers\\Templates\\": "src/templates"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -172,9 +175,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Blades-Compiler/issues",
-                "source": "https://github.com/roycanales17/Blades-Compiler/tree/v1.1.5"
+                "source": "https://github.com/roycanales17/Blades-Compiler/tree/v1.2.10"
             },
-            "time": "2025-05-18T12:59:29+00:00"
+            "time": "2025-06-07T01:41:21+00:00"
         },
         {
             "name": "roy404/eloquent",
@@ -223,16 +226,16 @@
         },
         {
             "name": "roy404/request",
-            "version": "v3.0.6",
+            "version": "v3.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Input-Request.git",
-                "reference": "2803b941b9029d3f7ccc3ad8d62a6b96be116aee"
+                "reference": "193cc96dcf746d3af7951e5b627982d80ef9af86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Input-Request/zipball/2803b941b9029d3f7ccc3ad8d62a6b96be116aee",
-                "reference": "2803b941b9029d3f7ccc3ad8d62a6b96be116aee",
+                "url": "https://api.github.com/repos/roycanales17/Input-Request/zipball/193cc96dcf746d3af7951e5b627982d80ef9af86",
+                "reference": "193cc96dcf746d3af7951e5b627982d80ef9af86",
                 "shasum": ""
             },
             "require": {
@@ -267,22 +270,22 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Input-Request/issues",
-                "source": "https://github.com/roycanales17/Input-Request/tree/v3.0.6"
+                "source": "https://github.com/roycanales17/Input-Request/tree/v3.0.9"
             },
-            "time": "2025-05-12T03:37:39+00:00"
+            "time": "2025-06-01T05:24:40+00:00"
         },
         {
             "name": "roy404/routes",
-            "version": "v4.0.7",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Routes.git",
-                "reference": "e764ece67aa9441895bab779d1cc9ac90c9e1d96"
+                "reference": "c16ec1e7b5013349969878d8dab593411d0f193e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Routes/zipball/e764ece67aa9441895bab779d1cc9ac90c9e1d96",
-                "reference": "e764ece67aa9441895bab779d1cc9ac90c9e1d96",
+                "url": "https://api.github.com/repos/roycanales17/Web-Routes/zipball/c16ec1e7b5013349969878d8dab593411d0f193e",
+                "reference": "c16ec1e7b5013349969878d8dab593411d0f193e",
                 "shasum": ""
             },
             "require": {
@@ -315,9 +318,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Routes/issues",
-                "source": "https://github.com/roycanales17/Web-Routes/tree/v4.0.7"
+                "source": "https://github.com/roycanales17/Web-Routes/tree/v4.1.0"
             },
-            "time": "2025-05-05T11:13:53+00:00"
+            "time": "2025-06-04T14:34:35+00:00"
         },
         {
             "name": "roy404/schema",
@@ -365,16 +368,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "v2.0.8",
+            "version": "v2.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "451ec19a0293ee18f80ef0b7902f78c56646c5e4"
+                "reference": "067b22e7dc229e4a2657cfc49e616962922d91c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/451ec19a0293ee18f80ef0b7902f78c56646c5e4",
-                "reference": "451ec19a0293ee18f80ef0b7902f78c56646c5e4",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/067b22e7dc229e4a2657cfc49e616962922d91c8",
+                "reference": "067b22e7dc229e4a2657cfc49e616962922d91c8",
                 "shasum": ""
             },
             "require": {
@@ -414,9 +417,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v2.0.8"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v2.0.9"
             },
-            "time": "2025-05-20T13:26:32+00:00"
+            "time": "2025-06-01T05:10:58+00:00"
         }
     ],
     "packages-dev": [],
