@@ -1,6 +1,7 @@
 <?php
 
 	use App\Utilities\Blueprints\CacheDriver;
+	use App\View\Compilers\Blade;
 	use App\Utilities\Server;
 
 	return [
@@ -45,17 +46,6 @@
 	|
 	*/
 	'preload_files' => [],
-
-	/*
-	|--------------------------------------------------------------------------
-	| Stream Wire Path
-	|--------------------------------------------------------------------------
-	|
-	| Specifies the path to locate view files used for Stream Wire components.
-	| This allows rendering components via file path instead of class names.
-	|
-	*/
-	'stream' => ['../views/'],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -131,7 +121,7 @@
 	*/
 	'cache' => [
 		// The default cache driver to use: 'redis' or 'memcached'
-		'driver' => 'redis',
+		'driver' => 'memcached',
 
 		// Redis configuration
 		'redis' => [
@@ -173,15 +163,13 @@
 			'captured' => function (string $content, int $code) {
 				if ($code == 404) return;
 
-				App\Content\Blade::render('public/index.blade.php', extract: [
+				Blade::load('../public/index.blade.php', extract: [
 					'g_page_lang' => config('APP_LANGUAGE'),
 					'g_page_title' => config('APP_NAME'),
 					'g_page_url' => config('APP_URL'),
 					'g_page_description' => "Page description here",
 					'g_page_content' => $content
-				], onError: function ($trace) {
-					throw new Exception("{$trace['message']} in `{$trace['path']}`, line: `{$trace['line']}`", $trace['code']);
-				});
+				]);
 			}
 		],
 
