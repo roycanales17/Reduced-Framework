@@ -181,16 +181,16 @@
         },
         {
             "name": "roy404/eloquent",
-            "version": "v1.0.10",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Eloquent-Class.git",
-                "reference": "bd3ef52e29e881ddcf560d2e801584f29b18081d"
+                "reference": "59dca8bf8004769d0dde0f50da29cc0c522b90f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Eloquent-Class/zipball/bd3ef52e29e881ddcf560d2e801584f29b18081d",
-                "reference": "bd3ef52e29e881ddcf560d2e801584f29b18081d",
+                "url": "https://api.github.com/repos/roycanales17/Eloquent-Class/zipball/59dca8bf8004769d0dde0f50da29cc0c522b90f6",
+                "reference": "59dca8bf8004769d0dde0f50da29cc0c522b90f6",
                 "shasum": ""
             },
             "require": {
@@ -220,22 +220,22 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Eloquent-Class/issues",
-                "source": "https://github.com/roycanales17/Eloquent-Class/tree/v1.0.10"
+                "source": "https://github.com/roycanales17/Eloquent-Class/tree/v1.1.2"
             },
-            "time": "2025-05-10T14:55:13+00:00"
+            "time": "2025-06-10T07:32:02+00:00"
         },
         {
             "name": "roy404/request",
-            "version": "v3.0.9",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Input-Request.git",
-                "reference": "193cc96dcf746d3af7951e5b627982d80ef9af86"
+                "reference": "5308a2942f6518b158f075bbe82a1104c65833fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Input-Request/zipball/193cc96dcf746d3af7951e5b627982d80ef9af86",
-                "reference": "193cc96dcf746d3af7951e5b627982d80ef9af86",
+                "url": "https://api.github.com/repos/roycanales17/Input-Request/zipball/5308a2942f6518b158f075bbe82a1104c65833fc",
+                "reference": "5308a2942f6518b158f075bbe82a1104c65833fc",
                 "shasum": ""
             },
             "require": {
@@ -270,9 +270,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Input-Request/issues",
-                "source": "https://github.com/roycanales17/Input-Request/tree/v3.0.9"
+                "source": "https://github.com/roycanales17/Input-Request/tree/v3.1.0"
             },
-            "time": "2025-06-01T05:24:40+00:00"
+            "time": "2025-06-09T10:03:34+00:00"
         },
         {
             "name": "roy404/routes",
