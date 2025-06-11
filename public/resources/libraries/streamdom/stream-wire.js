@@ -4,13 +4,8 @@ import {load} from "./wire-directives.js";
 class stream {
 
 	constructor(identifier) {
-		const component = document.querySelector('[data-component="'+ identifier +'"]');
-		if (!component) {
-			console.error("Component not found for identifier:", identifier);
-		}
-
 		this.container = 'fragment';
-		this.component = component;
+		this.component = document.querySelector('[data-component="'+ identifier +'"]');
 		this.identifier = identifier;
 		this.token = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
 	}
@@ -113,6 +108,13 @@ class stream {
 			form.append(key, value);
 		}
 
+		// Append to default payload
+		if (models) {
+			for (let key in models) {
+				form.append(key, models[key]);
+			}
+		}
+
 		// Append meta info to FormData
 		form.append('_component', this.identifier);
 		form.append('_properties', properties);
@@ -211,7 +213,7 @@ class stream {
 				.then(data => {
 					const performMorph = (oldElement, newElement) => {
 						morphdom(oldElement, newElement, {
-							getNodeKey: node => (node.nodeType === 1 ? node.getAttribute("data-component") || node.id : null),
+							getNodeKey: node => (node.nodeType === 1 ? node.getAttribute("data-key") || node.getAttribute("data-component") || node.id : null),
 							onBeforeElUpdated: (fromEl, toEl) => !fromEl.isEqualNode(toEl),
 							onBeforeNodeDiscarded: () => true
 						});
@@ -252,10 +254,11 @@ class stream {
 										const target = item.target;
 										const action = item.method;
 										const target_identifier = document.querySelector(`[data-id="${target}"]`);
-										const target_component = target_identifier.getAttribute('data-component');
-
-										const instance = await StreamListener(target_component);
-										await instance.submit({'_method': action }, false, 3);
+										if (target_identifier) {
+											const target_component = target_identifier.getAttribute('data-component');
+											const instance = await StreamListener(target_component);
+											await instance.submit({'_method': action }, false, 3);
+										}
 									}
 								})();
 							}

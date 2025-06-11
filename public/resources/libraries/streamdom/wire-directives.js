@@ -1,6 +1,11 @@
 export function load(stream)
 {
-	stream.wire('wire:model', function(directive, expression) {
+	stream.wire('wire:model', function(element, directive, expression) {
+		element.addEventListener('change', function () {
+			if (element.type === 'checkbox') {
+				element.value = element.checked ? '1' : '0';
+			}
+		});
 		stream.payload(directive, expression);
 	});
 
