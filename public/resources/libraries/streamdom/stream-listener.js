@@ -31,6 +31,18 @@ class StreamListener {
 		return this.stream.submit(payload, target, overwrite)
 	}
 
+	execute(action, params = [], overwrite = 0) {
+		let payload = {};
+		payload['_method'] = `${action}(${params.join(', ')})`;
+		return this.stream.submit(payload, '', overwrite)
+	}
+
+	target(action, params = [], target, overwrite = 0) {
+		let payload = {};
+		payload['_method'] = `${action}(${params.join(', ')})`;
+		return this.stream.submit(payload, target, overwrite)
+	}
+
 	static init(id) {
 		return new StreamListener(id);
 	}

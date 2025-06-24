@@ -240,7 +240,7 @@ class stream {
 									break;
 								case 3:
 									performMorph(this.component, newContent);
-									this.executeScriptsIn(this.component);
+									this.executeScriptsIn(this.component, true, false);
 									break;
 								default:
 									performMorph(this.component, newContent);
@@ -368,9 +368,8 @@ class stream {
 		return newEl;
 	}
 
-	// Executes <script> tags found inside a container element.
 	// Respects container scoping and allows skipping fragments by ID.
-	executeScriptsIn(container, includeFragment = true) {
+	executeScriptsIn(container, includeFragment = true, includeScript = true) {
 		const scripts = container.querySelectorAll('script');
 
 		scripts.forEach(script => {
@@ -378,8 +377,13 @@ class stream {
 			const parentFragment = script.closest(this.container);
 			if (parentFragment && parentFragment !== container) return;
 
-			// Skip script if it's a fragment and includeFragment is false
-			if (!includeFragment && script.id === `__${this.container}__`) return;
+			const isFragmentScript = script.id === `__${this.container}__`;
+
+			// Skip fragment scripts if includeFragment is false
+			if (isFragmentScript && !includeFragment) return;
+
+			// Skip standard scripts if includeScript is false
+			if (!isFragmentScript && !includeScript) return;
 
 			// Clone the script
 			const newScript = document.createElement('script');
