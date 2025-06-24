@@ -5,7 +5,12 @@
 	ini_set('display_errors', 0);
 
 	# Class Importer
-	spl_autoload_register(fn($class) => file_exists($path = '../' . str_replace('\\', '/', $class) . '.php') && require_once $path);
+	spl_autoload_register(function ($class) {
+		$path = '../' . str_replace('\\', '/', $class) . '.php';
+		if (file_exists($path)) {
+			require_once $path;
+		}
+	});
 
 	# Built-In Functions
 	require_once '../vendor/autoload.php';
