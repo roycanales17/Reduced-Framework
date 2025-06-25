@@ -9,9 +9,6 @@
         background: #f8fafc;
         color: #1a202c;
     }
-    .container {
-        text-align: center;
-    }
     h1 {
         font-size: 3rem;
         margin-bottom: 0.5rem;
@@ -20,8 +17,14 @@
         font-size: 1.25rem;
         color: #4a5568;
     }
+    .text-center {
+        text-align: center;
+    }
+    .font-bold {
+        font-weight: bold;
+    }
 </style>
-<div class="container">
-    <h1>Welcome to {{ config('APP_NAME', 'Framework') }}</h1>
+<div class="text-center">
+    <h1 class="font-bold">Welcome to {{ config('APP_NAME', 'Framework') }}</h1>
     <p>Your application is up and running!</p>
 </div>
