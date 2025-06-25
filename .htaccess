@@ -1,11 +1,11 @@
 Options -Indexes
 
 <IfModule mod_rewrite.c>
-  RewriteEngine on
+  RewriteEngine On
 
-  # Redirect root to public/
+  # Redirect root to public directory
   RewriteRule ^$ public/ [L]
   RewriteRule (.*) public/$1 [L]
-
+    
   php_value short_open_tag 1
 </IfModule>
