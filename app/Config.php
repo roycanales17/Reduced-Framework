@@ -1,7 +1,6 @@
 <?php
 
 	use App\Utilities\Blueprints\CacheDriver;
-	use App\View\Compilers\Blade;
 	use App\Utilities\Server;
 
 	return [
@@ -163,13 +162,13 @@
 			'captured' => function (string $content, int $code) {
 				if ($code == 404) return;
 
-				Blade::load('../public/index.blade.php', extract: [
+				echo(view('template', [
 					'g_page_lang' => config('APP_LANGUAGE'),
 					'g_page_title' => config('APP_NAME'),
 					'g_page_url' => config('APP_URL'),
 					'g_page_description' => "Page description here",
 					'g_page_content' => $content
-				]);
+				]));
 			}
 		],
 
