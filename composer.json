@@ -1,5 +1,8 @@
 {
     "name": "roy404/framework",
+    "description": "A lightweight PHP framework by Robroy Canales",
+    "type": "project",
+    "license": "MIT",
     "authors": [
         {
             "name": "Robroy Canales",
@@ -8,9 +11,30 @@
     ],
     "require": {
         "php": "^8.1",
-        "roy404/utilities": "^5.4.2",
-        "roy404/request": "^3.0.5",
-        "roy404/routes": "^4.1.0",
-        "roy404/blades": "^1.1.2"
-    }
+        "roy404/utilities": "^5.5.4",
+        "roy404/request": "^3.1.1",
+        "roy404/routes": "^4.1.2",
+        "roy404/blades": "^1.2.10"
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "@instructions"
+        ],
+        "instructions": [
+            "@php -r \"echo '\\n\\033[32mProject created! Next steps:\\033[0m\\n';\"",
+            "@php -r \"echo '1. composer update\\n';\"",
+            "@php -r \"echo '2. npm install\\n';\"",
+            "@php -r \"echo '3. npm run watch\\n';\"",
+            "@php -r \"echo '4. php artisan serve\\n';\"",
+            "@php -r \"echo '\\n(Optional) Run \\033[36mcomposer setup\\033[0m to do all the above at once.\\n';\""
+        ],
+        "setup": [
+            "@composer update",
+            "@exec npm install",
+            "@exec npm run watch",
+            "@exec php artisan serve"
+        ]
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
