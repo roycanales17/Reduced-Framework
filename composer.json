@@ -19,12 +19,6 @@
     "scripts": {
         "post-create-project-cmd": [
             "@php bin/instructions.php"
-        ],
-        "setup": [
-            "@composer update",
-            "@exec npm install",
-            "@exec npm run watch",
-            "@exec php artisan serve"
         ]
     },
     "minimum-stability": "stable",

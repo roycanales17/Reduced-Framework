@@ -10,8 +10,6 @@ echo "  3. npm install" . PHP_EOL;
 echo "  4. npm run watch" . PHP_EOL;
 echo "  5. php artisan serve" . PHP_EOL;
 echo PHP_EOL;
-echo "\033[36m(Optional) Run 'composer setup' to do all the above at once.\033[0m" . PHP_EOL;
-echo PHP_EOL;
 
 $binPath = __DIR__;
 if (PHP_OS_FAMILY === 'Windows') {
