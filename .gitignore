@@ -2,9 +2,19 @@
 .env
 .idea
 
+# Ignore dynamic builds from utilities...
 public/build
+
+# Ignore everything inside these folders...
+storage/private/*
+storage/protect/*
+storage/public/*
+
+# ...but keep the folders and their .htaccess files
+!storage/private/.htaccess
+!storage/protect/.htaccess
+!storage/public/.htaccess
 
 logs
 vendor
-storage
 node_modules

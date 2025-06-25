@@ -65,7 +65,7 @@
 		'secure' => false,           // Only send cookie over HTTPS
 		'http_only' => true,         // Prevent JavaScript access to the cookie
 		'same_site' => 'Lax',        // Options: Lax, Strict, None
-		'storage_path' => '../storage/sessions', // For 'file' driver
+		'storage_path' => '../storage/private/sessions', // For 'file' driver
 	],
 
 	/*
