@@ -18,15 +18,7 @@
     },
     "scripts": {
         "post-create-project-cmd": [
-            "@instructions"
-        ],
-        "instructions": [
-            "@php -r \"echo PHP_EOL . 'Project created! Next steps:' . PHP_EOL;\"",
-            "1. composer update",
-            "2. npm install",
-            "3. npm run watch",
-            "4. php artisan serve",
-            "(Optional) Run composer setup to do all the above at once."
+            "@php bin/instructions.php"
         ],
         "setup": [
             "@composer update",
