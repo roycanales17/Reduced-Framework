@@ -22,11 +22,11 @@
         ],
         "instructions": [
             "@php -r \"echo PHP_EOL . 'Project created! Next steps:' . PHP_EOL;\"",
-            "@php -r \"echo '  1. composer update' . PHP_EOL;\"",
-            "@php -r \"echo '  2. npm install' . PHP_EOL;\"",
-            "@php -r \"echo '  3. npm run watch' . PHP_EOL;\"",
-            "@php -r \"echo '  4. php artisan serve' . PHP_EOL;\"",
-            "@php -r \"echo PHP_EOL . '(Optional) Run composer setup to do all the above at once.' . PHP_EOL;\""
+            "1. composer update",
+            "2. npm install",
+            "3. npm run watch",
+            "4. php artisan serve",
+            "(Optional) Run composer setup to do all the above at once."
         ],
         "setup": [
             "@composer update",
