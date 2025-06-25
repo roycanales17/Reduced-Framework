@@ -4,7 +4,6 @@
 
 public/build
 
-bin
 logs
 vendor
 storage

@@ -18,7 +18,9 @@
     },
     "scripts": {
         "post-create-project-cmd": [
-            "@php bin/instructions.php"
+            "@php bin/instructions.php",
+            "@php -r \"echo 'Cleaning up bin directory...' . PHP_EOL;\"",
+            "@php -r \"shell_exec('rm -rf bin');\""
         ],
         "setup": [
             "@composer update",
