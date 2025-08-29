@@ -1,39 +1,8 @@
 <?php
 
 use App\Utilities\Blueprints\CacheDriver;
-use App\Utilities\Server;
 
 return [
-
-/*
-|--------------------------------------------------------------------------
-| Global Variables
-|--------------------------------------------------------------------------
-|
-| Defines global constants via the `define()` function.
-| This allows for the creation of global variables across the application.
-|
-*/
-'defines' => (function () {
-	$host = Server::HostName();
-	$scheme = Server::IsSecureConnection() ? 'https' : 'http';
-	$uri = Server::RequestURI();
-
-	$root = dirname(__DIR__);
-	$url = "$scheme://$host";
-	$dev = ['development', 'local', 'staging'];
-
-	return [
-		'APP_HOST' => $host,
-		'APP_SCHEME' => $scheme,
-		'APP_URI_PARAMS' => $uri,
-		'APP_ROOT' => $root,
-		'APP_PUBLIC' => "$root/public",
-		'APP_URL' => $url,
-		'APP_FULL_URL' => "$url$uri",
-		'DEVELOPMENT' => in_array(config('APP_ENV'), $dev)
-	];
-})(),
 
 /*
 |--------------------------------------------------------------------------
@@ -78,10 +47,10 @@ return [
 |
 */
 'database' => [
-	'default' => 'mysql',  // The default database connection to use
+	'default' => 'master',  // The default database connection to use
 
 	'connections' => [
-		'mysql' => [
+		'master' => [
 			'driver' => 'mysql',  // Database type
 			'host' => config('DB_HOST', '127.0.0.1'),  // Hostname or IP address
 			'port' => config('DB_PORT', '3306'),  // Port number
@@ -139,6 +108,17 @@ return [
 
 /*
 |--------------------------------------------------------------------------
+| Global Variables
+|--------------------------------------------------------------------------
+|
+| Defines global constants via the `define()` function.
+| This allows for the creation of global variables across the application.
+|
+*/
+'defines' => require 'Variables.php',
+
+/*
+|--------------------------------------------------------------------------
 | Route Configuration
 |--------------------------------------------------------------------------
 |
@@ -146,48 +126,7 @@ return [
 | web and API routes. These handlers can be used for templating or raw output.
 |
 */
-'routes' => [
-
-	/*
-	|--------------------------------------------------------------------------
-	| Default Web Routes Configuration
-	|--------------------------------------------------------------------------
-	|
-	| Handles rendering of content responses. If the HTTP status code is 404,
-	| the capture will be skipped. Otherwise, content will be injected into
-	| the specified Blade template.
-	|
-	*/
-	'web' => [
-		'captured' => function (string $content, int $code) {
-			if ($code == 404) return;
-
-			echo(view('template', [
-				'g_page_lang' => config('APP_LANGUAGE'),
-				'g_page_title' => config('APP_NAME'),
-				'g_page_url' => config('APP_URL'),
-				'g_page_description' => "Page description here",
-				'g_page_content' => $content
-			]));
-		}
-	],
-
-	/*
-	|--------------------------------------------------------------------------
-	| API Routes Configuration
-	|--------------------------------------------------------------------------
-	|
-	| Handles raw output of captured API content.
-	|
-	*/
-	'api' => [
-		'routes' => ['api.php'],
-		'prefix' => 'api',
-		'captured' => function (string $content) {
-			echo($content);
-		}
-	]
-],
+'routes' => require 'Routes.php',
 
 /*
 |--------------------------------------------------------------------------
@@ -200,85 +139,6 @@ return [
 | as Mailgun, SendGrid, and custom SMTP servers.
 |
 */
-'mailing' => [
+'mailing' => require 'Mailing.php'
 
-	/*
-	|--------------------------------------------------------------------------
-	| Enable Mailing
-	|--------------------------------------------------------------------------
-	|
-	| Toggle mailing functionality for the application. Set to true to enable
-	| email sending or false to disable all outgoing emails.
-	|
-	*/
-	'enabled' => config('MAILING_ENABLED', false),
-
-	/*
-	|--------------------------------------------------------------------------
-	| Mail Transport (SMTP)
-	|--------------------------------------------------------------------------
-	|
-	| Defines the mailer to use for sending emails. Default is SMTP.
-	| Other options like "sendmail", "mailgun", or "log" can also be set.
-	|
-	*/
-	'smtp' => config('MAIL_MAILER', 'smtp'),
-
-	/*
-	|--------------------------------------------------------------------------
-	| SMTP Host Address
-	|--------------------------------------------------------------------------
-	|
-	| The address of your SMTP server. Common examples:
-	| - smtp.mailgun.org
-	| - smtp.gmail.com
-	|
-	*/
-	'host' => config('MAIL_HOST', 'smtp.mailgun.org'),
-
-	/*
-	|--------------------------------------------------------------------------
-	| SMTP Port
-	|--------------------------------------------------------------------------
-	|
-	| The port used to connect to the SMTP server.
-	| - 587 for TLS
-	| - 465 for SSL
-	|
-	*/
-	'port' => config('MAIL_PORT', '587'),
-
-	/*
-	|--------------------------------------------------------------------------
-	| Email Encryption Protocol
-	|--------------------------------------------------------------------------
-	|
-	| Encryption method for secure email transmission.
-	| Common values: 'tls', 'ssl'
-	|
-	*/
-	'encryption' => config('MAIL_ENCRYPTION', 'tls'),
-
-	/*
-	|--------------------------------------------------------------------------
-	| SMTP Username & Password
-	|--------------------------------------------------------------------------
-	|
-	| Authentication credentials for your SMTP server.
-	|
-	*/
-	'username' => config('MAIL_USERNAME', ''),
-	'password' => config('MAIL_PASSWORD', ''),
-
-	/*
-	|--------------------------------------------------------------------------
-	| Global "From" Address
-	|--------------------------------------------------------------------------
-	|
-	| Default sender address and name used in all outgoing emails.
-	|
-	*/
-	'from' => config('MAIL_FROM_ADDRESS'),
-	'from_name' => config('MAIL_FROM_NAME')
-]
 ];
