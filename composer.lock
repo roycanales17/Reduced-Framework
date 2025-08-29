@@ -134,16 +134,16 @@
         },
         {
             "name": "roy404/blades",
-            "version": "v1.2.10",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/roycanales17/Blades-Compiler.git",
-                "reference": "816c1fbbc79cce65cc1a52bc442da1e3bf2f1c4d"
+                "url": "https://github.com/roycanales17/PHP-Blades-Compiler.git",
+                "reference": "98e73500b07bf7a5ceeda1e562732f26c23b03d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Blades-Compiler/zipball/816c1fbbc79cce65cc1a52bc442da1e3bf2f1c4d",
-                "reference": "816c1fbbc79cce65cc1a52bc442da1e3bf2f1c4d",
+                "url": "https://api.github.com/repos/roycanales17/PHP-Blades-Compiler/zipball/98e73500b07bf7a5ceeda1e562732f26c23b03d2",
+                "reference": "98e73500b07bf7a5ceeda1e562732f26c23b03d2",
                 "shasum": ""
             },
             "require": {
@@ -174,10 +174,10 @@
                 "php"
             ],
             "support": {
-                "issues": "https://github.com/roycanales17/Blades-Compiler/issues",
-                "source": "https://github.com/roycanales17/Blades-Compiler/tree/v1.2.10"
+                "issues": "https://github.com/roycanales17/PHP-Blades-Compiler/issues",
+                "source": "https://github.com/roycanales17/PHP-Blades-Compiler/tree/v1.3.1"
             },
-            "time": "2025-06-07T01:41:21+00:00"
+            "time": "2025-08-29T14:15:55+00:00"
         },
         {
             "name": "roy404/eloquent",
