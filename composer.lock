@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1e47e231fe68c4c96bb51ca9c25d8ac3",
+    "content-hash": "4f7226f03e93e0e6f3cc4cb26ca0edd9",
     "packages": [
         {
             "name": "phpmailer/phpmailer",
@@ -368,16 +368,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "v5.5.8",
+            "version": "v6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "fad1a59a24c4820a87eabe0822382d037e5c4a97"
+                "reference": "fb7a695fee2ef729e694de557a5209fe188b9d10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/fad1a59a24c4820a87eabe0822382d037e5c4a97",
-                "reference": "fad1a59a24c4820a87eabe0822382d037e5c4a97",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/fb7a695fee2ef729e694de557a5209fe188b9d10",
+                "reference": "fb7a695fee2ef729e694de557a5209fe188b9d10",
                 "shasum": ""
             },
             "require": {
@@ -423,9 +423,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v5.5.8"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.0.0"
             },
-            "time": "2025-08-29T14:31:39+00:00"
+            "time": "2025-09-15T13:39:03+00:00"
         }
     ],
     "packages-dev": [],
