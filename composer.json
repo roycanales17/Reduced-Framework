@@ -14,7 +14,7 @@
         "roy404/utilities": "^6.0.0",
         "roy404/request": "^3.1.1",
         "roy404/routes": "^4.1.2",
-        "roy404/blades": "^1.2.10"
+        "roy404/blades": "^1.3.1"
     },
     "scripts": {
         "post-create-project-cmd": [
