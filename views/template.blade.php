@@ -21,7 +21,7 @@
         <!-- Utilities -->
         <link rel="stylesheet" href="build/main.css" />
         <link rel="stylesheet" href="build/utilities.css" />
-        <script src="resources/main.js"></script>
+        <script src="build/main.js"></script>
     </head>
     <body>
         {!! $g_page_content !!}

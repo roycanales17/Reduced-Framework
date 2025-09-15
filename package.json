@@ -4,12 +4,18 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "build": "npm run build:sass && npm run build:tailwind",
-    "watch": "concurrently \"npm run watch:sass\" \"npm run watch:tailwind\" \"npm run bs\"",
+    "build": "npm run build:sass && npm run build:tailwind && npm run build:js",
+    "watch": "concurrently \"npm run watch:sass\" \"npm run watch:tailwind\" \"npm run watch:js\" \"npm run bs\"",
+
     "build:sass": "sass public/resources/main.scss public/build/main.css",
-    "build:tailwind": "npx @tailwindcss/cli -i public/resources/utilities.css -o public/build/utilities.css",
     "watch:sass": "sass --watch public/resources/main.scss:public/build/main.css",
+
+    "build:tailwind": "npx @tailwindcss/cli -i public/resources/utilities.css -o public/build/utilities.css",
     "watch:tailwind": "npx @tailwindcss/cli -w -i public/resources/utilities.css -o public/build/utilities.css",
+
+    "build:js": "esbuild public/resources/main.js --bundle --sourcemap --outfile=public/build/main.js",
+    "watch:js": "esbuild public/resources/main.js --bundle --sourcemap --outfile=public/build/main.js --watch",
+
     "browser-sync": "browser-sync start --proxy \"$APP_URL\" --files \"*/.php\" \"public/**/*.css\" \"public/**/*.js\" --no-open --no-ui",
     "bs": "dotenv -e .env -- npm run browser-sync"
   },
@@ -27,6 +33,7 @@
     "cross-env": "^7.0.3",
     "daisyui": "^5.0.19",
     "dotenv-cli": "^8.0.0",
+    "esbuild": "^0.25.9",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.3"
   }
