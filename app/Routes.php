@@ -13,7 +13,9 @@ return [
 	*/
 	'web' => [
 		'captured' => function (string $content, int $code) {
-			if ($code == 404) return;
+			if ($code == 404) {
+                $content = view('404');
+            }
 
 			echo(view('template', [
 				'g_page_lang' => config('APP_LANGUAGE'),
