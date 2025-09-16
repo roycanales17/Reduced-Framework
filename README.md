@@ -10,11 +10,15 @@ composer create-project roy404/framework project-name
 
 The PHP framework is a custom-built solution aimed at enhancing code organization and promoting best practices in Object-Oriented Programming (OOPS) for PHP development. It offers a set of tools and features designed to streamline the development process and improve code maintainability.
 
+### Features
+
 ![PHP](https://img.shields.io/badge/PHP-8.2%2B-8892BF?logo=php&logoColor=white)
-![OOP](https://img.shields.io/badge/OOP-Principles-blue)
-![Custom_Framework](https://img.shields.io/badge/Custom_Framework-lightgrey)
-![MVC](https://img.shields.io/badge/MVC-Pattern-brightgreen)
-![Active_Development](https://img.shields.io/badge/Status-Active-brightgreen)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-CC6699?logo=sass&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?logo=tailwind-css&logoColor=white)
+![Blade](https://img.shields.io/badge/Blade-FF2D20?logo=laravel&logoColor=white)
+![Xdebug](https://img.shields.io/badge/Xdebug-2C873F?logo=php&logoColor=white)
+
 
 ### Utilities
 ![RateLimiter](https://img.shields.io/badge/RateLimiter-Utility-blue)
@@ -44,7 +48,7 @@ The PHP framework is a custom-built solution aimed at enhancing code organizatio
 
 The framework aims to improve code organization, maintainability, and scalability of PHP projects by enforcing best practices in OOPS and providing a set of tools to streamline development tasks. It encourages developers to write clean, modular, and reusable code, leading to more robust and maintainable applications.
 
-Run the docker image
+To Start Run the docker image `make sure docker is installed`
 ```docker
 docker-compose up --build -d
 ```
