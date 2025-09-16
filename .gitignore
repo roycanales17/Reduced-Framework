@@ -1,6 +1,14 @@
 .DS_Store
 .env
 .idea
+.phpunit.result.cache
+
+/.fleet
+/.idea
+/.phpunit.cache
+/phpunit.xml
+/.vscode
+/vendor
 
 # Ignore dynamic builds from utilities...
 public/build
@@ -18,3 +26,6 @@ storage/public/*
 logs
 vendor
 node_modules
+composer.phar
+composer.lock
+Thumbs.db
