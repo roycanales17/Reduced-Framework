@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf \
     && sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/apache2.conf
 
-# Allow .htaccess overrides in root and in /public
+# Allow .htaccess overrides
 RUN echo '<Directory /var/www/html>' > /etc/apache2/conf-available/htaccess.conf \
     && echo '    Options -Indexes +FollowSymLinks' >> /etc/apache2/conf-available/htaccess.conf \
     && echo '    AllowOverride All' >> /etc/apache2/conf-available/htaccess.conf \
