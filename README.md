@@ -53,7 +53,22 @@ To Start Run the docker image `make sure docker is installed`
 docker-compose up --build -d
 ```
 
-To check if xdebug is correctly configured, run the command:
+Check if Xdebug is running inside the container
 ```docker
 docker exec -it app_container tail -f /tmp/xdebug.log
 ```
+You should see logs when a request starts (if xdebug.start_with_request=yes is enabled).
+
+## PhpStorm Setup for Xdebug
+
+1. Enable “Start Listening for PHP Debug Connections” <br>
+   In PhpStorm, click the little telephone icon in the top-right toolbar so it turns green.
+2. Set up Servers
+   - Go to Preferences → PHP → Servers
+   - Host: `localhost` (or whatever domain you use to reach your container)
+   - Port: `80`
+   - Debugger: `Xdebug`
+   - Check Use path mappings, and map your local project folder → `/var/www/html` inside the container.
+3. Configure Debug Port
+   - Go to Preferences → PHP → Debug
+   - Debug port: `9003` (make sure it matches your xdebug.ini)
