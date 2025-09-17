@@ -52,3 +52,8 @@ To Start Run the docker image `make sure docker is installed`
 ```docker
 docker-compose up --build -d
 ```
+
+To check if xdebug is correctly configured, run the command:
+```docker
+docker exec -it app_container tail -f /tmp/xdebug.log
+```
