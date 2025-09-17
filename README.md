@@ -53,6 +53,12 @@ To Start Run the docker image `make sure docker is installed`
 docker-compose up --build -d
 ```
 
+If Docker is already running the container:
+```
+docker-compose down
+docker-compose up --build -d
+```
+
 Check if Xdebug is running inside the container
 ```docker
 docker exec -it app_container tail -f /tmp/xdebug.log
