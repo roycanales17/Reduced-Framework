@@ -12,11 +12,7 @@ return [
 	|
 	*/
 	'web' => [
-		'captured' => function (string $content, int $code) {
-			if ($code == 404) {
-                $content = view('404');
-            }
-
+		'captured' => function (string $content) {
 			echo(view('template', [
 				'g_page_lang' => config('APP_LANGUAGE'),
 				'g_page_title' => config('APP_NAME'),
