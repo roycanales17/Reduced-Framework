@@ -23,6 +23,8 @@ services:
       - project_network
     environment:
       VIRTUAL_HOST: ${APP_IP:-localhost}
+      PHP_IDE_CONFIG: "serverName=app_container"
+      XDEBUG_SESSION: "PHPSTORM"
       APP_ENV: ${APP_ENV:-local}
       DB_HOST: mysql
       DB_PORT: ${DB_PORT:-3306}

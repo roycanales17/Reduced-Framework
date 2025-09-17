@@ -4,10 +4,10 @@ FROM php:8.2-apache
 # Enable necessary Apache modules
 RUN a2enmod rewrite alias headers
 
-# Update packages & install PHP extensions
+# Update packages & install PHP extensions + Xdebug
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpng-dev libzip-dev libonig-dev libjpeg62-turbo-dev libfreetype6-dev libxpm-dev libwebp-dev \
-    libxml2-dev libcurl4-openssl-dev libssl-dev unzip \
+    libxml2-dev libcurl4-openssl-dev libssl-dev unzip git \
     && docker-php-ext-configure gd --with-freetype --with-jpeg --with-xpm --with-webp \
     && docker-php-ext-install gd zip pdo pdo_mysql mbstring bcmath soap sockets \
     && pecl install xdebug \
@@ -18,8 +18,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf \
     && sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/apache2.conf
 
-# Secure and allow .htaccess overrides ONLY inside /public
-RUN echo '<Directory /var/www/html/public>' > /etc/apache2/conf-available/htaccess.conf \
+# Allow .htaccess overrides in root and in /public
+RUN echo '<Directory /var/www/html>' > /etc/apache2/conf-available/htaccess.conf \
+    && echo '    Options -Indexes +FollowSymLinks' >> /etc/apache2/conf-available/htaccess.conf \
+    && echo '    AllowOverride All' >> /etc/apache2/conf-available/htaccess.conf \
+    && echo '    Require all granted' >> /etc/apache2/conf-available/htaccess.conf \
+    && echo '</Directory>' >> /etc/apache2/conf-available/htaccess.conf \
+    && echo '' >> /etc/apache2/conf-available/htaccess.conf \
+    && echo '<Directory /var/www/html/public>' >> /etc/apache2/conf-available/htaccess.conf \
     && echo '    Options -Indexes +FollowSymLinks' >> /etc/apache2/conf-available/htaccess.conf \
     && echo '    AllowOverride All' >> /etc/apache2/conf-available/htaccess.conf \
     && echo '    Require all granted' >> /etc/apache2/conf-available/htaccess.conf \
