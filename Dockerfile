@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpng-dev libzip-dev libonig-dev libjpeg62-turbo-dev libfreetype6-dev libxpm-dev libwebp-dev \
     libxml2-dev libcurl4-openssl-dev libssl-dev unzip git \
     && docker-php-ext-configure gd --with-freetype --with-jpeg --with-xpm --with-webp \
-    && docker-php-ext-install gd zip pdo pdo_mysql mbstring bcmath soap sockets \
+    && docker-php-ext-install gd zip pdo pdo_mysql mysqli mbstring bcmath soap sockets \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
