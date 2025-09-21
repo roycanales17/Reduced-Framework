@@ -47,11 +47,9 @@ return [
 |
 */
 'database' => [
-	'default' => 'master',  // The default database connection to use
 
 	'connections' => [
 		'master' => [
-			'driver' => 'mysql',  // Database type
 			'host' => config('DB_HOST', '127.0.0.1'),  // Hostname or IP address
 			'port' => config('DB_PORT', '3306'),  // Port number
 			'database' => config('DB_DATABASE', 'your_database_name'),  // Database name
@@ -63,9 +61,7 @@ return [
 			'prefix' => '',  // Table prefix (optional)
 			'strict' => true,  // Enable strict mode for SQL queries
 			'engine' => null,  // Database engine (e.g., InnoDB, MyISAM)
-		],
-
-		// For now only (mysql/pdo) is supported...
+		]
 	]
 ],
 

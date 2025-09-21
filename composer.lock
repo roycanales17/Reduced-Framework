@@ -181,26 +181,29 @@
         },
         {
             "name": "roy404/eloquent",
-            "version": "v1.1.2",
+            "version": "v1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Eloquent-Class.git",
-                "reference": "59dca8bf8004769d0dde0f50da29cc0c522b90f6"
+                "reference": "6cf1ba89c1271985e6ad026d56f15d8642037ae8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Eloquent-Class/zipball/59dca8bf8004769d0dde0f50da29cc0c522b90f6",
-                "reference": "59dca8bf8004769d0dde0f50da29cc0c522b90f6",
+                "url": "https://api.github.com/repos/roycanales17/Eloquent-Class/zipball/6cf1ba89c1271985e6ad026d56f15d8642037ae8",
+                "reference": "6cf1ba89c1271985e6ad026d56f15d8642037ae8",
                 "shasum": ""
             },
             "require": {
-                "php": "^8.0"
+                "php": "^8.1"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "App\\Database\\": "src/",
-                    "App\\Databases\\Scheme\\": "src/Databases/"
+                    "App\\Databases\\": "Databases/",
+                    "App\\Databases\\Facade\\": "Databases/Facade/",
+                    "App\\Databases\\Handler\\": "Databases/Handler/",
+                    "App\\Databases\\Handler\\Eloquent\\": "Databases/Handler/Eloquent",
+                    "App\\Databases\\Handler\\Blueprints\\": "Databases/Handler/Blueprints"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -220,9 +223,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Eloquent-Class/issues",
-                "source": "https://github.com/roycanales17/Eloquent-Class/tree/v1.1.2"
+                "source": "https://github.com/roycanales17/Eloquent-Class/tree/v1.1.6"
             },
-            "time": "2025-06-10T07:32:02+00:00"
+            "time": "2025-09-21T08:40:51+00:00"
         },
         {
             "name": "roy404/request",
@@ -368,16 +371,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "v6.0.6",
+            "version": "v6.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "b653dc2f703bf021c64a3245dd5da5fa7d171872"
+                "reference": "b79ab0c6edddcb8f75677e0d62ed691281655893"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/b653dc2f703bf021c64a3245dd5da5fa7d171872",
-                "reference": "b653dc2f703bf021c64a3245dd5da5fa7d171872",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/b79ab0c6edddcb8f75677e0d62ed691281655893",
+                "reference": "b79ab0c6edddcb8f75677e0d62ed691281655893",
                 "shasum": ""
             },
             "require": {
@@ -385,7 +388,7 @@
                 "phpmailer/phpmailer": "^6.9",
                 "roy404/artisan": "^1.0",
                 "roy404/blades": "^1.0",
-                "roy404/eloquent": "^1.0",
+                "roy404/eloquent": "^1.1.3",
                 "roy404/request": "^3.0",
                 "roy404/routes": "^4.1",
                 "roy404/schema": "^1.0"
@@ -423,9 +426,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.0.6"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.0.7"
             },
-            "time": "2025-09-17T15:15:44+00:00"
+            "time": "2025-09-21T08:16:30+00:00"
         }
     ],
     "packages-dev": [],
