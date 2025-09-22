@@ -327,16 +327,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "v6.1.3",
+            "version": "v6.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "349f54e01d5d7b73af8c7fef241db6c13cf97357"
+                "reference": "abd1a6434f19f27e379978702dd7e31283692f09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/349f54e01d5d7b73af8c7fef241db6c13cf97357",
-                "reference": "349f54e01d5d7b73af8c7fef241db6c13cf97357",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/abd1a6434f19f27e379978702dd7e31283692f09",
+                "reference": "abd1a6434f19f27e379978702dd7e31283692f09",
                 "shasum": ""
             },
             "require": {
@@ -381,9 +381,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.1.3"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.1.4"
             },
-            "time": "2025-09-22T08:59:51+00:00"
+            "time": "2025-09-22T09:57:04+00:00"
         }
     ],
     "packages-dev": [],
