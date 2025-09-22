@@ -1,7 +1,5 @@
 <?php
 
-use App\Utilities\Blueprints\CacheDriver;
-
 return [
 
 /*
@@ -24,18 +22,7 @@ return [
 | You can specify the handler, lifetime, storage path, and more.
 |
 */
-'session' => [
-	'driver' => 'file',      	 // Supported: file, database, redis
-	'lifetime' => 120,           // Session lifetime in minutes
-	'expire_on_close' => false,  // Whether session expires when the browser closes
-	'encrypt' => false,          // Encrypt session data (if you implement encryption)
-	'path' => '/',               // Path where the session is available
-	'domain' => null,            // Cookie domain
-	'secure' => false,           // Only send cookie over HTTPS
-	'http_only' => true,         // Prevent JavaScript access to the cookie
-	'same_site' => 'Lax',        // Options: Lax, Strict, None
-	'storage_path' => '../storage/private/sessions', // For 'file' driver
-],
+'session' => require 'Session.php',
 
 /*
 |--------------------------------------------------------------------------
@@ -46,24 +33,7 @@ return [
 | You can define multiple database connections here (MySQL, SQLite, PostgreSQL, etc.).
 |
 */
-'database' => [
-
-	'connections' => [
-		'master' => [
-			'host' => config('DB_HOST', '127.0.0.1'),  // Hostname or IP address
-			'port' => config('DB_PORT', '3306'),  // Port number
-			'database' => config('DB_DATABASE', 'your_database_name'),  // Database name
-			'username' => config('DB_USERNAME', 'root'),  // Database username
-			'password' => config('DB_PASSWORD', ''),  // Database password
-			'unix_socket' => config('DB_SOCKET', ''),  // Unix socket (optional)
-			'charset' => 'utf8mb4',  // Database charset
-			'collation' => 'utf8mb4_unicode_ci',  // Collation type
-			'prefix' => '',  // Table prefix (optional)
-			'strict' => true,  // Enable strict mode for SQL queries
-			'engine' => null,  // Database engine (e.g., InnoDB, MyISAM)
-		]
-	]
-],
+'database' => require 'Database.php',
 
 
 /*
@@ -83,24 +53,7 @@ return [
 | infrastructure and caching preferences.
 |
 */
-'cache' => [
-	// The default cache driver to use: 'redis' or 'memcached'
-	'driver' => 'memcached',
-
-	// Redis configuration
-	'redis' => [
-		'driver' => CacheDriver::Redis,
-		'server' => config('REDIS_SERVER_NAME', 'redis'),
-		'port' => config('REDIS_PORT', '6379')
-	],
-
-	// Memcached configuration
-	'memcached' => [
-		'driver' => CacheDriver::Memcached,
-		'server' => config('MEMCACHE_SERVER_NAME', 'memcached'),
-		'port' => config('MEMCACHE_PORT', '11211')
-	]
-],
+'cache' => require 'Cache.php',
 
 /*
 |--------------------------------------------------------------------------
