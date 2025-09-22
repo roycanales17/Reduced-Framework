@@ -18,7 +18,7 @@ return [
             'host' => config('DB_HOST', '127.0.0.1'),  // Hostname or IP address
             'port' => config('DB_PORT', '3306'),  // Port number
             'database' => config('DB_DATABASE', 'your_database_name'),  // Database name
-            'username' => config('DB_USERNAME', 'root'),  // Database username
+            'username' => config('DB_USER', 'root'),  // Database username
             'password' => config('DB_PASSWORD', ''),  // Database password
             'unix_socket' => config('DB_SOCKET', ''),  // Unix socket (optional)
             'charset' => 'utf8mb4',  // Database charset
