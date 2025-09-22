@@ -181,16 +181,16 @@
         },
         {
             "name": "roy404/eloquent",
-            "version": "v1.1.8",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Database-ORM.git",
-                "reference": "06c018c9e2ab1628d1615cb0d856bd3cd0e5461d"
+                "reference": "e37d5ce1b6d7583a8d6789d842ae8071202a26c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Database-ORM/zipball/06c018c9e2ab1628d1615cb0d856bd3cd0e5461d",
-                "reference": "06c018c9e2ab1628d1615cb0d856bd3cd0e5461d",
+                "url": "https://api.github.com/repos/roycanales17/Database-ORM/zipball/e37d5ce1b6d7583a8d6789d842ae8071202a26c3",
+                "reference": "e37d5ce1b6d7583a8d6789d842ae8071202a26c3",
                 "shasum": ""
             },
             "require": {
@@ -223,9 +223,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Database-ORM/issues",
-                "source": "https://github.com/roycanales17/Database-ORM/tree/v1.1.8"
+                "source": "https://github.com/roycanales17/Database-ORM/tree/v1.2.0"
             },
-            "time": "2025-09-22T03:32:35+00:00"
+            "time": "2025-09-22T03:52:27+00:00"
         },
         {
             "name": "roy404/request",
@@ -326,61 +326,17 @@
             "time": "2025-09-17T15:17:39+00:00"
         },
         {
-            "name": "roy404/schema",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/roycanales17/Database-Schema.git",
-                "reference": "3375e633eec7e5f7be96a25b602898280c19642a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Database-Schema/zipball/3375e633eec7e5f7be96a25b602898280c19642a",
-                "reference": "3375e633eec7e5f7be96a25b602898280c19642a",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Illuminate\\Database\\Facades\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Robroy Canales",
-                    "email": "canales.robroy123@gmail.com"
-                }
-            ],
-            "description": "The Schema Builder class is a part of the database layer that allows you to define database tables and their columns using a fluent syntax. It provides a way to create and manipulate database tables without writing SQL queries directly.",
-            "keywords": [
-                "php",
-                "plugins"
-            ],
-            "support": {
-                "issues": "https://github.com/roycanales17/Database-Schema/issues",
-                "source": "https://github.com/roycanales17/Database-Schema/tree/1.0.1"
-            },
-            "time": "2024-02-19T13:09:40+00:00"
-        },
-        {
             "name": "roy404/utilities",
-            "version": "v6.0.7",
+            "version": "v6.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "b79ab0c6edddcb8f75677e0d62ed691281655893"
+                "reference": "082df1adaaf6a2a632e1a163c097623e1077a1dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/b79ab0c6edddcb8f75677e0d62ed691281655893",
-                "reference": "b79ab0c6edddcb8f75677e0d62ed691281655893",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/082df1adaaf6a2a632e1a163c097623e1077a1dd",
+                "reference": "082df1adaaf6a2a632e1a163c097623e1077a1dd",
                 "shasum": ""
             },
             "require": {
@@ -390,8 +346,7 @@
                 "roy404/blades": "^1.0",
                 "roy404/eloquent": "^1.1.3",
                 "roy404/request": "^3.0",
-                "roy404/routes": "^4.1",
-                "roy404/schema": "^1.0"
+                "roy404/routes": "^4.1"
             },
             "type": "library",
             "autoload": {
@@ -426,9 +381,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.0.7"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.0.8"
             },
-            "time": "2025-09-21T08:16:30+00:00"
+            "time": "2025-09-22T03:45:52+00:00"
         }
     ],
     "packages-dev": [],
