@@ -20,7 +20,7 @@ return [
     | infrastructure and caching preferences.
     |
     */
-    'driver' => CacheDriver::Memcached, // The default cache driver to use: 'redis' or 'memcached'
+    'driver' => CacheDriver::Memcached->value, // The default cache driver to use: 'redis' or 'memcached'
 
     // Redis configuration
     'redis' => [
