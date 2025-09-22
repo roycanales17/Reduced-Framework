@@ -48,33 +48,64 @@ The PHP framework is a custom-built solution aimed at enhancing code organizatio
 
 The framework aims to improve code organization, maintainability, and scalability of PHP projects by enforcing best practices in OOPS and providing a set of tools to streamline development tasks. It encourages developers to write clean, modular, and reusable code, leading to more robust and maintainable applications.
 
-To Start Run the docker image `make sure docker is installed`
-```docker
+___
+
+# Project Setup & Usage with Docker
+
+## 1. How to Use Docker
+Make sure **Docker and Docker Compose** are installed on your system.
+
+Start the containers with:
+```bash
 docker-compose up --build -d
 ```
 
-If Docker is already running the container:
-```
-docker-compose down
-docker-compose up --build -d
-```
+## 2. How to Use Docker
+To verify **Xdebug** is active inside the container:
 
-Check if Xdebug is running inside the container
-```docker
+```bash
 docker exec -it app_container tail -f /tmp/xdebug.log
 ```
-You should see logs when a request starts (if xdebug.start_with_request=yes is enabled).
 
-## PhpStorm Setup for Xdebug
+You should see log output when a request starts (if `xdebug.start_with_request=yes` is enabled).
 
-1. Enable “Start Listening for PHP Debug Connections” <br>
-   In PhpStorm, click the little telephone icon in the top-right toolbar so it turns green.
+
+## 3. PhpStorm Setup for Xdebug
+
+1. Enable Debug Listening
+   - In PhpStorm, click the telephone icon in the top-right toolbar so it turns green.
 2. Set up Servers
-   - Go to Preferences → PHP → Servers
-   - Host: `localhost` (or whatever domain you use to reach your container)
-   - Port: `80`
-   - Debugger: `Xdebug`
-   - Check Use path mappings, and map your local project folder → `/var/www/html` inside the container.
+   - Go to: `Preferences → PHP → Servers`
+   - Add a server:
+     - Host: `localhost` (or the domain you use to access the container)
+     - Port: `80`
+     - Debugger: `Xdebug`
+     - Enable Use path mappings, map your local project root → `/var/www/html` inside the container.
 3. Configure Debug Port
-   - Go to Preferences → PHP → Debug
-   - Debug port: `9003` (make sure it matches your xdebug.ini)
+   - Go to: `Preferences → PHP → Debug`
+   - Set **Debug port**: `9003`
+   - Ensure it matches the port in your `xdebug.ini`.
+
+
+## 4. Running Artisan Inside Docker
+
+Always run Artisan inside the container, not on your host machine:
+
+```bash
+docker exec -it app_container php artisan
+```
+
+## 5. Stopping and Restarting Containers
+
+To stop everything:
+
+```bash
+docker-compose down
+```
+
+To rebuild and restart after making changes:
+```bash
+docker-compose up --build -d
+```
+
+
