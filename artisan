@@ -28,6 +28,5 @@
 		});
 	});
 	$application->run(function() use($argv) {
-        Console::config('commands', './');
-		launch_cli_session($argv);
+		launch_cli_session($argv, 'commands', './');
 	});
