@@ -2,6 +2,14 @@
 <?php
 	require __DIR__ . '/vendor/autoload.php';
 
+    # Class Importer
+    spl_autoload_register(function ($class) {
+        $path = lcfirst(str_replace('\\', '/', $class)) . '.php';
+        if (file_exists($path)) {
+            require_once $path;
+        }
+    });
+
 	use App\Bootstrap\Exceptions\AppException;
 	use App\Bootstrap\Handler\RuntimeException;
 	use App\Bootstrap\Application;
@@ -20,5 +28,6 @@
 		});
 	});
 	$application->run(function() use($argv) {
+        Console::config('commands', './');
 		launch_cli_session($argv);
 	});
