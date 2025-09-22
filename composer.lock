@@ -181,16 +181,16 @@
         },
         {
             "name": "roy404/eloquent",
-            "version": "v1.1.6",
+            "version": "v1.1.8",
             "source": {
                 "type": "git",
-                "url": "https://github.com/roycanales17/Eloquent-Class.git",
-                "reference": "6cf1ba89c1271985e6ad026d56f15d8642037ae8"
+                "url": "https://github.com/roycanales17/Database-ORM.git",
+                "reference": "06c018c9e2ab1628d1615cb0d856bd3cd0e5461d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Eloquent-Class/zipball/6cf1ba89c1271985e6ad026d56f15d8642037ae8",
-                "reference": "6cf1ba89c1271985e6ad026d56f15d8642037ae8",
+                "url": "https://api.github.com/repos/roycanales17/Database-ORM/zipball/06c018c9e2ab1628d1615cb0d856bd3cd0e5461d",
+                "reference": "06c018c9e2ab1628d1615cb0d856bd3cd0e5461d",
                 "shasum": ""
             },
             "require": {
@@ -222,10 +222,10 @@
                 "plugins"
             ],
             "support": {
-                "issues": "https://github.com/roycanales17/Eloquent-Class/issues",
-                "source": "https://github.com/roycanales17/Eloquent-Class/tree/v1.1.6"
+                "issues": "https://github.com/roycanales17/Database-ORM/issues",
+                "source": "https://github.com/roycanales17/Database-ORM/tree/v1.1.8"
             },
-            "time": "2025-09-21T08:40:51+00:00"
+            "time": "2025-09-22T03:32:35+00:00"
         },
         {
             "name": "roy404/request",
