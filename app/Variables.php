@@ -14,7 +14,7 @@ return (function () {
 	$scheme = Server::IsSecureConnection() ? 'https' : 'http';
 	$host   = Server::HostName();
 	$uri    = Server::RequestURI();
-	$root   = dirname(__DIR__);
+	$root   = PHP_SAPI === 'cli' ? '/' : '../';
 	$url    = "$scheme://$host";
 
 	return [
@@ -22,7 +22,7 @@ return (function () {
 		'APP_SCHEME'    => $scheme,
 		'APP_URI_PARAMS'=> $uri,
 		'APP_ROOT'      => $root,
-		'APP_PUBLIC'    => "$root/public",
+		'APP_PUBLIC'    => rtrim($root, '/\\') ."/public",
 		'APP_URL'       => $url,
 		'APP_FULL_URL'  => "$url$uri",
 		'DEVELOPMENT'   => in_array(config('APP_ENV'), ['development', 'local', 'staging'])
