@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5f6e62dd783d0284c4f90e0b5031c42",
+    "content-hash": "d0ed40e98a640b7f3db304341dd78bd5",
     "packages": [
         {
             "name": "phpmailer/phpmailer",
@@ -134,16 +134,16 @@
         },
         {
             "name": "roy404/blades",
-            "version": "v1.3.2",
+            "version": "v1.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/PHP-Blades-Compiler.git",
-                "reference": "fc20a9a3397e559149b15b9057ebadefe51f8d77"
+                "reference": "5e184f0f4d901e588fc64f066b9118843beab562"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/PHP-Blades-Compiler/zipball/fc20a9a3397e559149b15b9057ebadefe51f8d77",
-                "reference": "fc20a9a3397e559149b15b9057ebadefe51f8d77",
+                "url": "https://api.github.com/repos/roycanales17/PHP-Blades-Compiler/zipball/5e184f0f4d901e588fc64f066b9118843beab562",
+                "reference": "5e184f0f4d901e588fc64f066b9118843beab562",
                 "shasum": ""
             },
             "require": {
@@ -175,9 +175,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/PHP-Blades-Compiler/issues",
-                "source": "https://github.com/roycanales17/PHP-Blades-Compiler/tree/v1.3.2"
+                "source": "https://github.com/roycanales17/PHP-Blades-Compiler/tree/v1.3.4"
             },
-            "time": "2025-09-23T06:19:20+00:00"
+            "time": "2025-09-23T07:27:12+00:00"
         },
         {
             "name": "roy404/eloquent",
