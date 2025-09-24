@@ -10,23 +10,9 @@
         }
     });
 
-	use App\Bootstrap\Exceptions\AppException;
-	use App\Bootstrap\Handler\RuntimeException;
-	use App\Bootstrap\Application;
-	use App\Console\Terminal as Console;
-
-	$application = Application::boot();
+	$application = App\Bootstrap\Application::boot();
 	$application->withEnvironment('.env');
 	$application->withConfiguration('app/Config.php');
-	$application->withExceptions(function (RuntimeException $exception)
-	{
-		$exception->report(function(AppException $e) {
-			Console::error($e->getMessage(), false);
-			Console::info("[TRACE]", Console::YELLOW);
-			Console::info(" - Path: {$e->getFile()}");
-			Console::info(" - Line: {$e->getLine()}");
-		});
-	});
 	$application->run(function() use($argv) {
 		launch_cli_session($argv, 'commands', './');
 	});
