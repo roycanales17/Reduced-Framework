@@ -120,4 +120,5 @@ return [
 */
 'execute' => '/artisan',
 'cron' => '/routes/cron.php',
+
 ];
