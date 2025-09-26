@@ -108,4 +108,16 @@ To rebuild and restart after making changes:
 docker-compose up --build -d
 ```
 
+## ⏰ Setting up the Cron Job
 
+To enable the application scheduler, add the following line to your system crontab:
+
+```bash
+* * * * * /usr/bin/php /www/var/html/scheduler >> /dev/null 2>&1
+```
+
+### Explanation
+- `* * * * *` → Run every minute.
+- `/usr/bin/php` → Path to your PHP binary (check with `which php`).
+- `/var/www/html/scheduler` → Path to your project's `scheduler` file.
+- `>> /dev/null 2>&1` → Silences all output (keeps system logs clean).
