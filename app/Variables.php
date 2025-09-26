@@ -14,7 +14,7 @@ return (function () {
 	$scheme = Server::IsSecureConnection() ? 'https' : 'http';
 	$host   = Server::HostName();
 	$uri    = Server::RequestURI();
-	$root   = PHP_SAPI === 'cli' ? '/' : '../';
+	$root   = PHP_SAPI === 'cli' ? './' : '../';
 	$url    = "$scheme://$host";
 
 	return [

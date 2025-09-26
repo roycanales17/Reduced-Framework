@@ -7,6 +7,71 @@
     "content-hash": "d0ed40e98a640b7f3db304341dd78bd5",
     "packages": [
         {
+            "name": "dragonmantank/cron-expression",
+            "version": "v3.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dragonmantank/cron-expression.git",
+                "reference": "8c784d071debd117328803d86b2097615b457500"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dragonmantank/cron-expression/zipball/8c784d071debd117328803d86b2097615b457500",
+                "reference": "8c784d071debd117328803d86b2097615b457500",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2|^8.0",
+                "webmozart/assert": "^1.0"
+            },
+            "replace": {
+                "mtdowling/cron-expression": "^1.0"
+            },
+            "require-dev": {
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "^1.0",
+                "phpunit/phpunit": "^7.0|^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cron\\": "src/Cron/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Tankersley",
+                    "email": "chris@ctankersley.com",
+                    "homepage": "https://github.com/dragonmantank"
+                }
+            ],
+            "description": "CRON for PHP: Calculate the next or previous run date and determine if a CRON expression is due",
+            "keywords": [
+                "cron",
+                "schedule"
+            ],
+            "support": {
+                "issues": "https://github.com/dragonmantank/cron-expression/issues",
+                "source": "https://github.com/dragonmantank/cron-expression/tree/v3.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/dragonmantank",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-10-09T13:47:03+00:00"
+        },
+        {
             "name": "phpmailer/phpmailer",
             "version": "v6.10.0",
             "source": {
@@ -89,19 +154,20 @@
         },
         {
             "name": "roy404/artisan",
-            "version": "v1.1.8",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/roycanales17/Web-Artisan.git",
-                "reference": "6894f738ccf80cc2eecea9fdc6eff8a1b4ec2fb5"
+                "url": "https://github.com/roycanales17/PHP-CLI-Artisan.git",
+                "reference": "1f7e0fa7983a803e87ad61bdc5a1917dc1f93f0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Artisan/zipball/6894f738ccf80cc2eecea9fdc6eff8a1b4ec2fb5",
-                "reference": "6894f738ccf80cc2eecea9fdc6eff8a1b4ec2fb5",
+                "url": "https://api.github.com/repos/roycanales17/PHP-CLI-Artisan/zipball/1f7e0fa7983a803e87ad61bdc5a1917dc1f93f0e",
+                "reference": "1f7e0fa7983a803e87ad61bdc5a1917dc1f93f0e",
                 "shasum": ""
             },
             "require": {
+                "dragonmantank/cron-expression": "^3.4",
                 "php": "^8.0"
             },
             "type": "library",
@@ -127,10 +193,10 @@
                 "php"
             ],
             "support": {
-                "issues": "https://github.com/roycanales17/Web-Artisan/issues",
-                "source": "https://github.com/roycanales17/Web-Artisan/tree/v1.1.8"
+                "issues": "https://github.com/roycanales17/PHP-CLI-Artisan/issues",
+                "source": "https://github.com/roycanales17/PHP-CLI-Artisan/tree/v1.2.1"
             },
-            "time": "2025-05-10T04:13:47+00:00"
+            "time": "2025-09-26T00:41:37+00:00"
         },
         {
             "name": "roy404/blades",
@@ -327,16 +393,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "v6.2.3",
+            "version": "v6.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "0b28ef1d17a0d27bf11d7bc9921902d6d4ab986b"
+                "reference": "dd4f577bad690ba53f054a95318b03246867ba62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/0b28ef1d17a0d27bf11d7bc9921902d6d4ab986b",
-                "reference": "0b28ef1d17a0d27bf11d7bc9921902d6d4ab986b",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/dd4f577bad690ba53f054a95318b03246867ba62",
+                "reference": "dd4f577bad690ba53f054a95318b03246867ba62",
                 "shasum": ""
             },
             "require": {
@@ -381,9 +447,67 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.2.3"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.2.7"
             },
-            "time": "2025-09-24T00:43:59+00:00"
+            "time": "2025-09-26T00:42:47+00:00"
+        },
+        {
+            "name": "webmozart/assert",
+            "version": "1.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webmozarts/assert.git",
+                "reference": "11cb2199493b2f8a3b53e7f19068fc6aac760991"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/11cb2199493b2f8a3b53e7f19068fc6aac760991",
+                "reference": "11cb2199493b2f8a3b53e7f19068fc6aac760991",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "php": "^7.2 || ^8.0"
+            },
+            "conflict": {
+                "phpstan/phpstan": "<0.12.20",
+                "vimeo/psalm": "<4.6.1 || 4.6.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5.13"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.10-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webmozart\\Assert\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
+                }
+            ],
+            "description": "Assertions to validate method input/output with nice error messages.",
+            "keywords": [
+                "assert",
+                "check",
+                "validate"
+            ],
+            "support": {
+                "issues": "https://github.com/webmozarts/assert/issues",
+                "source": "https://github.com/webmozarts/assert/tree/1.11.0"
+            },
+            "time": "2022-06-03T18:03:27+00:00"
         }
     ],
     "packages-dev": [],
