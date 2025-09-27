@@ -1,6 +1,13 @@
 #!/bin/sh
 
+# Default log file for cron
 LOG_FILE="/var/log/cron/cron.log"
+
+# If running manually (stdout is a terminal), use a different log
+if [ -t 1 ]; then
+    LOG_FILE="./logs/cron/cron.log"
+fi
+
 START_TIME=$(date '+%Y-%m-%d %H:%M:%S')
 
 # Add header
