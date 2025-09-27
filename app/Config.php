@@ -105,20 +105,17 @@ return [
 |                 This allows you to centralize all your scheduled
 |                 jobs in one place.
 |
-| - 'artisan'   : This performs the command executed by the scheduler.
-|
 |
 | 🔧 System Setup:
 | ----------------
 | To enable scheduled tasks, add the following to your system crontab:
 |
-|   * * * * * /usr/bin/php /path/to/project/scheduler >> /dev/null 2>&1
+|   * * * * * root /usr/local/bin/php /var/www/html/artisan cron:scheduler >> /var/log/cron/cron.log 2>&1
 |
 | This executes the scheduler every minute. The scheduler will then
 | trigger any Artisan commands or closures that are due.
 | You only need ONE cron entry — the application handles the rest.
 */
-'execute' => '/artisan',
 'cron' => '/routes/cron.php',
 
 ];

@@ -106,6 +106,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./:/var/www/html
+      - ./run_cron.sh:/usr/local/bin/run_cron.sh
       - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ./logs/cron:/var/log/cron
       - ./logs/xdebug:/tmp/xdebug
@@ -114,7 +115,8 @@ services:
     command: >
       sh -c "mkdir -p /var/log/cron \
       && touch /var/log/cron/cron.log \
-      && echo '* * * * * root /usr/local/bin/php /var/www/html/scheduler >> /var/log/cron/cron.log 2>&1' > /etc/cron.d/app-cron \
+      && chmod +x /usr/local/bin/run_cron.sh \
+      && echo '* * * * * root /usr/local/bin/run_cron.sh' > /etc/cron.d/app-cron \
       && chmod 0644 /etc/cron.d/app-cron \
       && cron -f"
 

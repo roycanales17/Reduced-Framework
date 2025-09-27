@@ -113,7 +113,7 @@ docker-compose up --build -d
 To enable the application scheduler, add the following line to your system crontab:
 
 ```bash
-* * * * * /usr/bin/php /www/var/html/scheduler >> /dev/null 2>&1
+* * * * * /usr/bin/php /www/var/html/artisan >> /dev/null 2>&1
 ```
 
 ### Explanation
