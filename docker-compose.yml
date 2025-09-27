@@ -97,6 +97,24 @@ services:
     networks:
       - project_network
 
+  cron:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cron_container
+    restart: unless-stopped
+    volumes:
+      - ./:/var/www/html
+      - ./logs/cron:/var/log/cron
+    networks:
+      - project_network
+    command: >
+      sh -c "mkdir -p /var/log/cron \
+      && touch /var/log/cron/cron.log \
+      && echo '* * * * * root /usr/local/bin/php /var/www/html/scheduler >> /var/log/cron/cron.log 2>&1' > /etc/cron.d/app-cron \
+      && chmod 0644 /etc/cron.d/app-cron \
+      && cron -f"
+
 networks:
   project_network:
     driver: bridge

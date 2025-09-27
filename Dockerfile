@@ -4,10 +4,10 @@ FROM php:8.2-apache
 # Enable necessary Apache modules
 RUN a2enmod rewrite alias headers
 
-# Update packages & install PHP extensions + Xdebug
+# Update packages & install PHP extensions + Xdebug + cron
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpng-dev libzip-dev libonig-dev libjpeg62-turbo-dev libfreetype6-dev libxpm-dev libwebp-dev \
-    libxml2-dev libcurl4-openssl-dev libssl-dev unzip git \
+    libxml2-dev libcurl4-openssl-dev libssl-dev unzip git cron \
     && docker-php-ext-configure gd --with-freetype --with-jpeg --with-xpm --with-webp \
     && docker-php-ext-install gd zip pdo pdo_mysql mysqli mbstring bcmath soap sockets \
     && pecl install xdebug \
