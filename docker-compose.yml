@@ -16,6 +16,7 @@ services:
       - ./:/var/www/html
       - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ./logs:/var/log/app
+      - ./logs/xdebug:/tmp/xdebug
     networks:
       - project_network
     environment:
@@ -105,7 +106,9 @@ services:
     restart: unless-stopped
     volumes:
       - ./:/var/www/html
+      - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ./logs/cron:/var/log/cron
+      - ./logs/xdebug:/tmp/xdebug
     networks:
       - project_network
     command: >
