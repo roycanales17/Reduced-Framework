@@ -393,16 +393,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "v6.3.0",
+            "version": "v6.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "3fa8db51ac5ccff104376ae84ed6f7d2fc04ab11"
+                "reference": "8e8c5ef992ca81d6253229c75463f3143e8fd440"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/3fa8db51ac5ccff104376ae84ed6f7d2fc04ab11",
-                "reference": "3fa8db51ac5ccff104376ae84ed6f7d2fc04ab11",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/8e8c5ef992ca81d6253229c75463f3143e8fd440",
+                "reference": "8e8c5ef992ca81d6253229c75463f3143e8fd440",
                 "shasum": ""
             },
             "require": {
@@ -447,9 +447,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.3.0"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.3.3"
             },
-            "time": "2025-09-27T07:53:43+00:00"
+            "time": "2025-09-27T10:23:56+00:00"
         },
         {
             "name": "webmozart/assert",
