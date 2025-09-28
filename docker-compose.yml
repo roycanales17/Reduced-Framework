@@ -117,6 +117,7 @@ services:
       && touch /var/log/cron/cron.log \
       && chmod +x /usr/local/bin/run_cron.sh \
       && echo '* * * * * root /usr/local/bin/run_cron.sh' > /etc/cron.d/app-cron \
+      && echo '0 * * * * root truncate -s 0 /var/log/cron/cron.log' >> /etc/cron.d/app-cron \
       && chmod 0644 /etc/cron.d/app-cron \
       && cron -f"
 
