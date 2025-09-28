@@ -121,3 +121,16 @@ To enable the application scheduler, add the following line to your system cront
 - `/usr/bin/php` → Path to your PHP binary (check with `which php`).
 - `/var/www/html/scheduler` → Path to your project's `scheduler` file.
 - `>> /dev/null 2>&1` → Silences all output (keeps system logs clean).
+
+
+# AWS
+
+To create bucket run this command below:
+```bash
+docker exec -it localstack_container awslocal s3 mb s3://my-bucket
+```
+
+Check your bucket:
+```bash
+docker exec -it localstack_container awslocal s3 ls
+```

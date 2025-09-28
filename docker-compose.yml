@@ -38,6 +38,13 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
 
+      # AWS
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-test}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-test}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION:-us-east-1}
+      AWS_BUCKET: ${AWS_BUCKET:-my-bucket}
+      AWS_ENDPOINT: ${AWS_ENDPOINT:-http://localstack:4566}
+
   mysql:
     image: mysql:8
     container_name: ${DB_HOST:-mysql}
@@ -125,6 +132,26 @@ services:
       && echo '0 * * * * root truncate -s 0 /var/log/cron/cron.log' >> /etc/cron.d/app-cron \
       && chmod 0644 /etc/cron.d/app-cron \
       && cron -f"
+
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack_container
+    restart: unless-stopped
+    ports:
+      - "4566:4566"
+      - "4510-4559:4510-4559"
+    environment:
+      - SERVICES=s3,sqs,sns,lambda,dynamodb
+      - DEBUG=1
+      - DATA_DIR=/var/lib/localstack/data
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-us-east-1}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-test}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-test}
+    volumes:
+      - "./logs/localstack:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - project_network
 
 networks:
   project_network:
