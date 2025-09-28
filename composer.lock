@@ -154,16 +154,16 @@
         },
         {
             "name": "roy404/artisan",
-            "version": "v1.2.2",
+            "version": "v1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/PHP-CLI-Artisan.git",
-                "reference": "691040118997d0e4774e2bb8de6f36cbee43e131"
+                "reference": "1115489ab6cd26c9f67140ee3f21379efd09046d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/PHP-CLI-Artisan/zipball/691040118997d0e4774e2bb8de6f36cbee43e131",
-                "reference": "691040118997d0e4774e2bb8de6f36cbee43e131",
+                "url": "https://api.github.com/repos/roycanales17/PHP-CLI-Artisan/zipball/1115489ab6cd26c9f67140ee3f21379efd09046d",
+                "reference": "1115489ab6cd26c9f67140ee3f21379efd09046d",
                 "shasum": ""
             },
             "require": {
@@ -194,9 +194,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/PHP-CLI-Artisan/issues",
-                "source": "https://github.com/roycanales17/PHP-CLI-Artisan/tree/v1.2.2"
+                "source": "https://github.com/roycanales17/PHP-CLI-Artisan/tree/v1.2.3"
             },
-            "time": "2025-09-27T07:46:11+00:00"
+            "time": "2025-09-28T02:55:16+00:00"
         },
         {
             "name": "roy404/blades",
@@ -393,16 +393,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "v6.4.0",
+            "version": "v6.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "ee7a9ec07f187be10147de96740ccd1edbc478ad"
+                "reference": "8091a353acb3458e5e1840d07a136f79e222ce1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/ee7a9ec07f187be10147de96740ccd1edbc478ad",
-                "reference": "ee7a9ec07f187be10147de96740ccd1edbc478ad",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/8091a353acb3458e5e1840d07a136f79e222ce1a",
+                "reference": "8091a353acb3458e5e1840d07a136f79e222ce1a",
                 "shasum": ""
             },
             "require": {
@@ -447,9 +447,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.4.0"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.4.1"
             },
-            "time": "2025-09-28T01:51:37+00:00"
+            "time": "2025-09-28T02:56:15+00:00"
         },
         {
             "name": "webmozart/assert",
