@@ -64,7 +64,7 @@ docker-compose up --build -d
 To verify **Xdebug** is active inside the container:
 
 ```bash
-docker exec -it app_container tail -f /tmp/xdebug.log
+docker exec -it app_container tail -f /tmp/xdebug/xdebug.log
 ```
 
 You should see log output when a request starts (if `xdebug.start_with_request=yes` is enabled).
