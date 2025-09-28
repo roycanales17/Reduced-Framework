@@ -14,7 +14,8 @@ services:
       dockerfile: Dockerfile
     container_name: app_container
     restart: unless-stopped
-    # Remove direct port mapping, Traefik handles it
+    ports:
+      - "${APP_PORT:-80}:80"
     volumes:
       - ./:/var/www/html
       - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
@@ -23,6 +24,7 @@ services:
     networks:
       - project_network
     environment:
+      VIRTUAL_HOST: ${APP_IP:-localhost}
       APP_ENV: ${APP_ENV:-local}
       DB_HOST: mysql
       DB_PORT: ${DB_PORT:-3306}
@@ -76,6 +78,8 @@ services:
       PMA_PORT: ${DB_PORT:-3306}
       PMA_USER: ${DB_USER:-root}
       PMA_PASSWORD: ${DB_PASSWORD:-admin}
+    ports:
+      - "${PMA_PORT:-8080}:80"
     networks:
       - project_network
 
@@ -98,6 +102,9 @@ services:
     image: mailhog/mailhog
     container_name: mailhog
     restart: unless-stopped
+    ports:
+      - "8025:8025"
+      - "1025:1025"
     networks:
       - project_network
 
