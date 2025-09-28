@@ -1,4 +1,6 @@
 #!/bin/sh
+export PHP_IDE_CONFIG="serverName=cron_job"
+export XDEBUG_CONFIG="idekey=PHPSTORM"
 
 # Default log file for cron
 LOG_FILE="/var/log/cron/cron.log"
