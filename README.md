@@ -78,7 +78,6 @@ php artisan serve
 - PHP 8.2 or higher
 - Composer
 - Docker & Docker Compose (for containerized setup)
-- MySQL or PostgreSQL database (recommended)
 
 ---
 
@@ -136,6 +135,13 @@ The framework provides a modular architecture with the following core components
 
 ### Routing
 
+Routes are the entry points of your application. They define how incoming HTTP requests (such as `GET`, `POST`, `PUT`, or `DELETE`) are mapped to specific actions in your code — usually a function or a controller method.
+
+Think of them as a **map**:
+- The **URL** (e.g., `/users/5`)
+- The **HTTP method** (e.g., `GET`)
+- The **action** (what your app should do, like showing a user profile)  
+
 Define routes in the `routes/web.php` file:
 
 ```php
@@ -148,7 +154,7 @@ Route::get('/', function () {
 Route::get('/users/{id}', [UserController::class, 'show']);
 ```
 
-#### Routing Methods:
+#### Available Routing Methods:
 
 The framework provides a fluent, expressive API for defining routes.  
 Below are the available static methods for configuring routes:
@@ -192,7 +198,10 @@ Below are the available static methods for configuring routes:
 ## Cron Scheduler
 
 The **Scheduler** provides a route-like API for defining and managing recurring tasks using cron expressions.  
-All schedules are defined in `routes/cron.php`.
+
+Instead of handling raw cron jobs directly, you define schedules in a clean and expressive way — similar to defining routes.
+
+All schedules are defined in the `routes/cron.php` file:
 
 ### Sample Schedules
 
@@ -222,7 +231,9 @@ The scheduler provides expressive helpers for defining task frequency:
 
 ### Controllers
 
-Controllers handle request/response logic:
+Controllers are responsible for handling **request/response logic**. They act as an intermediary between your routes and your business logic, keeping your code organized and maintainable.
+
+You can define controllers in the `app/Http/Controllers` directory:
 
 ```php
 namespace Http\Controller;
@@ -336,6 +347,7 @@ $users = \App\Databases\Database::server('master')
 ### Schema Builder
 
 The **Schema Builder** provides a programmatic way to create, modify, and manage database tables.  
+
 It works with closures to define table blueprints and runs SQL queries under the hood.
 
 ---
@@ -459,7 +471,9 @@ The framework uses the **Blade templating engine**:
 
 ### Artisan CLI
 
-The framework includes a CLI tool (`artisan`) for common tasks:
+The framework includes a CLI tool (`artisan`) for performing common tasks such as running migrations, clearing caches, managing queues, and more.  
+
+This tool is designed to streamline development and automate repetitive operations.
 
 ```bash 
 php artisan serve 
@@ -475,7 +489,9 @@ php artisan make:model User
 
 ### StreamWire
 
-Build reactive components with **StreamWire** (no JavaScript required):
+Build reactive, stateful UI components with **StreamWire** — without writing any JavaScript.  
+
+StreamWire integrates seamlessly with Blade templates, allowing you to render dynamic components directly in your views.
 
 ```php
 namespace Components\Test;
