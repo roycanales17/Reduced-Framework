@@ -24,7 +24,6 @@ services:
     networks:
       - project_network
     environment:
-      VIRTUAL_HOST: ${APP_IP:-localhost}
       APP_ENV: ${APP_ENV:-local}
       DB_HOST: mysql
       DB_PORT: ${DB_PORT:-3306}
