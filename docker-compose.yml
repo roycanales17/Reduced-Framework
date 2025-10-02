@@ -31,10 +31,10 @@ services:
       DB_USERNAME: ${DB_USER:-admin}
       DB_PASSWORD: ${DB_PASSWORD:-admin}
       MAIL_HOST: mailhog
-      MAIL_PORT: 1025
+      MAIL_PORT: ${MAIL_PORT:-1025}
       CACHE_DRIVER: redis
       REDIS_HOST: redis
-      REDIS_PORT: 6379
+      REDIS_PORT: ${REDIS_PORT:-6379}
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-test}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-test}
       AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION:-us-east-1}
@@ -75,7 +75,7 @@ services:
     environment:
       PMA_HOST: mysql
       PMA_PORT: ${DB_PORT:-3306}
-      PMA_USER: ${DB_USER:-root}
+      PMA_USER: ${DB_USER:-admin}
       PMA_PASSWORD: ${DB_PASSWORD:-admin}
     ports:
       - "${PMA_PORT:-8080}:80"
