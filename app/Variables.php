@@ -11,11 +11,14 @@ use App\Utilities\Server;
  * @return array<string, mixed>
  */
 return (function () {
+    $host   = config('APP_URL', 'http://localhost');
+    $port   = config('APP_PORT', 8000);
+
 	$scheme = Server::IsSecureConnection() ? 'https' : 'http';
-	$host   = Server::HostName();
 	$uri    = Server::RequestURI();
+
 	$root   = PHP_SAPI === 'cli' ? './' : '../';
-	$url    = "$scheme://$host";
+	$url    = "$host:$port";
 
 	return [
 		'APP_HOST'      => $host,
