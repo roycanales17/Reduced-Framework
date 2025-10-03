@@ -30,7 +30,7 @@ services:
       DB_DATABASE: ${DB_DATABASE:-framework}
       DB_USERNAME: ${DB_USER:-admin}
       DB_PASSWORD: ${DB_PASSWORD:-admin}
-      MAIL_HOST: mailhog
+      MAIL_HOST: ${MAIL_HOST:-mailhog}
       MAIL_PORT: ${MAIL_PORT:-1025}
       CACHE_DRIVER: redis
       REDIS_HOST: redis
@@ -99,7 +99,7 @@ services:
   # --------------------------
   mailhog:
     image: mailhog/mailhog
-    container_name: mailhog
+    container_name: ${MAIL_HOST:-mailhog}
     restart: unless-stopped
     ports:
       - "8025:8025"
