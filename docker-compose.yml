@@ -25,7 +25,7 @@ services:
       - project_network
     environment:
       APP_ENV: ${APP_ENV:-local}
-      DB_HOST: mysql
+      DB_HOST: ${DB_HOST:-mysql}
       DB_PORT: ${DB_PORT:-3306}
       DB_DATABASE: ${DB_DATABASE:-framework}
       DB_USERNAME: ${DB_USER:-admin}
@@ -73,7 +73,7 @@ services:
     container_name: ${PMA_CONTAINER_NAME:-phpmyadmin_container}
     restart: unless-stopped
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: ${DB_HOST:-mysql}
       PMA_PORT: ${DB_PORT:-3306}
       PMA_USER: ${DB_USER:-admin}
       PMA_PASSWORD: ${DB_PASSWORD:-admin}
