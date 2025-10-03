@@ -33,7 +33,7 @@ services:
       MAIL_HOST: ${MAIL_HOST:-mailhog}
       MAIL_PORT: ${MAIL_PORT:-1025}
       CACHE_DRIVER: redis
-      REDIS_HOST: redis
+      REDIS_HOST: ${REDIS_SERVER_NAME:-redis_container}
       REDIS_PORT: ${REDIS_PORT:-6379}
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-test}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-test}
