@@ -15,6 +15,7 @@ This project uses a modern containerized architecture powered by Docker, combini
 ![SCSS](https://img.shields.io/badge/SCSS-CC6699?logo=sass&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?logo=tailwind-css&logoColor=white)
 ![Xdebug](https://img.shields.io/badge/Xdebug-2C873F?logo=php&logoColor=white)
+![Socket.IO](https://img.shields.io/badge/Socket.IO-010101?logo=socket.io&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
 
 **Infrastructure & Services**
@@ -30,7 +31,7 @@ This setup provides a full-featured development environment that mirrors product
 
 ---
 
-## 📚 Table of Contents
+## Table of Contents
 
 - [Getting Started](#-getting-started)
     - [Installation](#installation)
@@ -48,6 +49,7 @@ This setup provides a full-featured development environment that mirrors product
     - [Artisan CLI](#artisan-cli)
     - [StreamWire](#streamwire)
 - [Advanced Topics](#-advanced-topics)
+    - [Real-Time Communication (Socket.IO)](#Real-Time-Communication)
     - [Cron Jobs & Scheduler](#cron-jobs--scheduler)
     - [LocalStack & AWS Integration](#localstack--aws-integration)
 - [Contributing](#-contributing)
@@ -55,7 +57,7 @@ This setup provides a full-featured development environment that mirrors product
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Installation
 
@@ -73,21 +75,19 @@ php artisan serve
 
 ---
 
-### Server Requirements
+## Configuration
+
+### 1. Server Requirements
 
 - PHP 8.2 or higher
 - Composer
 - Docker & Docker Compose (for containerized setup)
 
----
-
-## ⚙️ Configuration
-
-### Environment File
+### 2. Environment File
 
 Update the `.env` file with your database credentials, app URL, and other configuration values.
 
-### Docker Setup
+### 3. Docker Setup
 
 Start the development environment using Docker:
 
@@ -116,16 +116,7 @@ Your development environment comes preconfigured with the following services:
 - **cron** → Dedicated service for running scheduled tasks.
 - **localstack** → Local AWS cloud emulator (S3, SNS, SQS, etc).
 - **xdebug** → Debugging and profiling extension for PHP, integrated into the `app` container.
-
----
-
-### Xdebug Integration
-
-Verify **Xdebug** is running inside the container:
-
-```bash 
-docker exec -it app_container tail -f /tmp/xdebug/xdebug.log 
-```
+- **socket** → Real-time communication service powered by **Node.js** and **Socket.IO**, running on port `3000` (`http://localhost:3000`).
 
 ---
 
@@ -146,6 +137,7 @@ Define routes in the `routes/web.php` file:
 
 ```php
 use App\Routes\Route;
+use Http\Controller\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -159,41 +151,20 @@ Route::get('/users/{id}', [UserController::class, 'show']);
 The framework provides a fluent, expressive API for defining routes.  
 Below are the available static methods for configuring routes:
 
-- **put(string \$uri, string|array|Closure $action = [])**  
-  Defines a `PUT` route.
-
-- **patch(string \$uri, string|array|Closure \$action = [])**  
-  Defines a `PATCH` route.
-
-- **delete(string \$uri, string|array|Closure \$action = [])**  
-  Defines a `DELETE` route.
-
-- **get(string \$uri, string|array|Closure \$action = [])**  
-  Defines a `GET` route.
-
-- **post(string \$uri, string|array|Closure \$action = [])**  
-  Defines a `POST` route.
-
-- **group(array \$attributes, Closure \$action)**  
-  Registers a group of routes with shared configurations and middleware, enhancing route organization and reusability.
-
-- **controller(string \$className)**  
-  Registers a controller to handle the route actions.
-
-- **middleware(string|array $action)**  
-  Assigns middleware to the route for request filtering.
-
-- **prefix(string \$prefix)**  
-  Adds a URI prefix to all routes in the group.
-
-- **name(string \$name)**  
-  Assigns a name to the route, useful for generating URLs.
-
-- **domain(string|array \$domain)**  
-  Binds the route to a specific domain or subdomain.
-
-- **where(string \$key, string \$expression)**  
-  Defines a regular expression constraint for a route parameter.
+| Method | Description |
+|---------|-------------|
+| `put`(string \$uri, string\|array\|Closure \$action = []) | Defines a `PUT` route. |
+| `patch`(string \$uri, string\|array\|Closure \$action = []) | Defines a `PATCH` route. |
+| `delete`(string \$uri, string\|array\|Closure \$action = []) | Defines a `DELETE` route. |
+| `get`(string \$uri, string\|array\|Closure \$action = []) | Defines a `GET` route. |
+| `post`(string \$uri, string\|array\|Closure \$action = []) | Defines a `POST` route. |
+| `group`(array \$attributes, Closure \$action) | Registers a group of routes with shared configurations and middleware, enhancing route organization and reusability. |
+| `controller`(string \$className) | Registers a controller to handle the route actions. |
+| `middleware`(string\|array \$action) | Assigns middleware to the route for request filtering. |
+| `prefix`(string \$prefix) | Adds a URI prefix to all routes in the group. |
+| `name`(string \$name) | Assigns a name to the route, useful for generating URLs. |
+| `domain`(string\|array \$domain) | Binds the route to a specific domain or subdomain. |
+| `where`(string \$key, string \$expression) | Defines a regular expression constraint for a route parameter. |
 
 ## Cron Scheduler
 
@@ -217,8 +188,8 @@ Schedule::command('report:generate')->at('14:30');
 
 The scheduler provides expressive helpers for defining task frequency:
 
-| Method                  | Description                                              |
-|--------------------------|----------------------------------------------------------|
+| Method                  | Description                                             |
+|--------------------------|---------------------------------------------------------|
 | `everyMinute()`          | Run the task every minute.                              |
 | `everyFiveMinutes()`     | Run the task every 5 minutes.                           |
 | `hourly()`               | Run the task every hour.                                |
@@ -233,7 +204,7 @@ The scheduler provides expressive helpers for defining task frequency:
 
 Controllers are responsible for handling **request/response logic**. They act as an intermediary between your routes and your business logic, keeping your code organized and maintainable.
 
-You can define controllers in the `app/Http/Controllers` directory:
+You can define controllers in the `http/Controllers` directory:
 
 ```php
 namespace Http\Controller;
@@ -281,25 +252,25 @@ Models provide a simple, expressive interface for database operations.
 **Fetch active users:**
 
 ```php
-$users = User::where('active', 1)->row();
+$users = Http\Model\User::where('active', 1)->row();
 ````
 
 **Fetch a single column (by primary key):**
 
 ```php
-$email = User::_( $user_id )->email;
+$email = Http\Model\User::_($user_id)->email;
 ```
 
 **Check if a record exists:**
 
 ```php
-$is_exist = User::where('id', $user_id)->exists();
+$is_exist = Http\Model\User::where('id', $user_id)->exists();
 ```
 
 **Insert a new record:**
 
 ```php
-$newUser = User::create([
+$newUser = Http\Model\User::create([
     'id'    => $user_id,
     'name'  => 'John Doe',
     'email' => 'john.doe@test.com',
@@ -315,7 +286,7 @@ For advanced queries, you can use the `Database` facade directly.
 **Insert a record:**
 
 ```php
-\App\Databases\Database::create('users', [
+App\Databases\Database::create('users', [
     'id'    => $user_id,
     'name'  => 'John Doe',
     'email' => 'john.doe@test.com',
@@ -325,19 +296,19 @@ For advanced queries, you can use the `Database` facade directly.
 **Run a raw query:**
 
 ```php
-$users = \App\Databases\Database::query("SELECT * FROM users");
+$users = App\Databases\Database::query("SELECT * FROM users");
 ```
 
 **Count total records:**
 
 ```php
-$total = \App\Databases\Database::table('users')->count();
+$total = App\Databases\Database::table('users')->count();
 ```
 
 **Query from a specific connection:**
 
 ```php
-$users = \App\Databases\Database::server('master')
+$users = App\Databases\Database::server('master')
     ->query("SELECT * FROM users")
     ->fetch();
 ```
@@ -356,8 +327,9 @@ It works with closures to define table blueprints and runs SQL queries under the
 
 ```php
 use App\Databases\Schema;
+use App\Databases\Handler\Blueprints\Table;
 
-Schema::create('users', function ($table) {
+Schema::create('users', function (Table $table) {
     $table->id();
     $table->string('name');
     $table->string('email')->unique();
@@ -370,7 +342,10 @@ Schema::create('users', function ($table) {
 ### Modifying Tables
 
 ```php
-Schema::table('users', function ($table) {
+use App\Databases\Schema;
+use App\Databases\Handler\Blueprints\Table;
+
+Schema::table('users', function (Table $table) {
     $table->string('phone')->nullable();
 });
 ```
@@ -380,6 +355,8 @@ Schema::table('users', function ($table) {
 ### Renaming and Dropping Tables
 
 ```php
+use App\Databases\Schema;
+
 // Rename table
 Schema::renameTable('users', 'members');
 
@@ -395,6 +372,8 @@ Schema::drop('logs');
 ### Columns Management
 
 ```php
+use App\Databases\Schema;
+
 // Check if table exists
 Schema::hasTable('users');
 
@@ -416,6 +395,8 @@ Schema::renameColumn('users', 'fullname', 'name', 'VARCHAR(255)');
 ### Indexes and Keys
 
 ```php
+use App\Databases\Schema;
+
 // Add index
 Schema::addIndex('users', 'email');
 
@@ -431,6 +412,8 @@ Schema::index('users', 'email_index');
 ### Table Options
 
 ```php
+use App\Databases\Schema;
+
 // Change storage engine
 Schema::setEngine('users', 'InnoDB');
 
@@ -447,7 +430,7 @@ Schema::truncate('users');
 
 ```php
 // Get CREATE TABLE statement for export/backup
-$definition = Schema::exportTable('users');
+$definition = App\Databases\Schema::exportTable('users');
 ```
 
 ✅ With `Schema`, you can define migrations, manage schema changes, and keep your database structure consistent across environments.
@@ -554,25 +537,115 @@ This will render the **Counter** component and make it fully interactive without
 
 ## 🔧 Advanced Topics
 
-### Cron Jobs & Scheduler
+### 1. Real-Time Communication (Socket.IO)
 
-Run scheduled tasks using the built-in scheduler. Add this to your system crontab:
+To support real-time updates such as live notifications, chat, or dashboard syncing, this project includes a dedicated **Socket.IO** microservice built with **Node.js** and integrated into the Docker environment.
+
+---
+
+#### **Core Features**
+- Real-time bi-directional communication
+- WebSocket-based events (auto fallback to polling)
+- JSON-based event messaging
+- Centralized logging for connections and events
+
+---
+
+#### **Technologies**
+
+![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white)
+![Socket.IO](https://img.shields.io/badge/Socket.IO-010101?logo=socket.io&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+
+---
+
+#### **Docker Service Definition**
+
+To scaffold a ready-made Socket.IO service within your project, run:
+```bash
+php artisan make:socket
+```
+This command generates a preconfigured Node.js Socket.IO setup inside your project directory (`/node` by default).
+
+---
+
+Next, register the Socket service in your `docker-compose.yml` file:
+```yaml
+  node:
+      build:
+          context: ./node
+          dockerfile: Dockerfile
+      container_name: socket_container
+      restart: unless-stopped
+      ports:
+          - "${SOCKET_PORT:-3000}:3000"
+      volumes:
+          - "./logs/node:/usr/src/app/logs"
+      networks:
+          - project_network
+      env_file:
+          - .env
+```
+
+Once added, rebuild and start your containers:
+```bash 
+docker-compose up --build -d 
+```
+This will build and launch the Socket.IO container, making it accessible at
+👉 `http://localhost:3000`
+
+---
+
+#### **Quick Frontend Test**
+
+You can verify the socket connection by embedding the following script in your Blade or HTML view:
+
+```javascript
+(function () {
+    const script = document.createElement("script");
+    script.src = "https://cdn.socket.io/4.7.5/socket.io.min.js";
+    script.onload = () => {
+        const socket = io("http://localhost:3000");
+
+        socket.on("connect", () => {
+            console.log("✅ Connected:", socket.id);
+            socket.emit("message", "Hello from frontend");
+        });
+
+        socket.on("message", (msg) => {
+            console.log("💬 From server:", msg);
+        });
+    };
+    document.head.appendChild(script);
+})();
+```
+
+When you reload the page, open your browser console — you should see messages confirming a successful connection between the frontend and the Socket.IO server.
+
+---
+
+### 2. Cron Jobs & Scheduler
+
+The project includes a built-in task scheduler for handling automated and recurring jobs (e.g., queue processing, cleanups, reports).
+
+In a **Docker environment**, the scheduler container runs automatically — no additional configuration is required.
+
+However, in a **production environment**, you’ll need to register the scheduler manually in your system crontab to ensure it runs every minute:
 
 ```bash
-* * * * * /usr/bin/php /var/www/html/artisan schedule:run >> /dev/null 2>&1 
+* * * * * /usr/bin/php /var/www/html/artisan cron:scheduler >> /dev/null 2>&1 
 ```
 
 ### Explanation
 - `* * * * *` → Run every minute.
 - `/usr/bin/php` → Path to your PHP binary (check with `which php`).
-- `/var/www/html/scheduler` → Path to your project's `scheduler` file.
+- `/var/www/html/artisan` → Path to your project's `artisan` file.
 - `>> /dev/null 2>&1` → Silences all output (keeps system logs clean).
-
-💡 Note: When using Docker, the cron service is already configured inside the cron container. You don’t need to add this entry manually unless you’re running outside of Docker.
 
 ---
 
-### LocalStack & AWS Integration
+### 3. LocalStack & AWS Integration
 
 Use LocalStack to emulate AWS services locally during development.
 This allows you to test S3 storage and other AWS features without connecting to a real AWS account.
