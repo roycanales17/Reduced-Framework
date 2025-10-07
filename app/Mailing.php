@@ -68,15 +68,4 @@ return [
 	*/
 	'username' => config('MAIL_USERNAME', ''),
 	'password' => config('MAIL_PASSWORD', ''),
-
-	/*
-	|--------------------------------------------------------------------------
-	| Global "From" Address
-	|--------------------------------------------------------------------------
-	|
-	| Default sender address and name used in all outgoing emails.
-	|
-	*/
-	'from' => config('MAIL_FROM_ADDRESS'),
-	'from_name' => config('MAIL_FROM_NAME')
 ];
