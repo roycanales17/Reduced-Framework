@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.356.34",
+            "version": "3.356.40",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "4dabcc34c34ec3c3ce74373c2ff2fc318099d20b"
+                "reference": "3c1d71932ed962810316930b327b3b71a7517cff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/4dabcc34c34ec3c3ce74373c2ff2fc318099d20b",
-                "reference": "4dabcc34c34ec3c3ce74373c2ff2fc318099d20b",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3c1d71932ed962810316930b327b3b71a7517cff",
+                "reference": "3c1d71932ed962810316930b327b3b71a7517cff",
                 "shasum": ""
             },
             "require": {
@@ -153,9 +153,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.356.34"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.356.40"
             },
-            "time": "2025-10-07T18:05:06+00:00"
+            "time": "2025-10-15T18:13:33+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",
@@ -615,16 +615,16 @@
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v6.11.1",
+            "version": "v6.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "d9e3b36b47f04b497a0164c5a20f92acb4593284"
+                "reference": "d1ac35d784bf9f5e61b424901d5a014967f15b12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/d9e3b36b47f04b497a0164c5a20f92acb4593284",
-                "reference": "d9e3b36b47f04b497a0164c5a20f92acb4593284",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/d1ac35d784bf9f5e61b424901d5a014967f15b12",
+                "reference": "d1ac35d784bf9f5e61b424901d5a014967f15b12",
                 "shasum": ""
             },
             "require": {
@@ -645,7 +645,6 @@
             },
             "suggest": {
                 "decomplexity/SendOauth2": "Adapter for using XOAUTH2 authentication",
-                "ext-imap": "Needed to support advanced email address parsing according to RFC822",
                 "ext-mbstring": "Needed to send email in multibyte encoding charset or decode encoded addresses",
                 "ext-openssl": "Needed for secure SMTP sending and DKIM signing",
                 "greew/oauth2-azure-provider": "Needed for Microsoft Azure XOAUTH2 authentication",
@@ -685,7 +684,7 @@
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
             "support": {
                 "issues": "https://github.com/PHPMailer/PHPMailer/issues",
-                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.11.1"
+                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.12.0"
             },
             "funding": [
                 {
@@ -693,7 +692,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-09-30T11:54:53+00:00"
+            "time": "2025-10-15T16:49:08+00:00"
         },
         {
             "name": "psr/http-client",
@@ -947,16 +946,16 @@
         },
         {
             "name": "roy404/blades",
-            "version": "v1.3.5",
+            "version": "v1.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/PHP-Blades-Compiler.git",
-                "reference": "2e625d9992c29621bbd645fe817ba06effe20a94"
+                "reference": "ee8c4339785eb6726aa23ead8d03faea57cab293"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/PHP-Blades-Compiler/zipball/2e625d9992c29621bbd645fe817ba06effe20a94",
-                "reference": "2e625d9992c29621bbd645fe817ba06effe20a94",
+                "url": "https://api.github.com/repos/roycanales17/PHP-Blades-Compiler/zipball/ee8c4339785eb6726aa23ead8d03faea57cab293",
+                "reference": "ee8c4339785eb6726aa23ead8d03faea57cab293",
                 "shasum": ""
             },
             "require": {
@@ -988,22 +987,22 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/PHP-Blades-Compiler/issues",
-                "source": "https://github.com/roycanales17/PHP-Blades-Compiler/tree/v1.3.5"
+                "source": "https://github.com/roycanales17/PHP-Blades-Compiler/tree/v1.3.6"
             },
-            "time": "2025-10-07T14:23:12+00:00"
+            "time": "2025-10-09T01:20:22+00:00"
         },
         {
             "name": "roy404/eloquent",
-            "version": "v1.2.3",
+            "version": "v1.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Database-ORM.git",
-                "reference": "207936b29d727eeb60ce20d5a8e7bc3c7d922950"
+                "reference": "b531a16a0de61b4718dcfa383493de4a6cf40aaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Database-ORM/zipball/207936b29d727eeb60ce20d5a8e7bc3c7d922950",
-                "reference": "207936b29d727eeb60ce20d5a8e7bc3c7d922950",
+                "url": "https://api.github.com/repos/roycanales17/Database-ORM/zipball/b531a16a0de61b4718dcfa383493de4a6cf40aaf",
+                "reference": "b531a16a0de61b4718dcfa383493de4a6cf40aaf",
                 "shasum": ""
             },
             "require": {
@@ -1036,9 +1035,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Database-ORM/issues",
-                "source": "https://github.com/roycanales17/Database-ORM/tree/v1.2.3"
+                "source": "https://github.com/roycanales17/Database-ORM/tree/v1.2.5"
             },
-            "time": "2025-09-22T09:11:04+00:00"
+            "time": "2025-10-16T05:01:26+00:00"
         },
         {
             "name": "roy404/request",
@@ -1140,16 +1139,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "v6.5.3",
+            "version": "v6.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "ea513dedc953082acea31b5879c6d0a46c07fe87"
+                "reference": "be7e5ee80284b4bbd61943de263a1bf61e443b45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/ea513dedc953082acea31b5879c6d0a46c07fe87",
-                "reference": "ea513dedc953082acea31b5879c6d0a46c07fe87",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/be7e5ee80284b4bbd61943de263a1bf61e443b45",
+                "reference": "be7e5ee80284b4bbd61943de263a1bf61e443b45",
                 "shasum": ""
             },
             "require": {
@@ -1195,9 +1194,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.5.3"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.5.4"
             },
-            "time": "2025-10-08T01:28:37+00:00"
+            "time": "2025-10-09T01:17:02+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
