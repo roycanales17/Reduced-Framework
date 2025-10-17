@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.356.40",
+            "version": "3.356.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "3c1d71932ed962810316930b327b3b71a7517cff"
+                "reference": "ca7f6fe61688817afb55105078d0daa1c99d3ab9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3c1d71932ed962810316930b327b3b71a7517cff",
-                "reference": "3c1d71932ed962810316930b327b3b71a7517cff",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/ca7f6fe61688817afb55105078d0daa1c99d3ab9",
+                "reference": "ca7f6fe61688817afb55105078d0daa1c99d3ab9",
                 "shasum": ""
             },
             "require": {
@@ -153,9 +153,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.356.40"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.356.41"
             },
-            "time": "2025-10-15T18:13:33+00:00"
+            "time": "2025-10-16T18:07:24+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",
@@ -1139,16 +1139,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "v6.5.4",
+            "version": "v6.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "be7e5ee80284b4bbd61943de263a1bf61e443b45"
+                "reference": "043f99901f9fd8a3ee06a5971ca7576662fe5482"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/be7e5ee80284b4bbd61943de263a1bf61e443b45",
-                "reference": "be7e5ee80284b4bbd61943de263a1bf61e443b45",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/043f99901f9fd8a3ee06a5971ca7576662fe5482",
+                "reference": "043f99901f9fd8a3ee06a5971ca7576662fe5482",
                 "shasum": ""
             },
             "require": {
@@ -1194,9 +1194,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.5.4"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.5.5"
             },
-            "time": "2025-10-09T01:17:02+00:00"
+            "time": "2025-10-16T23:52:24+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
