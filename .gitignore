@@ -8,7 +8,6 @@
 /.phpunit.cache
 /phpunit.xml
 /.vscode
-/vendor
 
 # Ignore dynamic builds from utilities...
 public/build
@@ -24,8 +23,6 @@ storage/public/*
 !storage/public/.htaccess
 
 logs
-vendor
-node_modules
 composer.phar
 composer.lock
 Thumbs.db
