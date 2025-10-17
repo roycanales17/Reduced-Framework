@@ -1,0 +1,28 @@
+{
+    "name": "roy404/artisan",
+    "description": "A custom Artisan-like command runner for web environments. Run your Artisan commands from the browser or other interfaces.",
+    "keywords": [
+        "php",
+        "console"
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\Console\\Commands\\": "commands/",
+            "App\\Console\\": "src/"
+        }
+    },
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Robroy B Canales",
+            "email": "canales.robroy123@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "dragonmantank/cron-expression": "^3.4"
+    }
+}

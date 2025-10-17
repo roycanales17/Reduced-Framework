@@ -1,0 +1,6 @@
+#!/usr/bin/env php
+<?php
+	require __DIR__ . '/vendor/autoload.php';
+
+	spl_autoload_register(fn($class) => file_exists($path = '../' . str_replace('\\', '/', $class) . '.php') && require_once $path);
+	launch_cli_session($argv);

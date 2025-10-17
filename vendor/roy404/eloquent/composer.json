@@ -1,0 +1,29 @@
+{
+    "name": "roy404/eloquent",
+    "description": "Eloquent is the default ORM (Object-Relational Mapping). It provides a simple ActiveRecord implementation for working with your database. With Eloquent, you can define database models as classes, and interact with the database using these models, rather than writing raw SQL queries.",
+    "keywords": [
+        "php",
+        "plugins"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Robroy Canales",
+            "email": "canales.robroy123@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\Databases\\": "Databases/",
+            "App\\Databases\\Facade\\": "Databases/Facade/",
+            "App\\Databases\\Handler\\": "Databases/Handler/",
+            "App\\Databases\\Handler\\Blueprints\\": "Databases/Handler/Blueprints",
+            "App\\Databases\\Handler\\Eloquent\\": "Databases/Handler/Eloquent"
+        }
+    }
+}

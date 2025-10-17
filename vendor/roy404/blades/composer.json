@@ -1,0 +1,29 @@
+{
+    "name": "roy404/blades",
+    "description": "A PHP library that provides Blade-like templating functionality, enabling seamless integration of Blade syntax and components.",
+    "keywords": [
+        "php",
+        "compiler"
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\View\\Compilers\\Scheme\\": "src/scheme",
+            "App\\View\\Compilers\\Templates\\": "src/templates",
+            "App\\View\\Compilers\\Builder\\": "src/builder",
+            "App\\View\\Compilers\\": "src/"
+        }
+    },
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Robroy B Canales",
+            "email": "canales.robroy123@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0"
+    }
+}

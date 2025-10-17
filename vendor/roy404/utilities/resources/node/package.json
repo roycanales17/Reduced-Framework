@@ -1,0 +1,14 @@
+{
+    "name": "node-socket",
+    "version": "1.0.0",
+    "description": "Socket.IO server for PHP app",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "^4.19.2",
+        "socket.io": "^4.8.1",
+        "dotenv": "^16.4.5"
+    }
+}
