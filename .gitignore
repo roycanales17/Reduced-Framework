@@ -23,6 +23,4 @@ storage/public/*
 !storage/public/.htaccess
 
 logs
-composer.phar
-composer.lock
 Thumbs.db
