@@ -26,8 +26,6 @@ services:
       - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ./logs/app:/var/log/app
       - ./logs/xdebug:/tmp/xdebug
-    networks:
-      - project_network
     environment:
       APP_ENV: ${APP_ENV:-local}
       DB_HOST: mysql
@@ -45,6 +43,10 @@ services:
       AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION:-us-east-1}
       AWS_BUCKET: ${AWS_BUCKET:-my-bucket}
       AWS_ENDPOINT: ${AWS_ENDPOINT:-http://localstack:4566}
+    env_file:
+      - .env
+    networks:
+      - project_network
 
   # --------------------------
   # MySQL Database
@@ -62,13 +64,15 @@ services:
       - "${DB_PORT:-3306}:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-    networks:
-      - project_network
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      project_network:
+        aliases:
+          - ${PROJECT_ID}_mysql
 
   # --------------------------
   # phpMyAdmin
@@ -77,6 +81,8 @@ services:
     image: phpmyadmin/phpmyadmin:latest
     container_name: ${PROJECT_ID}_pma
     restart: unless-stopped
+    depends_on:
+      - mysql
     environment:
       PMA_HOST: mysql
       PMA_PORT: ${DB_PORT:-3306}
@@ -107,10 +113,12 @@ services:
     container_name: ${PROJECT_ID}_mailhog
     restart: unless-stopped
     ports:
-      - "8025:8025"
       - "1025:1025"
+      - "8025:8025"
     networks:
-      - project_network
+      project_network:
+        aliases:
+          - ${PROJECT_ID}_mailhog
 
   # --------------------------
   # Redis
@@ -139,6 +147,18 @@ services:
       - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ./logs/cron:/var/log/cron
       - ./logs/xdebug:/tmp/xdebug
+    environment:
+      APP_ENV: ${APP_ENV:-local}
+      DB_HOST: mysql
+      DB_PORT: ${DB_PORT:-3306}
+      DB_DATABASE: ${DB_DATABASE:-framework}
+      DB_USERNAME: ${DB_USER:-admin}
+      DB_PASSWORD: ${DB_PASSWORD:-admin}
+      REDIS_HOST: redis
+      REDIS_PORT: ${REDIS_PORT:-6379}
+      MAIL_HOST: mailhog
+      MAIL_PORT: ${MAIL_PORT:-1025}
+      AWS_ENDPOINT: ${AWS_ENDPOINT:-http://localstack:4566}
     networks:
       - project_network
     command: >
