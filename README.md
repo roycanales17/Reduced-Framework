@@ -643,7 +643,7 @@ Build reactive, stateful UI components with **StreamWire** — without writing a
 StreamWire integrates seamlessly with Blade templates, allowing you to render dynamic components directly in your views.
 
 ```php
-namespace Components\Test;
+namespace Components\Counter;
 	
 use App\Utilities\Handler\Component;
 
