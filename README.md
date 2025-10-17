@@ -33,25 +33,26 @@ This setup provides a full-featured development environment that mirrors product
 
 ## Table of Contents
 
-- [Getting Started](#-getting-started)
+- [Getting Started](#getting-started)
     - [Installation](#installation)
-    - [Server Requirements](#server-requirements)
-- [Configuration](#-configuration)
-    - [Environment File](#environment-file)
-    - [Docker Setup](#docker-setup)
+    - [Server Requirements](#1-server-requirements)
+- [Configuration](#️-configuration)
+    - [Environment File](#2-environment-file-env)
+    - [Docker Setup](#3-docker-setup)
     - [Available Services](#available-services)
-    - [Xdebug Integration](#xdebug-integration)
 - [Framework Overview](#-framework-overview)
-    - [Routing](#routing)
-    - [Controllers](#controllers)
-    - [Views & Blade Templates](#views--blade-templates)
-    - [Models & Eloquent ORM](#models--eloquent-orm)
-    - [Artisan CLI](#artisan-cli)
-    - [StreamWire](#streamwire)
+    - [Routing](#1-routing)
+    - [Cron](#2-cron-scheduler)
+    - [Controllers](#3-controllers)
+    - [Models & ORM](#4-model)
+    - [Schema Builder](#5-schema-builder)
+    - [Views & Blade Templates](#6-views--blade-templates)
+    - [Artisan CLI](#7-artisan-cli)
+    - [StreamWire](#8-streamwire)
 - [Advanced Topics](#-advanced-topics)
-    - [Real-Time Communication (Socket.IO)](#Real-Time-Communication)
-    - [Cron Jobs & Scheduler](#cron-jobs--scheduler)
-    - [LocalStack & AWS Integration](#localstack--aws-integration)
+    - [Real-Time Communication (Socket.IO)](#1-real-time-communication-socketio)
+    - [Cron Jobs & Scheduler](#2-cron-jobs--scheduler)
+    - [LocalStack & AWS Integration](#3-localstack--aws-integration)
 - [Contributing](#-contributing)
 - [License](#-license)
 
@@ -67,7 +68,7 @@ Install the framework using Composer:
 composer create-project roy404/framework project-name 
 ```
 
-Once installed, navigate to your project directory and start the local development server:
+Once installed, navigate to your project root directory and start the local development server:
 
 ```bash 
 php artisan serve 
@@ -75,31 +76,154 @@ php artisan serve
 
 ---
 
-## Configuration
+## ⚙️ Configuration
 
 ### 1. Server Requirements
+Make sure your system meets the following minimum requirements:
 
-- PHP 8.2 or higher
-- Composer
-- Docker & Docker Compose (for containerized setup)
+- **PHP** ≥ 8.2
+- **Composer** (for dependency management)
+- **Docker** & **Docker Compose** (for containerized development)
 
-### 2. Environment File
+If PHP or Composer are not installed yet, follow these steps:
 
-Update the `.env` file with your database credentials, app URL, and other configuration values.
+#### Install PHP (Mac / Linux)
+
+```bash
+sudo apt install php php-cli php-mbstring unzip curl -y
+```
+
+or on macOS:
+
+```bash
+brew install php
+```
+
+Install Composer
+
+```bash
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+```
+
+Verify installation:
+
+```bash
+php -v
+composer -V
+```
+
+#### Windows
+1. Download PHP from: https://windows.php.net/download/
+2. Add the PHP folder to your system PATH.
+3. Download Composer from: https://getcomposer.org/download/
+4. Run the installer and follow the prompts.
+
+After installation, open Command Prompt or PowerShell and verify:
+
+```bash
+php -v
+composer -V
+```
+
+If these commands return version numbers, both are installed correctly.
+
+Additionally, If you want to use Docker just install it here: https://www.docker.com/products/docker-desktop
+
+---
+
+### 2. Environment File (.env)
+Before running the project, configure your environment settings.
+
+1. Copy the example file if needed:  
+   **cp .env.example .env**
+
+2. Update the values as needed — especially:
+    - **APP_URL** (e.g. http://localhost:8000)
+    - **Database credentials**
+    - **Mail settings**
+    - **AWS or LocalStack credentials** (if applicable)
+    - **PROJECT_ID** — make sure this value is **unique for each project** to avoid Docker container name conflicts.  
+      Example:
+        - Project 1 → `PROJECT_ID=myproject1`
+        - Project 2 → `PROJECT_ID=myproject2`
+
+---
 
 ### 3. Docker Setup
 
 Start the development environment using Docker:
 
-```bash 
-docker-compose up --build -d 
+```bash
+docker-compose up --build -d
 ```
 
-Stop containers:
+Once all containers are running, you can access the following services:
 
+| Service | URL | Description |
+|---|---:|---|
+| 🧱 **App (PHP)** | http://localhost:8000 | Main application |
+| 🐘 **phpMyAdmin** | http://localhost:8080 | MySQL database manager |
+| 💌 **MailHog UI** | http://localhost:8025 | View test emails sent from the app |
+| 🧠 **Redis** | localhost:6379 | In-memory cache database |
+| 🧰 **Memcached** | localhost:11211 | Caching service |
+| ☁️ **LocalStack** | http://localhost:4566 | Local AWS cloud service emulator |
+
+Tip: You can check logs for any service using  
+**docker-compose logs -f <service_name>**  
+
+Example:
 ```bash 
-docker-compose down 
+docker-compose logs -f app
 ```
+
+---
+
+### Stop and Clean Up
+
+To stop and remove all running containers:
+
+```bash
+docker-compose down
+```
+
+If you also want to remove associated volumes and networks (fresh start):
+
+```bash
+docker-compose down -v
+```
+
+---
+
+### Troubleshooting (quick)
+- **Mailer / SMTP errors**: Ensure MAIL_HOST is set to `mailhog` (not container_name) when used inside Docker.
+- **DB connection issues**: Ensure DB_HOST is `mysql` and the MySQL container is healthy (`docker-compose ps` / `docker-compose logs mysql`).
+- **Ports already in use**: Another project may be using the same host ports (e.g., 8000, 8080, 8025).  
+  → Change `APP_PORT`, `PMA_PORT`, or other port values in `.env`.
+
+---
+
+### 🧰 Common Commands
+- Rebuild & recreate containers:  
+  **docker-compose up --build -d**
+- Stop & remove containers:  
+  **docker-compose down**
+- Stop, remove containers + volumes:  
+  **docker-compose down -v**
+- Follow logs:  
+  **docker-compose logs -f <service>**
+- Run a shell inside the app container:  
+  **docker-compose exec app sh**
+- Connect to MySQL (from host):  
+  **mysql -h 127.0.0.1 -P 3306 -u <user> -p**
+
+---
+
+✅ **Tip for multiple projects:**  
+If you run multiple Docker projects at once, always give each one a **unique `PROJECT_ID`** and different **port numbers** to avoid conflicts.  
+Example:
+- Project A → `PROJECT_ID=framework1`, `APP_PORT=8000`, `PMA_PORT=8080`
+- Project B → `PROJECT_ID=framework2`, `APP_PORT=8100`, `PMA_PORT=8180`
 
 ---
 
@@ -124,7 +248,7 @@ Your development environment comes preconfigured with the following services:
 
 The framework provides a modular architecture with the following core components.
 
-### Routing
+## 1. Routing
 
 Routes are the entry points of your application. They define how incoming HTTP requests (such as `GET`, `POST`, `PUT`, or `DELETE`) are mapped to specific actions in your code — usually a function or a controller method.
 
@@ -166,7 +290,7 @@ Below are the available static methods for configuring routes:
 | `domain`(string\|array \$domain) | Binds the route to a specific domain or subdomain. |
 | `where`(string \$key, string \$expression) | Defines a regular expression constraint for a route parameter. |
 
-## Cron Scheduler
+## 2. Cron Scheduler
 
 The **Scheduler** provides a route-like API for defining and managing recurring tasks using cron expressions.  
 
@@ -200,7 +324,7 @@ The scheduler provides expressive helpers for defining task frequency:
 | `cron($expression)`      | Use a custom cron expression (e.g., `0 6 * * 1-5`).     |
 | `at('HH:MM')`            | Run the task daily at a specific time.                  |
 
-### Controllers
+## 3. Controllers
 
 Controllers are responsible for handling **request/response logic**. They act as an intermediary between your routes and your business logic, keeping your code organized and maintainable.
 
@@ -223,7 +347,7 @@ class UserController extends Controller
 
 ---
 
-### Model
+## 4. Model
 
 Models represent your database tables and provide an abstraction layer for querying and manipulating records.  
 Each model maps to a database table and defines the structure of its data.
@@ -315,7 +439,7 @@ $users = App\Databases\Database::server('master')
 
 ---
 
-### Schema Builder
+## 5. Schema Builder
 
 The **Schema Builder** provides a programmatic way to create, modify, and manage database tables.  
 
@@ -437,40 +561,82 @@ $definition = App\Databases\Schema::exportTable('users');
 
 ---
 
-### Views & Blade Templates
+## 6. Views & Blade Templates
 
-The framework uses the **Blade templating engine**:
+The framework uses the Blade templating engine, which provides a clean and expressive syntax for building your views.
+Blade templates are compiled into plain PHP and cached for optimal performance.
 
 ```blade
-<!-- views/welcome.blade.php -->
-@extends('layouts')
+{{-- Escaped output (HTML is escaped) --}}
+<p>{{ '<strong>This will not render as bold</strong>' }}</p>
 
-@section('content')
-<h1>Welcome, {{ $name }}!</h1>
-@endsection
+{{-- Unescaped output (HTML will render) --}}
+<p>{!! '<strong>This will render as bold text</strong>' !!}</p>
+
+{{-- Conditional statements --}}
+@if($isAdmin)
+    <p>You have admin access.</p>
+@elseif($isUser)
+    <p>You are logged in as a regular user.</p>
+@else
+    <p>Please log in to continue.</p>
+@endif
+
+{{-- Loops --}}
+<ul>
+    @foreach($tasks as $task)
+        <li>{{ $loop->iteration }}. {{ $task }}</li>
+    @endforeach
+</ul>
+
+{{-- Including other templates --}}
+@include('partials.footer')
+
+{{-- Components --}}
+<x-alert type="success" message="Welcome to the app!" />
+```
+
+### Common Blade Directives
+| Directives                       |                         Description | Example                                       |
+|----------------------------------|------------------------------------:|-----------------------------------------------|
+| `{{ $var }}`                     |                      Escaped output | `{{ $user->name }}`                           |
+| `{!! $html !!}`                  |     Unescaped output (renders HTML) | `{!! $post->content !!}`                      |
+| `@if / @elseif / @else / @endif` |                   Conditional logic | `@if($user)` ... `@endif`                     |
+| `@foreach / @endforeach`         | Loop through an array or collection | `@foreach($items as $item)` ... `@endforeach` |
+| `@for / @endfor`                 |                      Basic for loop | `@for($i = 0; $i < 5; $i++)` ... `@endfor`    |
+| `@extends('layout')`             |                     Extend a layout | `@extends('header')`                          |
+| `@csrf`                          |       Insert a CSRF token for forms | `<form>@csrf</form>`                          |
+| `@php / @endphp`                 |                            PHP Tags | `@php` $test = "foo"; `@endphp`               |
+| `@post`                          |       Grab the POST Global Variable | `@post('email')`                              |
+
+
+---
+
+## 7. Artisan CLI
+
+The framework includes a powerful command-line interface called Artisan, designed to help you perform common development tasks quickly — such as running servers, managing migrations, creating files, and clearing caches.
+
+You can run Artisan commands using:
+
+```bash
+php artisan [command]
+```
+
+### Common Commands
+
+```bash
+# Start the local development server
+php artisan serve
+```
+
+```bash
+# Display a list of all available commands
+php artisan list
 ```
 
 ---
 
-### Artisan CLI
-
-The framework includes a CLI tool (`artisan`) for performing common tasks such as running migrations, clearing caches, managing queues, and more.  
-
-This tool is designed to streamline development and automate repetitive operations.
-
-```bash 
-php artisan serve 
-```
-```bash  
-php artisan make:controller UserController 
-```
-```bash 
-php artisan make:model User 
-```
-
----
-
-### StreamWire
+## 8. StreamWire
 
 Build reactive, stateful UI components with **StreamWire** — without writing any JavaScript.  
 
@@ -512,9 +678,10 @@ class Counter extends Component
 }
 ```
 
-```blade
-<!-- components/Counter/Counter.blade.php -->
-<div>
+Example content `components/Counter/index.blade.php`:
+
+```bladehtml
+<div class="container">
     <h1>{{ $count }}</h1>
     <button wire:click="increment()">+</button>
 </div>
@@ -532,6 +699,19 @@ Simply call the `stream()` helper function and pass the component class.
 ```
 
 This will render the **Counter** component and make it fully interactive without writing any JavaScript.
+
+### Common Stream-Wire Element Attributes Action
+
+| Directives                    |                                                        Description | Example                                                      |
+|-------------------------------|-------------------------------------------------------------------:|--------------------------------------------------------------|
+| `wire:model`                  | Two-way data binding between input fields and component properties | `<input type="text" wire:model="name">`                      |
+| `wire:click`                  |                                  Trigger an action method on click | `<button wire:click="save()">Save</button>`                  |
+| `wire:submit`                 |                       Listen for form submission and call a method | `<form wire:submit="register()">...</form>`                  |
+| `wire:keydown.keypress`       |                      Trigger a method on a specific keypress event | `<input wire:keydown.keypress="search(event.target.value)">` |
+| `wire:keydown.enter`          |                    Trigger an action method  when Enter is pressed | `<input wire:keydown.enter="submitForm()">`                  |
+| `wire:keydown.escape`         |                                Run a method when Escape is pressed | `<input wire:keydown.escape="resetForm()">`                  |
+| `wire:loader`                 |        Show or hide elements or more while a request is processing | `<div wire:loader.classList.add="active">Loading...</div>`   |
+
 
 ---
 
@@ -576,7 +756,7 @@ Next, register the Socket service in your `docker-compose.yml` file:
       build:
           context: ./node
           dockerfile: Dockerfile
-      container_name: socket_container
+      container_name: ${PROJECT_ID}_socket
       restart: unless-stopped
       ports:
           - "${SOCKET_PORT:-3000}:3000"
