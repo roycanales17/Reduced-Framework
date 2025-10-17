@@ -376,7 +376,7 @@ Models provide a simple, expressive interface for database operations.
 **Fetch active users:**
 
 ```php
-$users = Http\Model\User::where('active', 1)->row();
+$users = Http\Model\User::where('active', 1)->fetch();
 ````
 
 **Fetch a single column (by primary key):**
