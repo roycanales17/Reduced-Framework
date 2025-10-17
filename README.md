@@ -345,6 +345,11 @@ class UserController extends Controller
 }
 ```
 
+Example Usage:
+```php
+Route::get('/users/{id}', [Http\Controller\UserController::class, 'show']);
+```
+
 ---
 
 ## 4. Model
@@ -373,32 +378,32 @@ class User extends Model
 
 Models provide a simple, expressive interface for database operations.
 
+**Insert a new record:**
+
+```php
+$newUser = Http\Model\User::create([
+    'name'  => 'John Doe',
+    'email' => 'john.doe@test.com',
+    'status' => 1
+]);
+```
+
 **Fetch active users:**
 
 ```php
 $users = Http\Model\User::where('active', 1)->fetch();
 ````
 
-**Fetch a single column (by primary key):**
-
-```php
-$email = Http\Model\User::_($user_id)->email;
-```
-
 **Check if a record exists:**
 
 ```php
-$is_exist = Http\Model\User::where('id', $user_id)->exists();
+$isExist = Http\Model\User::where('id', $userId)->exists();
 ```
 
-**Insert a new record:**
+**Fetch a single column (by primary key):**
 
 ```php
-$newUser = Http\Model\User::create([
-    'id'    => $user_id,
-    'name'  => 'John Doe',
-    'email' => 'john.doe@test.com',
-]);
+$email = Http\Model\User::_($userId)->email;
 ```
 
 ---
@@ -411,9 +416,9 @@ For advanced queries, you can use the `Database` facade directly.
 
 ```php
 App\Databases\Database::create('users', [
-    'id'    => $user_id,
     'name'  => 'John Doe',
     'email' => 'john.doe@test.com',
+    'status' => 1
 ]);
 ```
 
