@@ -13,13 +13,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && pecl install xdebug \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# 🧠 Install Memcached support
+# Install Memcached support
 RUN apt-get update && apt-get install -y libmemcached-dev zlib1g-dev \
     && pecl install memcached \
     && docker-php-ext-enable memcached \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# 🔴 Install Redis support
+# Install Redis support
 RUN pecl install redis \
     && docker-php-ext-enable redis
 
