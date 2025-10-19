@@ -19,6 +19,10 @@ RUN apt-get update && apt-get install -y libmemcached-dev zlib1g-dev \
     && docker-php-ext-enable memcached \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# 🔴 Install Redis support
+RUN pecl install redis \
+    && docker-php-ext-enable redis
+
 # Set document root to /public
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf \
     && sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/apache2.conf
