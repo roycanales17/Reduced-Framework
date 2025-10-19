@@ -11,7 +11,7 @@ use App\Utilities\Server;
  * @return array<string, mixed>
  */
 return (function () {
-    $host   = config('APP_URL', 'http://localhost');
+    $host   = config('APP_URL', Server::HostName());
     $port   = config('APP_PORT', 8000);
 
 	$scheme = Server::IsSecureConnection() ? 'https' : 'http';
