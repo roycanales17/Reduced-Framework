@@ -13,6 +13,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && pecl install xdebug \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# 🧠 Install Memcached support
+RUN apt-get update && apt-get install -y libmemcached-dev zlib1g-dev \
+    && pecl install memcached \
+    && docker-php-ext-enable memcached \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
 # Set document root to /public
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf \
     && sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/apache2.conf
