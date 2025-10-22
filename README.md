@@ -648,7 +648,7 @@ Build reactive, stateful UI components with **StreamWire** — without writing a
 StreamWire integrates seamlessly with Blade templates, allowing you to render dynamic components directly in your views.
 
 ```php
-namespace Components\Counter;
+namespace Components;
 	
 use App\Utilities\Handler\Component;
 
@@ -662,17 +662,7 @@ class Counter extends Component
     }
 
     /**
-     * Component Lifecycle and Configuration
-     *
-     * ## Available Methods:
-     * - `identifier()` — Requires if we allow the component to be executed on the frontend.
-     * - `redirect()` — Performs an Ajax-based redirection.
-     * - `init()` — Serves as the component's initializer; use this to set up internal state or dependencies.
-     * - `verify()` — (Optional) Runs pre-render validation or checks before displaying the component.
-     * - `loader()` — Returns a loading skeleton or placeholder shown while the component is processing.
-     *
-     * See the component interface located at:
-     * @see ./components/Counter/index.blade.php
+     * @see ./views/components/counter.blade.php
      */
     public function render()
     {
@@ -683,7 +673,7 @@ class Counter extends Component
 }
 ```
 
-Example content `components/Counter/index.blade.php`:
+Example content `./views/components/counter.blade.php`:
 
 ```bladehtml
 <div class="container">
@@ -699,7 +689,7 @@ Simply call the `stream()` helper function and pass the component class.
 
 ```bladehtml
 <div class="container">
-    {!! stream(Components\Test\Counter::class) !!}
+    {!! stream(Components\Counter::class) !!}
 </div>
 ```
 
