@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e57c0e9ee7dcb1b3c3f5e3f25c0b0fc",
+    "content-hash": "64c06c4cafd83ddab540b77773dbb2bc",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -1139,7 +1139,7 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "dev-main",
+            "version": "v7.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
@@ -1161,7 +1161,6 @@
                 "roy404/request": "^3.0",
                 "roy404/routes": "^4.1"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -1195,7 +1194,7 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/main"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v7.0.2"
             },
             "time": "2025-10-22T02:15:38+00:00"
         },
@@ -1412,10 +1411,8 @@
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": {
-        "roy404/utilities": 20
-    },
+    "minimum-stability": "dev",
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
