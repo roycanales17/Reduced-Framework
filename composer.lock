@@ -946,16 +946,16 @@
         },
         {
             "name": "roy404/blades",
-            "version": "v1.3.6",
+            "version": "v1.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/PHP-Blades-Compiler.git",
-                "reference": "ee8c4339785eb6726aa23ead8d03faea57cab293"
+                "reference": "93b1baaebead16edea6bc91f51839d0c6d5bb841"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/PHP-Blades-Compiler/zipball/ee8c4339785eb6726aa23ead8d03faea57cab293",
-                "reference": "ee8c4339785eb6726aa23ead8d03faea57cab293",
+                "url": "https://api.github.com/repos/roycanales17/PHP-Blades-Compiler/zipball/93b1baaebead16edea6bc91f51839d0c6d5bb841",
+                "reference": "93b1baaebead16edea6bc91f51839d0c6d5bb841",
                 "shasum": ""
             },
             "require": {
@@ -987,9 +987,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/PHP-Blades-Compiler/issues",
-                "source": "https://github.com/roycanales17/PHP-Blades-Compiler/tree/v1.3.6"
+                "source": "https://github.com/roycanales17/PHP-Blades-Compiler/tree/v1.3.8"
             },
-            "time": "2025-10-09T01:20:22+00:00"
+            "time": "2025-10-22T04:56:30+00:00"
         },
         {
             "name": "roy404/eloquent",
@@ -1139,16 +1139,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "v7.0.2",
+            "version": "v7.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "5f5879ba8500dacf1b2651433b4ce9eb57920c8b"
+                "reference": "70b9e936953a750149e1a3ab21c35823a5df1059"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/5f5879ba8500dacf1b2651433b4ce9eb57920c8b",
-                "reference": "5f5879ba8500dacf1b2651433b4ce9eb57920c8b",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/70b9e936953a750149e1a3ab21c35823a5df1059",
+                "reference": "70b9e936953a750149e1a3ab21c35823a5df1059",
                 "shasum": ""
             },
             "require": {
@@ -1194,9 +1194,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v7.0.2"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v7.0.3"
             },
-            "time": "2025-10-22T02:15:38+00:00"
+            "time": "2025-10-22T04:59:31+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
