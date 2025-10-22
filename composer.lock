@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "adddfad06fc709b6f92e9f63859af57e",
+    "content-hash": "5e57c0e9ee7dcb1b3c3f5e3f25c0b0fc",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.356.42",
+            "version": "3.356.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "c886d60206d2f100c2d132052875f53ce3f999f7"
+                "reference": "5722f6ea95240ef28f1ded35448bedcccb0b0883"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c886d60206d2f100c2d132052875f53ce3f999f7",
-                "reference": "c886d60206d2f100c2d132052875f53ce3f999f7",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/5722f6ea95240ef28f1ded35448bedcccb0b0883",
+                "reference": "5722f6ea95240ef28f1ded35448bedcccb0b0883",
                 "shasum": ""
             },
             "require": {
@@ -153,9 +153,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.356.42"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.356.43"
             },
-            "time": "2025-10-17T18:17:41+00:00"
+            "time": "2025-10-21T19:13:44+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",
@@ -1139,16 +1139,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "v6.6.0",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "03b7de6a4ba414edc0aaa235bb3ad4218443a290"
+                "reference": "43d7a4e046233cda80979e1b00b034634cde4295"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/03b7de6a4ba414edc0aaa235bb3ad4218443a290",
-                "reference": "03b7de6a4ba414edc0aaa235bb3ad4218443a290",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/43d7a4e046233cda80979e1b00b034634cde4295",
+                "reference": "43d7a4e046233cda80979e1b00b034634cde4295",
                 "shasum": ""
             },
             "require": {
@@ -1161,6 +1161,7 @@
                 "roy404/request": "^3.0",
                 "roy404/routes": "^4.1"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -1194,9 +1195,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v6.6.0"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/main"
             },
-            "time": "2025-10-20T00:52:43+00:00"
+            "time": "2025-10-22T01:48:20+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -1352,28 +1353,28 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.11.0",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozarts/assert.git",
-                "reference": "11cb2199493b2f8a3b53e7f19068fc6aac760991"
+                "reference": "541057574806f942c94662b817a50f63f7345360"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozarts/assert/zipball/11cb2199493b2f8a3b53e7f19068fc6aac760991",
-                "reference": "11cb2199493b2f8a3b53e7f19068fc6aac760991",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/541057574806f942c94662b817a50f63f7345360",
+                "reference": "541057574806f942c94662b817a50f63f7345360",
                 "shasum": ""
             },
             "require": {
                 "ext-ctype": "*",
+                "ext-date": "*",
+                "ext-filter": "*",
                 "php": "^7.2 || ^8.0"
             },
-            "conflict": {
-                "phpstan/phpstan": "<0.12.20",
-                "vimeo/psalm": "<4.6.1 || 4.6.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^8.5.13"
+            "suggest": {
+                "ext-intl": "",
+                "ext-simplexml": "",
+                "ext-spl": ""
             },
             "type": "library",
             "extra": {
@@ -1404,15 +1405,17 @@
             ],
             "support": {
                 "issues": "https://github.com/webmozarts/assert/issues",
-                "source": "https://github.com/webmozarts/assert/tree/1.11.0"
+                "source": "https://github.com/webmozarts/assert/tree/1.12.0"
             },
-            "time": "2022-06-03T18:03:27+00:00"
+            "time": "2025-10-20T12:43:39+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "roy404/utilities": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
