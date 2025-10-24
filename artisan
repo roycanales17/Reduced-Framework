@@ -13,6 +13,5 @@
 	$application = App\Bootstrap\Application::boot();
 	$application->withEnvironment(base_path('.env'));
 	$application->withConfiguration(base_path('app/Config.php'));
-	$application->run(function() use($argv) {
-		launch_cli_session($argv, 'commands', './');
-	});
+    $application->run(fn() => launch_cli_session($argv, 'commands', './'));
+
