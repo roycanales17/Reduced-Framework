@@ -19,9 +19,9 @@
         <link rel="shortcut icon" href="favicon.ico">
 
         <!-- Utilities -->
-        <link rel="stylesheet" href="build/main.css" />
-        <link rel="stylesheet" href="build/utilities.css" />
-        <script src="build/main.js"></script>
+        <link rel="stylesheet" href="/build/main.css" />
+        <link rel="stylesheet" href="/build/utilities.css" />
+        <script src="/build/main.js"></script>
     </head>
     <body>
         {!! $g_page_content !!}
