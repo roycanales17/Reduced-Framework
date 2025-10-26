@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "41858e480e5b6d5152fc2cc1ccd481f7",
+    "content-hash": "7b57ca1204199ca11e624babba1fbf82",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -993,16 +993,16 @@
         },
         {
             "name": "roy404/eloquent",
-            "version": "2.5.0",
+            "version": "2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Database-ORM.git",
-                "reference": "83fcb1f10cdfdf8ebf3ea061bb903608df246a44"
+                "reference": "9acde56e26c78d93c4f8754c6e1bf6f32cc27c61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Database-ORM/zipball/83fcb1f10cdfdf8ebf3ea061bb903608df246a44",
-                "reference": "83fcb1f10cdfdf8ebf3ea061bb903608df246a44",
+                "url": "https://api.github.com/repos/roycanales17/Database-ORM/zipball/9acde56e26c78d93c4f8754c6e1bf6f32cc27c61",
+                "reference": "9acde56e26c78d93c4f8754c6e1bf6f32cc27c61",
                 "shasum": ""
             },
             "require": {
@@ -1035,9 +1035,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Database-ORM/issues",
-                "source": "https://github.com/roycanales17/Database-ORM/tree/v2.5.0"
+                "source": "https://github.com/roycanales17/Database-ORM/tree/v2.5.1"
             },
-            "time": "2025-10-25T08:52:04+00:00"
+            "time": "2025-10-26T07:53:35+00:00"
         },
         {
             "name": "roy404/request",
