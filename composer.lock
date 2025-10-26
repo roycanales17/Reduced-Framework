@@ -993,16 +993,16 @@
         },
         {
             "name": "roy404/eloquent",
-            "version": "2.0.0",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Database-ORM.git",
-                "reference": "2b1dfab1a48b0bc8fab057b33d43326159368fa9"
+                "reference": "83fcb1f10cdfdf8ebf3ea061bb903608df246a44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Database-ORM/zipball/2b1dfab1a48b0bc8fab057b33d43326159368fa9",
-                "reference": "2b1dfab1a48b0bc8fab057b33d43326159368fa9",
+                "url": "https://api.github.com/repos/roycanales17/Database-ORM/zipball/83fcb1f10cdfdf8ebf3ea061bb903608df246a44",
+                "reference": "83fcb1f10cdfdf8ebf3ea061bb903608df246a44",
                 "shasum": ""
             },
             "require": {
@@ -1035,9 +1035,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Database-ORM/issues",
-                "source": "https://github.com/roycanales17/Database-ORM/tree/v2.0.0"
+                "source": "https://github.com/roycanales17/Database-ORM/tree/v2.5.0"
             },
-            "time": "2025-10-23T11:37:05+00:00"
+            "time": "2025-10-25T08:52:04+00:00"
         },
         {
             "name": "roy404/request",
@@ -1139,16 +1139,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "7.1.2",
+            "version": "7.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "72dc8dfe7a2ea54248b66bcb8810cdc99ee95688"
+                "reference": "473acf8adfeb0ddedd62f08e19663e15b6813419"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/72dc8dfe7a2ea54248b66bcb8810cdc99ee95688",
-                "reference": "72dc8dfe7a2ea54248b66bcb8810cdc99ee95688",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/473acf8adfeb0ddedd62f08e19663e15b6813419",
+                "reference": "473acf8adfeb0ddedd62f08e19663e15b6813419",
                 "shasum": ""
             },
             "require": {
@@ -1157,7 +1157,7 @@
                 "phpmailer/phpmailer": "^6.9",
                 "roy404/artisan": "^1.0",
                 "roy404/blades": "^1.0",
-                "roy404/eloquent": "^2.0",
+                "roy404/eloquent": "^2.5",
                 "roy404/request": "^3.0",
                 "roy404/routes": "^4.1"
             },
@@ -1194,9 +1194,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v7.1.2"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v7.5.0"
             },
-            "time": "2025-10-25T07:41:59+00:00"
+            "time": "2025-10-25T08:52:53+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
