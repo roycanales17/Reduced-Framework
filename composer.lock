@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b57ca1204199ca11e624babba1fbf82",
+    "content-hash": "8b338bfa4e1ba71c033823446580df80",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.357.2",
+            "version": "3.358.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "7020346835259ad07ce320b04bea912055d4a5bc"
+                "reference": "2bc4dbeef5ab70b87651f4420deace09c504a537"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/7020346835259ad07ce320b04bea912055d4a5bc",
-                "reference": "7020346835259ad07ce320b04bea912055d4a5bc",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2bc4dbeef5ab70b87651f4420deace09c504a537",
+                "reference": "2bc4dbeef5ab70b87651f4420deace09c504a537",
                 "shasum": ""
             },
             "require": {
@@ -153,9 +153,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.357.2"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.358.1"
             },
-            "time": "2025-10-24T19:16:19+00:00"
+            "time": "2025-10-28T18:13:37+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",
@@ -900,16 +900,16 @@
         },
         {
             "name": "roy404/artisan",
-            "version": "v1.2.4",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/PHP-CLI-Artisan.git",
-                "reference": "4df8476d6694fa354abbf7d27530a00bda93145d"
+                "reference": "8a0832b0a36ac9cf7fb39e974783a7d3756bc79d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/PHP-CLI-Artisan/zipball/4df8476d6694fa354abbf7d27530a00bda93145d",
-                "reference": "4df8476d6694fa354abbf7d27530a00bda93145d",
+                "url": "https://api.github.com/repos/roycanales17/PHP-CLI-Artisan/zipball/8a0832b0a36ac9cf7fb39e974783a7d3756bc79d",
+                "reference": "8a0832b0a36ac9cf7fb39e974783a7d3756bc79d",
                 "shasum": ""
             },
             "require": {
@@ -940,22 +940,22 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/PHP-CLI-Artisan/issues",
-                "source": "https://github.com/roycanales17/PHP-CLI-Artisan/tree/v1.2.4"
+                "source": "https://github.com/roycanales17/PHP-CLI-Artisan/tree/v1.3.1"
             },
-            "time": "2025-09-28T03:58:37+00:00"
+            "time": "2025-10-28T01:36:45+00:00"
         },
         {
             "name": "roy404/blades",
-            "version": "1.3.9",
+            "version": "1.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/PHP-Blades-Compiler.git",
-                "reference": "46b28a33824f45f0a13074e6074417adb0480c3d"
+                "reference": "54adb7ffda36f392b336a96249d557604c6b51a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/PHP-Blades-Compiler/zipball/46b28a33824f45f0a13074e6074417adb0480c3d",
-                "reference": "46b28a33824f45f0a13074e6074417adb0480c3d",
+                "url": "https://api.github.com/repos/roycanales17/PHP-Blades-Compiler/zipball/54adb7ffda36f392b336a96249d557604c6b51a2",
+                "reference": "54adb7ffda36f392b336a96249d557604c6b51a2",
                 "shasum": ""
             },
             "require": {
@@ -987,9 +987,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/PHP-Blades-Compiler/issues",
-                "source": "https://github.com/roycanales17/PHP-Blades-Compiler/tree/v1.3.9"
+                "source": "https://github.com/roycanales17/PHP-Blades-Compiler/tree/v1.4.7"
             },
-            "time": "2025-10-22T13:22:06+00:00"
+            "time": "2025-10-28T16:51:19+00:00"
         },
         {
             "name": "roy404/eloquent",
