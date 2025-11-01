@@ -1,11 +1,59 @@
 RewriteEngine On
 
+# -------------------------------------------------------
+# 🔄 Asset Routing (existing)
+# -------------------------------------------------------
 # Map /storage/* to /build/storage/*
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^storage/(.*)$ build/storage/$1 [L]
 
-# Default fallback to index.php
+# -------------------------------------------------------
+# 🧭 Default fallback to index.php (Laravel-style routing)
+# -------------------------------------------------------
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [L,QSA]
+
+# -------------------------------------------------------
+# 🚀 Cache-Control for static assets
+# -------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Default: cache for 1 month
+    ExpiresDefault "access plus 1 month"
+
+    # Specific asset types
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Set long cache but safe with versioned query (?v=...)
+    <FilesMatch "\.(js|css|png|jpg|jpeg|gif|svg|webp|woff2?)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+</IfModule>
+
+# -------------------------------------------------------
+# ⚙️ Gzip Compression (if supported)
+# -------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json application/xml
+    AddOutputFilterByType DEFLATE font/woff font/woff2
+</IfModule>
