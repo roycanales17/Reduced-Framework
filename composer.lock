@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b338bfa4e1ba71c033823446580df80",
+    "content-hash": "78c2a37b0874f653edbe53f9d719c110",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.358.1",
+            "version": "3.359.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "2bc4dbeef5ab70b87651f4420deace09c504a537"
+                "reference": "a32e4c9522f0b61c947fafa1713d3a24b397a757"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2bc4dbeef5ab70b87651f4420deace09c504a537",
-                "reference": "2bc4dbeef5ab70b87651f4420deace09c504a537",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a32e4c9522f0b61c947fafa1713d3a24b397a757",
+                "reference": "a32e4c9522f0b61c947fafa1713d3a24b397a757",
                 "shasum": ""
             },
             "require": {
@@ -153,35 +153,34 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.358.1"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.359.3"
             },
-            "time": "2025-10-28T18:13:37+00:00"
+            "time": "2025-10-31T18:15:22+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",
-            "version": "v3.4.0",
+            "version": "v3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dragonmantank/cron-expression.git",
-                "reference": "8c784d071debd117328803d86b2097615b457500"
+                "reference": "d61a8a9604ec1f8c3d150d09db6ce98b32675013"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dragonmantank/cron-expression/zipball/8c784d071debd117328803d86b2097615b457500",
-                "reference": "8c784d071debd117328803d86b2097615b457500",
+                "url": "https://api.github.com/repos/dragonmantank/cron-expression/zipball/d61a8a9604ec1f8c3d150d09db6ce98b32675013",
+                "reference": "d61a8a9604ec1f8c3d150d09db6ce98b32675013",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2|^8.0",
-                "webmozart/assert": "^1.0"
+                "php": "^8.2|^8.3|^8.4|^8.5"
             },
             "replace": {
                 "mtdowling/cron-expression": "^1.0"
             },
             "require-dev": {
-                "phpstan/extension-installer": "^1.0",
-                "phpstan/phpstan": "^1.0",
-                "phpunit/phpunit": "^7.0|^8.0|^9.0"
+                "phpstan/extension-installer": "^1.4.3",
+                "phpstan/phpstan": "^1.12.32|^2.1.31",
+                "phpunit/phpunit": "^8.5.48|^9.0"
             },
             "type": "library",
             "extra": {
@@ -212,7 +211,7 @@
             ],
             "support": {
                 "issues": "https://github.com/dragonmantank/cron-expression/issues",
-                "source": "https://github.com/dragonmantank/cron-expression/tree/v3.4.0"
+                "source": "https://github.com/dragonmantank/cron-expression/tree/v3.6.0"
             },
             "funding": [
                 {
@@ -220,7 +219,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-09T13:47:03+00:00"
+            "time": "2025-10-31T18:51:33+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -900,16 +899,16 @@
         },
         {
             "name": "roy404/artisan",
-            "version": "1.3.1",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/PHP-CLI-Artisan.git",
-                "reference": "8a0832b0a36ac9cf7fb39e974783a7d3756bc79d"
+                "reference": "2aac1e2e029eee5d8bdf65f9e5d1383d9722a2d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/PHP-CLI-Artisan/zipball/8a0832b0a36ac9cf7fb39e974783a7d3756bc79d",
-                "reference": "8a0832b0a36ac9cf7fb39e974783a7d3756bc79d",
+                "url": "https://api.github.com/repos/roycanales17/PHP-CLI-Artisan/zipball/2aac1e2e029eee5d8bdf65f9e5d1383d9722a2d2",
+                "reference": "2aac1e2e029eee5d8bdf65f9e5d1383d9722a2d2",
                 "shasum": ""
             },
             "require": {
@@ -940,22 +939,22 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/PHP-CLI-Artisan/issues",
-                "source": "https://github.com/roycanales17/PHP-CLI-Artisan/tree/v1.3.1"
+                "source": "https://github.com/roycanales17/PHP-CLI-Artisan/tree/v1.3.2"
             },
-            "time": "2025-10-28T01:36:45+00:00"
+            "time": "2025-10-31T08:26:41+00:00"
         },
         {
             "name": "roy404/blades",
-            "version": "1.4.7",
+            "version": "1.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/PHP-Blades-Compiler.git",
-                "reference": "54adb7ffda36f392b336a96249d557604c6b51a2"
+                "reference": "8fadcb98db6f41c999b05a7c73e338cb5eefd07d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/PHP-Blades-Compiler/zipball/54adb7ffda36f392b336a96249d557604c6b51a2",
-                "reference": "54adb7ffda36f392b336a96249d557604c6b51a2",
+                "url": "https://api.github.com/repos/roycanales17/PHP-Blades-Compiler/zipball/8fadcb98db6f41c999b05a7c73e338cb5eefd07d",
+                "reference": "8fadcb98db6f41c999b05a7c73e338cb5eefd07d",
                 "shasum": ""
             },
             "require": {
@@ -987,22 +986,22 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/PHP-Blades-Compiler/issues",
-                "source": "https://github.com/roycanales17/PHP-Blades-Compiler/tree/v1.4.7"
+                "source": "https://github.com/roycanales17/PHP-Blades-Compiler/tree/v1.4.8"
             },
-            "time": "2025-10-28T16:51:19+00:00"
+            "time": "2025-10-31T03:55:38+00:00"
         },
         {
             "name": "roy404/eloquent",
-            "version": "2.5.1",
+            "version": "2.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Database-ORM.git",
-                "reference": "9acde56e26c78d93c4f8754c6e1bf6f32cc27c61"
+                "reference": "2786af924c86d1434d692d33e008eb282ccd53a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Database-ORM/zipball/9acde56e26c78d93c4f8754c6e1bf6f32cc27c61",
-                "reference": "9acde56e26c78d93c4f8754c6e1bf6f32cc27c61",
+                "url": "https://api.github.com/repos/roycanales17/Database-ORM/zipball/2786af924c86d1434d692d33e008eb282ccd53a0",
+                "reference": "2786af924c86d1434d692d33e008eb282ccd53a0",
                 "shasum": ""
             },
             "require": {
@@ -1035,9 +1034,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Database-ORM/issues",
-                "source": "https://github.com/roycanales17/Database-ORM/tree/v2.5.1"
+                "source": "https://github.com/roycanales17/Database-ORM/tree/v2.5.3"
             },
-            "time": "2025-10-26T07:53:35+00:00"
+            "time": "2025-10-31T03:46:13+00:00"
         },
         {
             "name": "roy404/request",
@@ -1139,24 +1138,24 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "7.5.5",
+            "version": "8.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "ad7c5f389e761bbaca26e1e306b5e8f9117f1bf8"
+                "reference": "7195a8d85e83b0394ee281576c73ae6c1764cbfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/ad7c5f389e761bbaca26e1e306b5e8f9117f1bf8",
-                "reference": "ad7c5f389e761bbaca26e1e306b5e8f9117f1bf8",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/7195a8d85e83b0394ee281576c73ae6c1764cbfc",
+                "reference": "7195a8d85e83b0394ee281576c73ae6c1764cbfc",
                 "shasum": ""
             },
             "require": {
                 "aws/aws-sdk-php": "^3.356",
                 "php": "^8.1",
                 "phpmailer/phpmailer": "^6.9",
-                "roy404/artisan": "^1.0",
-                "roy404/blades": "^1.0",
+                "roy404/artisan": "^1.3.2",
+                "roy404/blades": "^1.4.7",
                 "roy404/eloquent": "^2.5",
                 "roy404/request": "^3.0",
                 "roy404/routes": "^4.1"
@@ -1194,9 +1193,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v7.5.5"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v8.1.6"
             },
-            "time": "2025-10-27T11:29:03+00:00"
+            "time": "2025-11-01T10:55:48+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -1349,64 +1348,6 @@
                 }
             ],
             "time": "2024-12-23T08:48:59+00:00"
-        },
-        {
-            "name": "webmozart/assert",
-            "version": "1.12.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/webmozarts/assert.git",
-                "reference": "541057574806f942c94662b817a50f63f7345360"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/webmozarts/assert/zipball/541057574806f942c94662b817a50f63f7345360",
-                "reference": "541057574806f942c94662b817a50f63f7345360",
-                "shasum": ""
-            },
-            "require": {
-                "ext-ctype": "*",
-                "ext-date": "*",
-                "ext-filter": "*",
-                "php": "^7.2 || ^8.0"
-            },
-            "suggest": {
-                "ext-intl": "",
-                "ext-simplexml": "",
-                "ext-spl": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.10-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Webmozart\\Assert\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bernhard Schussek",
-                    "email": "bschussek@gmail.com"
-                }
-            ],
-            "description": "Assertions to validate method input/output with nice error messages.",
-            "keywords": [
-                "assert",
-                "check",
-                "validate"
-            ],
-            "support": {
-                "issues": "https://github.com/webmozarts/assert/issues",
-                "source": "https://github.com/webmozarts/assert/tree/1.12.0"
-            },
-            "time": "2025-10-20T12:43:39+00:00"
         }
     ],
     "packages-dev": [],
