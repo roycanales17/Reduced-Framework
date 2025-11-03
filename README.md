@@ -756,7 +756,7 @@ Next, register the Socket service in your `docker-compose.yml` file:
       ports:
           - "${SOCKET_PORT:-3000}:3000"
       volumes:
-          - "./logs/node:/usr/src/app/logs"
+          - "./storage/logs/node:/usr/src/app/logs"
       networks:
           - project_network
       env_file:

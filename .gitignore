@@ -17,13 +17,13 @@ public/build
 storage/private/*
 storage/protect/*
 storage/public/*
+storage/logs
 
 # ...but keep the folders and their .htaccess files
 !storage/private/.htaccess
 !storage/protect/.htaccess
 !storage/public/.htaccess
 
-logs
 vendor
 node_modules
 composer.phar
