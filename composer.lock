@@ -1138,16 +1138,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "8.2.0",
+            "version": "8.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "c107945c409452860f130588198b33f21b03b384"
+                "reference": "f5e8cc8b684059fb8f63fe129275614c112a0329"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/c107945c409452860f130588198b33f21b03b384",
-                "reference": "c107945c409452860f130588198b33f21b03b384",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/f5e8cc8b684059fb8f63fe129275614c112a0329",
+                "reference": "f5e8cc8b684059fb8f63fe129275614c112a0329",
                 "shasum": ""
             },
             "require": {
@@ -1193,9 +1193,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v8.2.0"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v8.2.1"
             },
-            "time": "2025-11-03T12:25:06+00:00"
+            "time": "2025-11-03T12:35:33+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
