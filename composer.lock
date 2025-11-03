@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6267d1314a9c805eed27ba6710921a5",
+    "content-hash": "df4b5922b27fb7f6331710dd43839818",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -1090,16 +1090,16 @@
         },
         {
             "name": "roy404/routes",
-            "version": "4.3.1",
+            "version": "4.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/PHP-Routes.git",
-                "reference": "2a71b45eaace4c0337c2e7e6a26f280627dda68e"
+                "reference": "91268c5f853aeeb3dd548288fd355740a769c1c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/PHP-Routes/zipball/2a71b45eaace4c0337c2e7e6a26f280627dda68e",
-                "reference": "2a71b45eaace4c0337c2e7e6a26f280627dda68e",
+                "url": "https://api.github.com/repos/roycanales17/PHP-Routes/zipball/91268c5f853aeeb3dd548288fd355740a769c1c9",
+                "reference": "91268c5f853aeeb3dd548288fd355740a769c1c9",
                 "shasum": ""
             },
             "require": {
@@ -1132,22 +1132,22 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/PHP-Routes/issues",
-                "source": "https://github.com/roycanales17/PHP-Routes/tree/v4.3.1"
+                "source": "https://github.com/roycanales17/PHP-Routes/tree/v4.3.2"
             },
-            "time": "2025-11-03T08:06:09+00:00"
+            "time": "2025-11-03T13:17:50+00:00"
         },
         {
             "name": "roy404/utilities",
-            "version": "8.2.2",
+            "version": "8.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "a8d44563060e950b521284c23af55c8bf61797d7"
+                "reference": "6f69fbbc3bacf2299c9577f22c127dd4db0b1364"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/a8d44563060e950b521284c23af55c8bf61797d7",
-                "reference": "a8d44563060e950b521284c23af55c8bf61797d7",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/6f69fbbc3bacf2299c9577f22c127dd4db0b1364",
+                "reference": "6f69fbbc3bacf2299c9577f22c127dd4db0b1364",
                 "shasum": ""
             },
             "require": {
@@ -1193,9 +1193,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v8.2.2"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v8.2.5"
             },
-            "time": "2025-11-03T12:42:15+00:00"
+            "time": "2025-11-03T14:25:58+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
