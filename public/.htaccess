@@ -1,14 +1,6 @@
 RewriteEngine On
 
 # -------------------------------------------------------
-# 🔄 Asset Routing (existing)
-# -------------------------------------------------------
-# Map /storage/* to /build/storage/*
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^storage/(.*)$ build/storage/$1 [L]
-
-# -------------------------------------------------------
 # 🧭 Default fallback to index.php (Laravel-style routing)
 # -------------------------------------------------------
 RewriteCond %{REQUEST_FILENAME} !-f
