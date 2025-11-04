@@ -24,8 +24,8 @@ services:
     volumes:
       - ./:/var/www/html
       - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
-      - ./storage/logs/app:/var/log/app
-      - ./storage/logs/xdebug:/tmp/xdebug
+      - ./storage/private/logs/app:/var/log/app
+      - ./storage/private/logs/xdebug:/tmp/xdebug
     environment:
       APP_ENV: ${APP_ENV:-local}
       DB_HOST: mysql
@@ -145,8 +145,8 @@ services:
       - ./:/var/www/html
       - ./run_cron.sh:/usr/local/bin/run_cron.sh
       - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
-      - ./storage/logs/cron:/var/log/cron
-      - ./storage/logs/xdebug:/tmp/xdebug
+      - ./storage/private/logs/cron:/var/log/cron
+      - ./storage/private/logs/xdebug:/tmp/xdebug
     environment:
       APP_ENV: ${APP_ENV:-local}
       DB_HOST: mysql
@@ -188,7 +188,7 @@ services:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-test}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-test}
     volumes:
-      - "./storage/logs/localstack:/var/lib/localstack"
+      - "./storage/private/logs/localstack:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
     networks:
       - project_network
