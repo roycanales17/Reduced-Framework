@@ -43,12 +43,13 @@ This setup provides a full-featured development environment that mirrors product
 - [Framework Overview](#-framework-overview)
     - [Routing](#1-routing)
     - [Cron](#2-cron-scheduler)
-    - [Controllers](#3-controllers)
-    - [Models & ORM](#4-model)
-    - [Schema Builder](#5-schema-builder)
-    - [Views & Blade Templates](#6-views--blade-templates)
-    - [Artisan CLI](#7-artisan-cli)
-    - [StreamWire](#8-streamwire)
+    - [Middleware](#3-middleware)
+    - [Controllers](#4-controllers)
+    - [Models & ORM](#5-model)
+    - [Schema Builder](#6-schema-builder)
+    - [Views & Blade Templates](#7-views--blade-templates)
+    - [Artisan CLI](#8-artisan-cli)
+    - [StreamWire](#9-streamwire)
 - [Advanced Topics](#-advanced-topics)
     - [Real-Time Communication (Socket.IO)](#1-real-time-communication-socketio)
     - [Cron Jobs & Scheduler](#2-cron-jobs--scheduler)
@@ -261,7 +262,7 @@ Define routes in the `routes/web.php` file:
 
 ```php
 use App\Routes\Route;
-use Http\Controller\UserController;
+use Handler\Controller\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -324,14 +325,94 @@ The scheduler provides expressive helpers for defining task frequency:
 | `cron($expression)`      | Use a custom cron expression (e.g., `0 6 * * 1-5`).     |
 | `at('HH:MM')`            | Run the task daily at a specific time.                  |
 
-## 3. Controllers
+## 3. Middleware
+
+Middlewares are responsible for filtering and processing HTTP requests before they reach your controllers or route logic.
+They can be used for authentication, authorization, input validation, logging, or modifying responses.
+
+You can define your middleware in the `handler/Middleware` directory:
+
+```php
+namespace Handler\Middleware;
+				
+use App\Headers\Request;
+
+class Account
+{
+    /**
+     * Handle an incoming request.
+     *
+     * This method is automatically invoked before a route or controller is executed.
+     * You can perform validation, authentication, or any pre/post request logic here.
+     *
+     * @param  Request $request
+     * @return mixed
+     */
+    public function handle(Request $request)
+    {
+        // Example pre-processing: authentication/validation
+        if (!$this->authorize($request)) {
+            return redirect('/unauthorized', 403);
+        }
+
+        $response = 'ok!';
+
+        // Example post-processing: logging, response modification
+        $this->log($request, $response);
+
+        // Return true to continue request processing
+        return true;
+    }
+
+    /**
+     * Perform authorization/validation logic.
+     */
+    protected function authorize(Request $request): bool
+    {
+        // Default: allow all requests
+        return true;
+    }
+
+    /**
+     * Example logging or post-processing.
+     */
+    protected function log(Request $request, mixed $response): void
+    {
+        // You could log request details here
+    }
+}
+```
+
+**Example Usage**<br>
+To register your middleware, open `app/Routes.php` and attach it to a route group:
+
+```php
+'web' => [
+    'middleware' => [
+        Handler\Middleware\Account::class
+    ],
+    'captured' => function (string $content) {
+        echo(view('template', [
+            'g_page_lang' => config('APP_LANGUAGE'),
+            'g_page_title' => config('APP_NAME'),
+            'g_page_url' => config('APP_URL'),
+            'g_page_description' => "Page description here",
+            'g_page_content' => $content
+        ]));
+    }
+],
+```
+
+This ensures that every request under the web group passes through the `Account` middleware before rendering the final page.
+
+## 4. Controllers
 
 Controllers are responsible for handling **request/response logic**. They act as an intermediary between your routes and your business logic, keeping your code organized and maintainable.
 
-You can define controllers in the `http/Controllers` directory:
+You can define controllers in the `handler/Controllers` directory:
 
 ```php
-namespace Http\Controller;
+namespace Handler\Controller;
 
 use App\Http\Controller;
 use App\Headers\Request;
@@ -347,12 +428,12 @@ class UserController extends Controller
 
 Example Usage:
 ```php
-Route::get('/users/{id}', [Http\Controller\UserController::class, 'show']);
+Route::get('/users/{id}', [Handler\Controller\UserController::class, 'show']);
 ```
 
 ---
 
-## 4. Model
+## 5. Model
 
 Models represent your database tables and provide an abstraction layer for querying and manipulating records.  
 Each model maps to a database table and defines the structure of its data.
@@ -360,7 +441,7 @@ Each model maps to a database table and defines the structure of its data.
 **Example Model:**
 
 ```php
-namespace Http\Model;
+namespace Handler\Model;
 
 use App\Databases\Facade\Model;
 
@@ -381,7 +462,7 @@ Models provide a simple, expressive interface for database operations.
 **Insert a new record:**
 
 ```php
-$newUser = Http\Model\User::create([
+$newUser = Handler\Model\User::create([
     'name'  => 'John Doe',
     'email' => 'john.doe@test.com',
     'status' => 1
@@ -391,19 +472,19 @@ $newUser = Http\Model\User::create([
 **Fetch active users:**
 
 ```php
-$users = Http\Model\User::where('active', 1)->fetch();
+$users = Handler\Model\User::where('active', 1)->fetch();
 ````
 
 **Check if a record exists:**
 
 ```php
-$isExist = Http\Model\User::where('id', $userId)->exists();
+$isExist = Handler\Model\User::where('id', $userId)->exists();
 ```
 
 **Fetch a single column (by primary key):**
 
 ```php
-$email = Http\Model\User::_($userId)->email;
+$email = Handler\Model\User::_($userId)->email;
 ```
 
 ---
@@ -444,7 +525,7 @@ $users = App\Databases\Database::server('master')
 
 ---
 
-## 5. Schema Builder
+## 6. Schema Builder
 
 The **Schema Builder** provides a programmatic way to create, modify, and manage database tables.  
 
@@ -566,7 +647,7 @@ $definition = App\Databases\Schema::exportTable('users');
 
 ---
 
-## 6. Views & Blade Templates
+## 7. Views & Blade Templates
 
 The framework uses the Blade templating engine, which provides a clean and expressive syntax for building your views.
 Blade templates are compiled into plain PHP and cached for optimal performance.
@@ -609,7 +690,7 @@ Blade templates are compiled into plain PHP and cached for optimal performance.
 | `@if / @elseif / @else / @endif` |                   Conditional logic | `@if($user)` ... `@endif`                     |
 | `@foreach / @endforeach`         | Loop through an array or collection | `@foreach($items as $item)` ... `@endforeach` |
 | `@for / @endfor`                 |                      Basic for loop | `@for($i = 0; $i < 5; $i++)` ... `@endfor`    |
-| `@extends('layout')`             |                     Extend a layout | `@extends('header')`                          |
+| `@include('layout')`             |            Include the path content | `@include('header')`                          |
 | `@csrf`                          |       Insert a CSRF token for forms | `<form>@csrf</form>`                          |
 | `@php / @endphp`                 |                            PHP Tags | `@php` $test = "foo"; `@endphp`               |
 | `@post`                          |       Grab the POST Global Variable | `@post('email')`                              |
@@ -617,7 +698,7 @@ Blade templates are compiled into plain PHP and cached for optimal performance.
 
 ---
 
-## 7. Artisan CLI
+## 8. Artisan CLI
 
 The framework includes a powerful command-line interface called Artisan, designed to help you perform common development tasks quickly — such as running servers, managing migrations, creating files, and clearing caches.
 
@@ -641,7 +722,7 @@ php artisan list
 
 ---
 
-## 8. StreamWire
+## 9. StreamWire
 
 Build reactive, stateful UI components with **StreamWire** — without writing any JavaScript.  
 
