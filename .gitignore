@@ -12,6 +12,7 @@
 
 # Ignore dynamic builds from utilities...
 public/build
+public/storage
 
 # Ignore everything inside these folders...
 storage/private/*
