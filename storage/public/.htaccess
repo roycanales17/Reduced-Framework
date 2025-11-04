@@ -1,2 +1,10 @@
-Options +Indexes
-Require all granted
+# ============================================================
+# 📁 PUBLIC STORAGE
+# ------------------------------------------------------------
+# Publicly accessible storage. Files here can be served
+# directly via URL (e.g., /storage/public/image.jpg).
+# Directory listing is enabled for convenience.
+# ============================================================
+
+Options +Indexes                # Allow directory listing
+Require all granted             # Allow access to everyone

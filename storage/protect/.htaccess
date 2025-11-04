@@ -1,5 +1,14 @@
-Options -Indexes
+# ============================================================
+# 📁 PROTECTED STORAGE
+# ------------------------------------------------------------
+# Semi-restricted storage: no direct web access allowed.
+# Files here should only be served through a Laravel controller
+# after authentication or using signed URLs.
+# Directory listing is disabled.
+# ============================================================
 
-<FilesMatch ".*">
-  Require all granted
-</FilesMatch>
+Options -Indexes              # Disable directory listing
+
+<IfModule mod_authz_core.c>
+  Require all denied           # Block all direct access
+</IfModule>

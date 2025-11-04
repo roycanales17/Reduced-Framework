@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.359.3",
+            "version": "3.359.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "a32e4c9522f0b61c947fafa1713d3a24b397a757"
+                "reference": "510cb4b7e2fa3ea09ad2154e7a13fe7675c36b30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a32e4c9522f0b61c947fafa1713d3a24b397a757",
-                "reference": "a32e4c9522f0b61c947fafa1713d3a24b397a757",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/510cb4b7e2fa3ea09ad2154e7a13fe7675c36b30",
+                "reference": "510cb4b7e2fa3ea09ad2154e7a13fe7675c36b30",
                 "shasum": ""
             },
             "require": {
@@ -153,9 +153,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.359.3"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.359.4"
             },
-            "time": "2025-10-31T18:15:22+00:00"
+            "time": "2025-11-03T19:18:23+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",
@@ -899,16 +899,16 @@
         },
         {
             "name": "roy404/artisan",
-            "version": "1.3.2",
+            "version": "1.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/PHP-CLI-Artisan.git",
-                "reference": "2aac1e2e029eee5d8bdf65f9e5d1383d9722a2d2"
+                "reference": "34c92b258ee5e4404f642613d5e650fbced670a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/PHP-CLI-Artisan/zipball/2aac1e2e029eee5d8bdf65f9e5d1383d9722a2d2",
-                "reference": "2aac1e2e029eee5d8bdf65f9e5d1383d9722a2d2",
+                "url": "https://api.github.com/repos/roycanales17/PHP-CLI-Artisan/zipball/34c92b258ee5e4404f642613d5e650fbced670a5",
+                "reference": "34c92b258ee5e4404f642613d5e650fbced670a5",
                 "shasum": ""
             },
             "require": {
@@ -939,9 +939,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/PHP-CLI-Artisan/issues",
-                "source": "https://github.com/roycanales17/PHP-CLI-Artisan/tree/v1.3.2"
+                "source": "https://github.com/roycanales17/PHP-CLI-Artisan/tree/v1.3.4"
             },
-            "time": "2025-10-31T08:26:41+00:00"
+            "time": "2025-11-04T05:03:45+00:00"
         },
         {
             "name": "roy404/blades",
@@ -1138,16 +1138,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "8.2.5",
+            "version": "8.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "6f69fbbc3bacf2299c9577f22c127dd4db0b1364"
+                "reference": "26b9ccbc9fcd4cda2c84616b73129e7e823842b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/6f69fbbc3bacf2299c9577f22c127dd4db0b1364",
-                "reference": "6f69fbbc3bacf2299c9577f22c127dd4db0b1364",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/26b9ccbc9fcd4cda2c84616b73129e7e823842b8",
+                "reference": "26b9ccbc9fcd4cda2c84616b73129e7e823842b8",
                 "shasum": ""
             },
             "require": {
@@ -1193,9 +1193,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v8.2.5"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v8.3.1"
             },
-            "time": "2025-11-03T14:25:58+00:00"
+            "time": "2025-11-04T05:00:46+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",

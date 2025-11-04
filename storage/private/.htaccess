@@ -1,8 +1,17 @@
+# ============================================================
+# 📁 PRIVATE STORAGE
+# ------------------------------------------------------------
+# This directory is completely restricted from web access.
+# Used for sensitive or internal files (e.g., backups, logs,
+# invoices, or user data). Only server-side code (PHP/Laravel)
+# should read or write files here.
+# ============================================================
+
 <IfModule mod_authz_core.c>
-  Require all denied
+  Require all denied        # Apache 2.4+ — deny all HTTP access
 </IfModule>
 
 <IfModule !mod_authz_core.c>
-  Order allow,deny
+  Order allow,deny          # Older Apache syntax
   Deny from all
 </IfModule>
