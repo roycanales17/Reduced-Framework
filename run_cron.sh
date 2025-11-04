@@ -7,7 +7,7 @@ LOG_FILE="/var/log/cron/cron.log"
 
 # If running manually (stdout is a terminal), use a different log
 if [ -t 1 ]; then
-    LOG_FILE="./storage/logs/cron/cron.log"
+    LOG_FILE="./storage/private/logs/cron/cron.log"
 fi
 
 START_TIME=$(date '+%Y-%m-%d %H:%M:%S')
