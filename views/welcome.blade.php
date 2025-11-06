@@ -1,3 +1,5 @@
+@extends('template')
+@section('content')
 <style>
     body {
         font-family: 'Inter', sans-serif;
@@ -28,3 +30,4 @@
     <h1 class="font-bold">Welcome to {{ config('APP_NAME', 'Framework') }}</h1>
     <p>Your application is up and running!</p>
 </div>
+@endsection

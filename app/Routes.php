@@ -13,13 +13,7 @@ return [
 	*/
 	'web' => [
 		'captured' => function (string $content) {
-			echo(view('template', [
-				'g_page_lang' => config('APP_LANGUAGE'),
-				'g_page_title' => config('APP_NAME'),
-				'g_page_url' => config('APP_URL'),
-				'g_page_description' => "Page description here",
-				'g_page_content' => $content
-			]));
+            echo($content);
 		}
 	],
 
