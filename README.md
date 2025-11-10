@@ -931,4 +931,4 @@ Contributions are welcome! Please fork the repository and submit a pull request.
 
 ## 📜 License
 
-This framework is open-source software licensed under the [MIT license](LICENSE).
+This framework is open-source software licensed under the [MIT license](./LICENSE).
