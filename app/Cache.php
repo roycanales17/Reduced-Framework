@@ -25,14 +25,14 @@ return [
     // Redis configuration
     'redis' => [
         'driver' => CacheDriver::Redis,
-        'server' => config('REDIS_HOST', 'redis'),
-        'port' => config('REDIS_PORT', '6379')
+        'server' => env('REDIS_HOST', 'redis'),
+        'port' => env('REDIS_PORT', '6379')
     ],
 
     // Memcached configuration
     'memcached' => [
         'driver' => CacheDriver::Memcached,
-        'server' => config('MEMCACHE_HOST', 'memcached'),
-        'port' => config('MEMCACHE_PORT', '11211')
+        'server' => env('MEMCACHE_HOST', 'memcached'),
+        'port' => env('MEMCACHE_PORT', '11211')
     ]
 ];

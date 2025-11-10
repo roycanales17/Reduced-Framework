@@ -10,7 +10,7 @@ return [
 	| email sending or false to disable all outgoing emails.
 	|
 	*/
-	'enabled' => config('MAILING_ENABLED', false),
+	'enabled' => env('MAILING_ENABLED', false),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ return [
 	| Other options like "sendmail", "mailgun", or "log" can also be set.
 	|
 	*/
-	'smtp' => config('MAIL_MAILER', 'smtp'),
+	'smtp' => env('MAIL_MAILER', 'smtp'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ return [
 	| - smtp.gmail.com
 	|
 	*/
-	'host' => config('MAIL_HOST', 'smtp.mailgun.org'),
+	'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
 	| - 465 for SSL
 	|
 	*/
-	'port' => config('MAIL_PORT', '587'),
+	'port' => env('MAIL_PORT', '587'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
 	| Common values: 'tls', 'ssl'
 	|
 	*/
-	'encryption' => config('MAIL_ENCRYPTION', 'tls'),
+	'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -66,6 +66,6 @@ return [
 	| Authentication credentials for your SMTP server.
 	|
 	*/
-	'username' => config('MAIL_USERNAME', ''),
-	'password' => config('MAIL_PASSWORD', ''),
+	'username' => env('MAIL_USERNAME', ''),
+	'password' => env('MAIL_PASSWORD', ''),
 ];

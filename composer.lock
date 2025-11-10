@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "54fef9b5ba2f4e2f53439709bfd4e0e5",
+    "content-hash": "ac60caf670cfe2f6884a4c83165b4bb6",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.359.6",
+            "version": "3.359.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "8d2ab3687196f15209c316080a431911f2e02bb5"
+                "reference": "a5be7ed5efd25d70a74275daeff896b896d9c286"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/8d2ab3687196f15209c316080a431911f2e02bb5",
-                "reference": "8d2ab3687196f15209c316080a431911f2e02bb5",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a5be7ed5efd25d70a74275daeff896b896d9c286",
+                "reference": "a5be7ed5efd25d70a74275daeff896b896d9c286",
                 "shasum": ""
             },
             "require": {
@@ -153,9 +153,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.359.6"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.359.8"
             },
-            "time": "2025-11-05T19:08:10+00:00"
+            "time": "2025-11-07T19:48:19+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",
@@ -945,16 +945,16 @@
         },
         {
             "name": "roy404/blades",
-            "version": "1.6.5",
+            "version": "1.6.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/PHP-Blades-Compiler.git",
-                "reference": "08111b41f4a31487c0072d75d79b13c3edbf72bc"
+                "reference": "9a2af9a0060b5c1de1dd5d2a1bd21f307b3865bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/PHP-Blades-Compiler/zipball/08111b41f4a31487c0072d75d79b13c3edbf72bc",
-                "reference": "08111b41f4a31487c0072d75d79b13c3edbf72bc",
+                "url": "https://api.github.com/repos/roycanales17/PHP-Blades-Compiler/zipball/9a2af9a0060b5c1de1dd5d2a1bd21f307b3865bf",
+                "reference": "9a2af9a0060b5c1de1dd5d2a1bd21f307b3865bf",
                 "shasum": ""
             },
             "require": {
@@ -986,22 +986,22 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/PHP-Blades-Compiler/issues",
-                "source": "https://github.com/roycanales17/PHP-Blades-Compiler/tree/v1.6.5"
+                "source": "https://github.com/roycanales17/PHP-Blades-Compiler/tree/v1.6.8"
             },
-            "time": "2025-11-06T16:39:13+00:00"
+            "time": "2025-11-07T01:59:45+00:00"
         },
         {
             "name": "roy404/eloquent",
-            "version": "2.5.3",
+            "version": "2.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Database-ORM.git",
-                "reference": "2786af924c86d1434d692d33e008eb282ccd53a0"
+                "reference": "af3d987494eda4985b061b356b0945e4fd7b58d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Database-ORM/zipball/2786af924c86d1434d692d33e008eb282ccd53a0",
-                "reference": "2786af924c86d1434d692d33e008eb282ccd53a0",
+                "url": "https://api.github.com/repos/roycanales17/Database-ORM/zipball/af3d987494eda4985b061b356b0945e4fd7b58d4",
+                "reference": "af3d987494eda4985b061b356b0945e4fd7b58d4",
                 "shasum": ""
             },
             "require": {
@@ -1034,9 +1034,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Database-ORM/issues",
-                "source": "https://github.com/roycanales17/Database-ORM/tree/v2.5.3"
+                "source": "https://github.com/roycanales17/Database-ORM/tree/v2.5.5"
             },
-            "time": "2025-10-31T03:46:13+00:00"
+            "time": "2025-11-08T03:26:53+00:00"
         },
         {
             "name": "roy404/request",
@@ -1138,16 +1138,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "8.4.0",
+            "version": "8.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "1bc4101dd2de881c7224879e586855cf79a32556"
+                "reference": "72936471209e94ebea0acb43d0b8281204c3d84f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/1bc4101dd2de881c7224879e586855cf79a32556",
-                "reference": "1bc4101dd2de881c7224879e586855cf79a32556",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/72936471209e94ebea0acb43d0b8281204c3d84f",
+                "reference": "72936471209e94ebea0acb43d0b8281204c3d84f",
                 "shasum": ""
             },
             "require": {
@@ -1193,9 +1193,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v8.4.0"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v8.4.5"
             },
-            "time": "2025-11-05T01:36:31+00:00"
+            "time": "2025-11-10T02:53:30+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",

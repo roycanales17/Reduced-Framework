@@ -27,7 +27,7 @@
     }
 </style>
 <div class="text-center">
-    <h1 class="font-bold">Welcome to {{ config('APP_NAME', 'Framework') }}</h1>
+    <h1 class="font-bold">Welcome to {{ env('APP_NAME', 'Framework') }}</h1>
     <p>Your application is up and running!</p>
 </div>
 @endsection

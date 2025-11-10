@@ -57,7 +57,7 @@
         <p class="error-message">Sorry, the page you are looking for could not be found.</p>
         <a href="{{ route('homepage') }}" class="error-button">Go Home</a>
         <div class="error-footer">
-            &copy; {{ date('Y') }} {{ config('APP_NAME') }}
+            &copy; {{ date('Y') }} {{ env('APP_NAME') }}
         </div>
     </div>
 </section>

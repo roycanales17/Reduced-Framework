@@ -1,14 +1,14 @@
-<html lang="{{ config('APP_LANGUAGE') }}">
+<html lang="{{ env('APP_LANGUAGE') }}">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta property="og:title" content="{{ config('APP_NAME') }}">
+        <meta property="og:title" content="{{ env('APP_NAME') }}">
         <meta property="og:description" content="Page description here">
-        <meta property="og:url" content="{{ config('APP_URL') }}">
+        <meta property="og:url" content="{{ env('APP_URL') }}">
         <meta name="twitter:card" content="summary_large_image">
 
-        <title>{{ config('APP_NAME') }}</title>
+        <title>{{ env('APP_NAME') }}</title>
 
         <!-- Favicon and Icons -->
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset("/resources/images/favicon-16x16.png") }}">
