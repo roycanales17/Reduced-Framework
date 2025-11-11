@@ -23,6 +23,7 @@ services:
     restart: unless-stopped
     ports:
       - "${APP_PORT:-80}:80"
+      - "443:443"
     volumes:
       - ./:/var/www/html
       - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
