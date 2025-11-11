@@ -30,8 +30,13 @@ RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available
 # Inject reverse proxy config for Socket.IO
 RUN sed -i '/DocumentRoot \/var\/www\/html\/public/a \ \n    # Proxy for Socket.IO\n    ProxyPreserveHost On\n    ProxyPass /socket.io http://node:3000/socket.io\n    ProxyPassReverse /socket.io http://node:3000/socket.io\n' /etc/apache2/sites-available/000-default.conf
 
-# Configure ServerName (avoid FQDN warnings)
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+# Accept APP_URL from build args
+ARG APP_URL
+RUN if [ -n "$APP_URL" ]; then \
+      echo "ServerName ${APP_URL#*://}" >> /etc/apache2/apache2.conf; \
+    else \
+      echo "ServerName localhost" >> /etc/apache2/apache2.conf; \
+    fi
 
 # Allow .htaccess overrides
 RUN echo '<Directory /var/www/html>' > /etc/apache2/conf-available/htaccess.conf \
