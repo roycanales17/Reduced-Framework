@@ -78,6 +78,13 @@ RUN mkdir -p /etc/apache2/ssl; \
     a2ensite default-ssl.conf
 
 # --------------------------
+# Disable Apache access logs & redirect error logs to stdout
+# --------------------------
+RUN ln -sf /dev/null /var/log/apache2/access.log \
+    && ln -sf /dev/stdout /var/log/apache2/error.log \
+    && ln -sf /dev/stderr /var/log/apache2/other_vhosts_access.log
+
+# --------------------------
 # Expose Ports
 # --------------------------
 EXPOSE 80 443
