@@ -12,9 +12,7 @@ return [
 	|
 	*/
 	'web' => [
-		'captured' => function (string $content) {
-            echo($content);
-		}
+        'routes' => ['web.php']
 	],
 
 	/*
@@ -27,9 +25,6 @@ return [
 	*/
 	'api' => [
 		'routes' => ['api.php'],
-		'prefix' => 'api',
-		'captured' => function (string $content) {
-			echo($content);
-		}
+		'prefix' => 'api'
 	]
 ];

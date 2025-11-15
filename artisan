@@ -1,6 +1,9 @@
 #!/usr/bin/env php
 <?php
-	require __DIR__ . '/vendor/autoload.php';
+
+    use App\Bootstrap\Application;
+
+    require __DIR__ . '/vendor/autoload.php';
 
     # Class Importer
     spl_autoload_register(function ($class) {
@@ -10,8 +13,5 @@
         }
     });
 
-	$application = App\Bootstrap\Application::boot();
-	$application->withEnvironment(base_path('.env'));
-	$application->withConfiguration(base_path('app/Config.php'));
-    $application->run(fn() => launch_cli_session($argv, 'commands', './'));
+    Application::boot(base_path('.env'))->run(fn() => launch_cli_session($argv, 'commands', './'));
 

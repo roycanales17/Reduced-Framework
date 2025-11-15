@@ -1,5 +1,7 @@
 <?php
 
+    use App\Bootstrap\Application;
+
     // PSR-4 style class autoloader
     spl_autoload_register(function (string $class): void {
         $path = '../' . lcfirst(str_replace('\\', '/', $class)) . '.php';
@@ -11,4 +13,4 @@
 
     // Load Composer dependencies and core bootstrap
     require_once '../vendor/autoload.php';
-    require_once '../app/Bootstrap.php';
+    Application::boot(base_path('.env'))->run();
