@@ -3,7 +3,7 @@
     use App\Databases\Schema;
     use App\Databases\Handler\Blueprints\Table;
 
-    class CreateUsersTable
+    final class CreateUsersTable
     {
         /**
          * Apply the migration
