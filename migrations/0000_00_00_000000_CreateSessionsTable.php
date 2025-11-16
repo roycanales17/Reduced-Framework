@@ -12,7 +12,7 @@
 		public function up(): void
 		{
             Schema::create('sessions', function (Table $table) {
-                $table->string('id', 64);
+                $table->string('id', 64)->notNull();
                 $table->integer('user_id')->nullable()->default(null);
                 $table->text('data');
                 $table->string('ip_address', 45)->nullable();
