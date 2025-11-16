@@ -4,7 +4,7 @@
     use App\Databases\Handler\Blueprints\Table;
     use App\Utilities\Server;
 
-    class CreateSessionsTable
+    final class CreateSessionsTable
 	{
 		/**
 		 * Apply the migration
