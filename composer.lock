@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f01f24be3028c965bf4ba3a522658c94",
+    "content-hash": "c1deb57fecef56fe9c04d8546ebd6544",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -1138,16 +1138,16 @@
         },
         {
             "name": "roy404/utilities",
-            "version": "8.7.5",
+            "version": "8.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roycanales17/Web-Utilities.git",
-                "reference": "2b29b2ac504525421fa293669ccdd3a5ab28fb96"
+                "reference": "af6e5b9af1e8e6ee4f58c06812113c0589acf0f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/2b29b2ac504525421fa293669ccdd3a5ab28fb96",
-                "reference": "2b29b2ac504525421fa293669ccdd3a5ab28fb96",
+                "url": "https://api.github.com/repos/roycanales17/Web-Utilities/zipball/af6e5b9af1e8e6ee4f58c06812113c0589acf0f8",
+                "reference": "af6e5b9af1e8e6ee4f58c06812113c0589acf0f8",
                 "shasum": ""
             },
             "require": {
@@ -1194,9 +1194,9 @@
             ],
             "support": {
                 "issues": "https://github.com/roycanales17/Web-Utilities/issues",
-                "source": "https://github.com/roycanales17/Web-Utilities/tree/v8.7.5"
+                "source": "https://github.com/roycanales17/Web-Utilities/tree/v8.8.2"
             },
-            "time": "2025-11-16T05:26:37+00:00"
+            "time": "2025-11-16T10:25:45+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
