@@ -330,7 +330,7 @@ The scheduler provides expressive helpers for defining task frequency:
 Middlewares are responsible for filtering and processing HTTP requests before they reach your controllers or route logic.
 They can be used for authentication, authorization, input validation, logging, or modifying responses.
 
-You can define your middleware in the `handler/Middleware` directory:
+You can define your middleware in the `Handler/Middleware` directory:
 
 ```php
 namespace Handler\Middleware;
@@ -390,16 +390,7 @@ To register your middleware, open `app/Routes.php` and attach it to a route grou
 'web' => [
     'middleware' => [
         Handler\Middleware\Account::class
-    ],
-    'captured' => function (string $content) {
-        echo(view('template', [
-            'g_page_lang' => env('APP_LANGUAGE'),
-            'g_page_title' => env('APP_NAME'),
-            'g_page_url' => env('APP_URL'),
-            'g_page_description' => "Page description here",
-            'g_page_content' => $content
-        ]));
-    }
+    ]
 ],
 ```
 
@@ -409,7 +400,7 @@ This ensures that every request under the web group passes through the `Account`
 
 Controllers are responsible for handling **request/response logic**. They act as an intermediary between your routes and your business logic, keeping your code organized and maintainable.
 
-You can define controllers in the `handler/Controllers` directory:
+You can define controllers in the `Handler/Controllers` directory:
 
 ```php
 namespace Handler\Controller;
