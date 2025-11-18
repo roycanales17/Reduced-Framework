@@ -335,7 +335,7 @@ You can define your middleware in the `handler/Middleware` directory:
 ```php
 namespace Handler\Middleware;
 				
-use App\Headers\Request;
+use App\Utilities\Request;
 
 class Account
 {
@@ -415,7 +415,7 @@ You can define controllers in the `handler/Controllers` directory:
 namespace Handler\Controller;
 
 use App\Http\Controller;
-use App\Headers\Request;
+use App\Utilities\Request;
 
 class UserController extends Controller
 {

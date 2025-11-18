@@ -12,7 +12,6 @@
   "require": {
     "php": "^8.1",
     "roy404/utilities": "^8.4.1",
-    "roy404/request": "^3.1",
     "roy404/routes": "^4.3",
     "roy404/blades": "^1.4",
     "aws/aws-sdk-php": "^3.0"
