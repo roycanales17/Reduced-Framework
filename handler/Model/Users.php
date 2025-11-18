@@ -4,7 +4,7 @@
 
 	use App\Databases\Facade\Model;
 
-	class Users extends Model
+	final class Users extends Model
 	{
 		/** @var string Primary key of the table */
 		public string $primary_key = 'id';

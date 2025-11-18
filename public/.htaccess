@@ -1,7 +1,7 @@
 RewriteEngine On
 
 # -------------------------------------------------------
-# 🧭 Default fallback to index.php (Laravel-style routing)
+# 🧭 Default fallback to index.php
 # -------------------------------------------------------
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
